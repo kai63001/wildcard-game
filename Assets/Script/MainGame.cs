@@ -4,10 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+
 public class MainGame : MonoBehaviourPunCallbacks
 {
     public Text romeoText;
-    private int count = 0;
+    public GameObject WaitScreen;
+    public GameObject GameScreen;
 
 
     void Start()
@@ -18,25 +20,30 @@ public class MainGame : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
     }
 
+    private void Update()
+    {
+        _waitPlayer();
+    }
+
+    private void _waitPlayer()
+    {
+        if (PhotonNetwork.PlayerList.Length == 2)
+        {
+            WaitScreen.SetActive(false);
+            GameScreen.SetActive(true);
+        }
+    }
+
     public void draw()
     {
-        // var output = JsonUtility.ToJson(PhotonNetwork.CurrentRoom, true);
-        // Debug.Log(PhotonNetwork.CurrentRoom.Players.ElementAt(0));
-        base.photonView.RPC("counter", RpcTarget.All, true);
-
-        Debug.Log(count);
+        base.photonView.RPC("randomCard", RpcTarget.All, Random.Range(1, 7));
     }
-
-
 
     [PunRPC]
-    private void counter(bool test)
+    private void randomCard(int number)
     {
-        count++;
-        romeoText.text = count.ToString();
-        Debug.Log("Count");
-        //PhotonNetwork.RaiseEvent(count, count +1,RaiseEventOptions.Default, SendOptions.SendReliable);
+        romeoText.text = number.ToString();
+        Debug.Log(number.ToString());
     }
-
 
 }
