@@ -7,13 +7,18 @@ using UnityEngine.UI;
 
 public class MainGame : MonoBehaviourPunCallbacks
 {
-    public Text romeoText;
+    public Text countMyText;
+    public Text countEnemyText;
     public Text turnText;
     public GameObject WaitScreen;
     public GameObject GameScreen;
     private int playerID;
 
     private int _turn = 1;
+
+    private int countMy = 0;
+    private int countEnemy = 0;
+
 
 
     private bool gameStart = false;
@@ -71,7 +76,15 @@ public class MainGame : MonoBehaviourPunCallbacks
     [PunRPC]
     private void randomCard(int number)
     {
-        romeoText.text = number.ToString();
+        if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            countMy += number;
+        }else
+        {
+            countEnemy += number;
+        }
+        countMyText.text = countMy.ToString();
+        countEnemyText.text = countEnemy.ToString();
         Debug.Log(number.ToString());
     }
 
