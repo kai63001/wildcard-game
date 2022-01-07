@@ -8,11 +8,15 @@ using UnityEngine.UI;
 public class MainGame : MonoBehaviourPunCallbacks
 {
     public Text romeoText;
+    public Text turnText;
     public GameObject WaitScreen;
     public GameObject GameScreen;
     private int playerID;
 
     private int _turn = 1;
+
+
+    private bool gameStart = false;
 
 
     void Start()
@@ -31,10 +35,12 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     private void _waitPlayer()
     {
-        if (PhotonNetwork.PlayerList.Length == 2)
+        if (PhotonNetwork.PlayerList.Length == 2 && gameStart == false)
         {
             WaitScreen.SetActive(false);
             GameScreen.SetActive(true);
+            _changeTurnText();
+            gameStart = true;
         }
     }
 
@@ -46,6 +52,19 @@ public class MainGame : MonoBehaviourPunCallbacks
             base.photonView.RPC("randomCard", RpcTarget.All, Random.Range(1, 7));
             Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
+        }
+    }
+
+    private void _changeTurnText()
+    {
+        Debug.Log("Player "+PhotonNetwork.LocalPlayer.ActorNumber + " Turn "+_turn);
+        if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
+        {
+            turnText.text = "Your Turn";
+        }
+        else
+        {
+            turnText.text = "Turn Player " + _turn;
         }
     }
 
@@ -68,6 +87,7 @@ public class MainGame : MonoBehaviourPunCallbacks
         {
             _turn = 1;
         }
+        _changeTurnText();
     }
 
 
