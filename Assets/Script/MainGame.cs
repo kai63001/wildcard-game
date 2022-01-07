@@ -83,9 +83,28 @@ public class MainGame : MonoBehaviourPunCallbacks
         {
             countEnemy += number;
         }
+        //Black Jack
+        if (countMy == 12)
+        {
+            Debug.Log("My Black Jack");
+        }else if(countEnemy == 12)
+        {
+            Debug.Log("Enemy Black Jack");
+        }
+        //Loser
+        if (countMy > 12)
+        {
+            countMy = 0;
+            Debug.Log("My Loser");
+        }
+        else if (countEnemy > 12)
+        {
+            countEnemy = 0;
+            Debug.Log("Enemy Loser");
+        }
+
         countMyText.text = countMy.ToString();
         countEnemyText.text = countEnemy.ToString();
-        Debug.Log(number.ToString());
     }
 
     [PunRPC]
