@@ -10,6 +10,9 @@ public class MainGame : MonoBehaviourPunCallbacks
     public Text romeoText;
     public GameObject WaitScreen;
     public GameObject GameScreen;
+    private int playerID;
+
+    private int _turn = 1;
 
 
     void Start()
@@ -18,6 +21,7 @@ public class MainGame : MonoBehaviourPunCallbacks
         roomOptions.IsVisible = false;
         roomOptions.MaxPlayers = 2;
         PhotonNetwork.JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
+        playerID = PhotonNetwork.LocalPlayer.ActorNumber;
     }
 
     private void Update()
@@ -36,7 +40,13 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     public void draw()
     {
-        base.photonView.RPC("randomCard", RpcTarget.All, Random.Range(1, 7));
+        Debug.Log(_turn);
+        if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            base.photonView.RPC("randomCard", RpcTarget.All, Random.Range(1, 7));
+            Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
+            base.photonView.RPC("_changeTurn", RpcTarget.All);
+        }
     }
 
     [PunRPC]
@@ -45,5 +55,20 @@ public class MainGame : MonoBehaviourPunCallbacks
         romeoText.text = number.ToString();
         Debug.Log(number.ToString());
     }
+
+    [PunRPC]
+    private void _changeTurn()
+    {
+        Debug.Log("Change Turn");
+        if (_turn == 1)
+        {
+            _turn = 2;
+        }
+        else
+        {
+            _turn = 1;
+        }
+    }
+
 
 }

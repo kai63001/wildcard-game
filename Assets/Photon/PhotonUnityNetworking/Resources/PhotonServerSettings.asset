@@ -41,6 +41,8 @@ MonoBehaviour:
   - RespawnSpaceship
   - counter
   - randomCard
+  - _changeTurn
+  - _initTurn
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
