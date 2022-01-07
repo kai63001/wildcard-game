@@ -16,9 +16,13 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     private int _turn = 1;
 
+    // count
     private int countMy = 0;
     private int countEnemy = 0;
 
+    //HP
+    private int myHP = 50;
+    private int enemyHP = 50;
 
 
     private bool gameStart = false;
@@ -58,6 +62,11 @@ public class MainGame : MonoBehaviourPunCallbacks
             Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
         }
+    }
+
+    public void lockDraw()
+    {
+
     }
 
     private void _changeTurnText()
