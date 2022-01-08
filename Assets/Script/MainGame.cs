@@ -21,8 +21,7 @@ public class MainGame : MonoBehaviourPunCallbacks
     private int countEnemy = 0;
 
     // HP
-    private int myHP = 50;
-    private int enemyHP = 50;
+    HPsystem hpObject;
 
     // LOCK
     private bool[] playerLock = new bool[2];
@@ -38,6 +37,8 @@ public class MainGame : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
         playerLock[0] = false;
         playerLock[1] = false;
+        hpObject = GameObject.FindGameObjectWithTag("HP").GetComponent<HPsystem>();
+        Debug.Log(hpObject.enemyHP);
     }
 
     private void Update()
