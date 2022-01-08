@@ -20,10 +20,12 @@ public class MainGame : MonoBehaviourPunCallbacks
     private int countMy = 0;
     private int countEnemy = 0;
 
-    //HP
+    // HP
     private int myHP = 50;
     private int enemyHP = 50;
 
+    // LOCK
+    private bool[] playerLock = new bool[2];
 
     private bool gameStart = false;
 
@@ -34,7 +36,8 @@ public class MainGame : MonoBehaviourPunCallbacks
         roomOptions.IsVisible = false;
         roomOptions.MaxPlayers = 2;
         PhotonNetwork.JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
-        playerID = PhotonNetwork.LocalPlayer.ActorNumber;
+        playerLock[0] = false;
+        playerLock[1] = false;
     }
 
     private void Update()
@@ -49,6 +52,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             WaitScreen.SetActive(false);
             GameScreen.SetActive(true);
             _changeTurnText();
+            playerID = PhotonNetwork.LocalPlayer.ActorNumber;
             gameStart = true;
         }
     }
@@ -66,7 +70,23 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     public void lockDraw()
     {
+        Debug.Log("Locked : " + playerLock[0]);
+        Debug.Log("Locked : " + playerLock[1]);
+        if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
+        {
+            playerLock[PhotonNetwork.LocalPlayer.ActorNumber - 1] = true;
+            base.photonView.RPC("_changeTurn", RpcTarget.All);
+        }
+    }
 
+    private void _checkLock()
+    {
+        Debug.Log("Player ID : " + playerID);
+        Debug.Log("Locked : " + playerLock);
+        if (playerLock[PhotonNetwork.LocalPlayer.ActorNumber - 1] == true)
+        {
+            base.photonView.RPC("_changeTurn", RpcTarget.All);
+        }
     }
 
     private void _changeTurnText()
@@ -75,6 +95,7 @@ public class MainGame : MonoBehaviourPunCallbacks
         if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
         {
             turnText.text = "Your Turn";
+            _checkLock();
         }
         else
         {
