@@ -21,7 +21,10 @@ public class MainGame : MonoBehaviourPunCallbacks
     private int countEnemy = 0;
 
     // HP
-    HPsystem hpObject;
+    private int myHP = 50;
+    private int enemyHP = 50;
+    public Text myHPText;
+    public Text enemyHPText;
 
     // LOCK
     private bool[] playerLock = new bool[2];
@@ -37,13 +40,13 @@ public class MainGame : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
         playerLock[0] = false;
         playerLock[1] = false;
-        hpObject = GameObject.FindGameObjectWithTag("HP").GetComponent<HPsystem>();
-        Debug.Log(hpObject.enemyHP);
     }
 
     private void Update()
     {
         _waitPlayer();
+        myHPText.text = myHP.ToString();
+        enemyHPText.text = enemyHP.ToString();
     }
 
     private void _waitPlayer()
@@ -115,23 +118,36 @@ public class MainGame : MonoBehaviourPunCallbacks
             countEnemy += number;
         }
         //Black Jack
-        if (countMy == 12)
+        if (countMy == 12 || countEnemy == 12)
         {
-            Debug.Log("My Black Jack");
-        }else if(countEnemy == 12)
-        {
-            Debug.Log("Enemy Black Jack");
+            // for check who got black jack
+            if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                enemyHP -= countMy;
+            }
+            else
+            {
+                myHP -= countEnemy;
+            }
+            //reset count
+            countMy = 0;
+            countEnemy = 0;
         }
         //Loser
-        if (countMy > 12)
+        if (countMy > 12 || countEnemy > 12)
         {
+            // for check who got loser
+            if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                enemyHP -= countMy;
+            }
+            else
+            {
+                myHP -= countEnemy;
+            }
+            //reset count
             countMy = 0;
-            Debug.Log("My Loser");
-        }
-        else if (countEnemy > 12)
-        {
             countEnemy = 0;
-            Debug.Log("Enemy Loser");
         }
 
         countMyText.text = countMy.ToString();

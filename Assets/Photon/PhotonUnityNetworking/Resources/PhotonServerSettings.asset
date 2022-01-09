@@ -43,6 +43,9 @@ MonoBehaviour:
   - randomCard
   - _changeTurn
   - _initTurn
+  - changeEnemyHP
+  - _changeEnemyHP
+  - _changeEnemy
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
