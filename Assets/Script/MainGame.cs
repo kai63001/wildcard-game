@@ -67,15 +67,15 @@ public class MainGame : MonoBehaviourPunCallbacks
         if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             base.photonView.RPC("randomCard", RpcTarget.All, Random.Range(1, 7));
-            Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
+            //Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
         }
     }
 
     public void lockDraw()
     {
-        Debug.Log("Locked : " + playerLock[0]);
-        Debug.Log("Locked : " + playerLock[1]);
+        //Debug.Log("Locked : " + playerLock[0]);
+        //Debug.Log("Locked : " + playerLock[1]);
         if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
         {
             playerLock[PhotonNetwork.LocalPlayer.ActorNumber - 1] = true;
@@ -85,8 +85,8 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     private void _checkLock()
     {
-        Debug.Log("Player ID : " + playerID);
-        Debug.Log("Locked : " + playerLock);
+        //Debug.Log("Player ID : " + playerID);
+        //Debug.Log("Locked : " + playerLock);
         if (playerLock[PhotonNetwork.LocalPlayer.ActorNumber - 1] == true)
         {
             base.photonView.RPC("_changeTurn", RpcTarget.All);
@@ -120,6 +120,7 @@ public class MainGame : MonoBehaviourPunCallbacks
         //Black Jack
         if (countMy == 12 || countEnemy == 12)
         {
+            Debug.Log("Black jack");
             // for check who got black jack
             if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
             {
@@ -136,14 +137,15 @@ public class MainGame : MonoBehaviourPunCallbacks
         //Loser
         if (countMy > 12 || countEnemy > 12)
         {
+            Debug.Log("Loser");
             // for check who got loser
             if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
             {
-                enemyHP -= countMy;
+                myHP -= countEnemy;
             }
             else
             {
-                myHP -= countEnemy;
+                enemyHP -= countMy;
             }
             //reset count
             countMy = 0;
@@ -157,7 +159,7 @@ public class MainGame : MonoBehaviourPunCallbacks
     [PunRPC]
     private void _changeTurn()
     {
-        Debug.Log("Change Turn");
+        //Debug.Log("Change Turn");
         if (_turn == 1)
         {
             _turn = 2;
