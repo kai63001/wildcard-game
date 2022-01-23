@@ -1,0 +1,22 @@
+{
+  "name": "wile-game",
+  "version": "1.0.0",
+  "description": "HELLO",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kai63001/wile-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kai63001/wile-game/issues"
+  },
+  "homepage": "https://github.com/kai63001/wile-game#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.4.2"
+  }
+}
