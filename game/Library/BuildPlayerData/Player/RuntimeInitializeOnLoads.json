@@ -1,0 +1,1 @@
+{"root":[{"assemblyName":"Assembly-CSharp-firstpass","nameSpace":"UnityAsyncAwaitUtil","className":"SyncContextUtil","methodName":"Install","loadTypes":1,"isUnityClass":true},{"assemblyName":"PhotonRealtime","nameSpace":"Photon.Realtime","className":"ConnectionHandler","methodName":"StaticReset","loadTypes":4,"isUnityClass":false}]}

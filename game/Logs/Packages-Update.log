@@ -1,0 +1,10 @@
+
+=== Mon Jan 10 15:58:07 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.2d.spriteshape from version 5.1.5 to 5.1.6
+  com.unity.collab-proxy from version 1.13.5 to 1.15.4
+  com.unity.ide.visualstudio from version 2.0.11 to 2.0.12
