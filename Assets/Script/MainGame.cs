@@ -78,9 +78,15 @@ public class MainGame : MonoBehaviourPunCallbacks
         //Debug.Log("Locked : " + playerLock[1]);
         if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
         {
-            playerLock[PhotonNetwork.LocalPlayer.ActorNumber - 1] = true;
+            base.photonView.RPC("_syncPlayerLock", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    private void _syncPlayerLock(int player)
+    {
+        playerLock[player - 1] = true;
     }
 
     private void _checkLock()
@@ -95,7 +101,7 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     private void _changeTurnText()
     {
-        Debug.Log("Player "+PhotonNetwork.LocalPlayer.ActorNumber + " Turn "+_turn);
+        Debug.Log("Player " + PhotonNetwork.LocalPlayer.ActorNumber + " Turn " + _turn);
         if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
         {
             turnText.text = "Your Turn";
@@ -105,6 +111,35 @@ public class MainGame : MonoBehaviourPunCallbacks
         {
             turnText.text = "Turn Player " + _turn;
         }
+        Debug.Log("108 line");
+        Debug.Log(playerLock[0]);
+        Debug.Log(playerLock[1]);
+        // check if all players lock
+        if (playerLock[0] == true && playerLock[1] == true)
+        {
+            // _playerAllLock();           
+            base.photonView.RPC("_playerAllLock", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    private void _playerAllLock()
+    {
+        Debug.Log("All Player is Locked");
+        if(countEnemy > countMy){
+            myHP -= countEnemy - countMy;
+        }else if(countMy > countEnemy){
+            enemyHP -= countMy- countEnemy;
+        }
+        // myHP = countEnemy;
+        // enemyHP -= countMy;
+        //reset count
+        countMy = 0;
+        countEnemy = 0;
+        playerLock[0] = false;
+        playerLock[1] = false;
+        countMyText.text = countMy.ToString();
+        countEnemyText.text = countEnemy.ToString();
     }
 
     [PunRPC]
@@ -113,7 +148,8 @@ public class MainGame : MonoBehaviourPunCallbacks
         if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             countMy += number;
-        }else
+        }
+        else
         {
             countEnemy += number;
         }
@@ -124,11 +160,11 @@ public class MainGame : MonoBehaviourPunCallbacks
             // for check who got black jack
             if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
             {
-                enemyHP -= countMy;
+                myHP -= countEnemy;
             }
             else
             {
-                myHP -= countEnemy;
+                enemyHP -= countMy;
             }
             //reset count
             countMy = 0;

@@ -46,6 +46,8 @@ MonoBehaviour:
   - changeEnemyHP
   - _changeEnemyHP
   - _changeEnemy
+  - _playerAllLock
+  - _syncPlayerLock
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
