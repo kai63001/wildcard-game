@@ -133,6 +133,8 @@ public class MainGame : MonoBehaviourPunCallbacks
             //reset count
             countMy = 0;
             countEnemy = 0;
+            playerLock[0] = false;
+            playerLock[1] = false;
         }
         //Loser
         if (countMy > 12 || countEnemy > 12)
@@ -150,6 +152,8 @@ public class MainGame : MonoBehaviourPunCallbacks
             //reset count
             countMy = 0;
             countEnemy = 0;
+            playerLock[0] = false;
+            playerLock[1] = false;
         }
 
         countMyText.text = countMy.ToString();

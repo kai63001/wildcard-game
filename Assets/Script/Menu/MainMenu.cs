@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
+
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
