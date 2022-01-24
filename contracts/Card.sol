@@ -13,6 +13,9 @@ contract WileCard is ERC721URIStorage {
     address payable public Owner;
     uint256 fee = 8;
 
+    mapping(address => uint256[]) public userOwnedTokens;
+    
+
     constructor() ERC721("WileCard", "Wile") {
         Owner = payable(msg.sender);
     }
@@ -22,7 +25,12 @@ contract WileCard is ERC721URIStorage {
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
+        userOwnedTokens[msg.sender].push(newItemId);
         return newItemId;
+    }
+
+    function getUserToken(address data) public view returns (uint256[] memory) {
+        return userOwnedTokens[msg.sender];
     }
 
     function totalSupply() public view returns (Counters.Counter memory) {
