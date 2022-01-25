@@ -28,6 +28,13 @@ contract WileCard is ERC721URIStorage {
         userOwnedTokens[msg.sender].push(newItemId);
         return newItemId;
     }
+    
+    function transferNFT(address from, address to, uint256 tokenId) public {
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
+        userOwnedTokens[to] = userOwnedTokens[from];
+        delete userOwnedTokens[from];
+        _transfer(from, to, tokenId);
+    }
 
     function getUserToken() public view returns (uint256[] memory) {
         return userOwnedTokens[msg.sender];
