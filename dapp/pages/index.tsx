@@ -1,8 +1,10 @@
+import Layout from "@/components/Layout"
+
 const Home = () => {
   return (
-    <div>
+    <Layout>
       <div className="p-2 text-red-500"> HELLO WORLD </div>
-    </div>
+    </Layout>
   )
 }
 
