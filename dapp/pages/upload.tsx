@@ -1,7 +1,7 @@
 import Input from "@/components/form/Input";
 import Layout from "@/components/Layout";
 import { create } from "ipfs-http-client";
-import { mint } from "@/lib/Web3Client"
+import { mint,getUserToken } from "@/lib/Web3Client"
 
 const UploadPage = () => {
   const ipfs = create({
@@ -31,6 +31,10 @@ const UploadPage = () => {
     const filesAdded: any = await ipfs.add(file);
     return filesAdded.cid;
   };
+
+  const list = () => {
+    getUserToken();
+  }
   
   return (
     <Layout>
@@ -51,7 +55,9 @@ const UploadPage = () => {
             </form>
           </div>
         </div>
-        <div className="col-span-2 bg-red-300"></div>
+        <div className="col-span-2 bg-red-300">
+            <button onClick={list}>test</button>
+        </div>
       </div>
     </Layout>
   );
