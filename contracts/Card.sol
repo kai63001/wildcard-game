@@ -14,6 +14,7 @@ contract WileCard is ERC721URIStorage {
     uint256 fee = 8;
 
     mapping(address => uint256[]) public userOwnedTokens;
+    // mapping(uint256 => uint256) public tokenIsAtIndex;
     
 
     constructor() ERC721("WileCard", "Wile") {
@@ -26,13 +27,21 @@ contract WileCard is ERC721URIStorage {
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
         userOwnedTokens[msg.sender].push(newItemId);
+        // uint256 arrayLength = userOwnedTokens[msg.sender].length;
+        // tokenIsAtIndex[newItemId] = arrayLength - 1;
         return newItemId;
     }
     
     function transferNFT(address from, address to, uint256 tokenId) public {
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
-        userOwnedTokens[to] = userOwnedTokens[from];
-        delete userOwnedTokens[from];
+        userOwnedTokens[to].push(tokenId);
+        // uint256 tokenIndex = tokenIsAtIndex[tokenId];
+        for(uint256 i =0; i < userOwnedTokens[from].length;i++){
+            if(userOwnedTokens[from][i] == tokenId){
+                userOwnedTokens[from][i] = 0;
+                i = userOwnedTokens[from].length;
+            }
+        }
         _transfer(from, to, tokenId);
     }
 
