@@ -39,7 +39,7 @@ contract WileCard is ERC721URIStorage {
         for(uint256 i =0; i < userOwnedTokens[from].length;i++){
             if(userOwnedTokens[from][i] == tokenId){
                 userOwnedTokens[from][i] = 0;
-                i = userOwnedTokens[from].length;
+                break;
             }
         }
         _transfer(from, to, tokenId);
