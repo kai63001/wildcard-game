@@ -1,3 +1,36 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Fredoka+One&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  font-family: "Fredoka One", sans-serif ;
+  padding: 0;
+  margin: 0;
+  /* background-color: rgb(250, 249, 250) !important; */
+  font-display: swap !important;
+}
+
+.logo {
+    font-family: 'Fredoka One', cursive;
+}
+
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100% !important;
+}
+
+footer {
+  background: white;
+  width: 100%;
+  padding: 15px 0px;
+}
+
+main {
+  min-height: 86% !important;
+}
