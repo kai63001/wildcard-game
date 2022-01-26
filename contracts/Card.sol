@@ -20,8 +20,12 @@ contract WileCard is ERC721URIStorage {
     constructor() ERC721("WileCard", "Wile") {
         Owner = payable(msg.sender);
     }
+    modifier onlyOwner() {
+        require(msg.sender == Owner, "Not owner");
+        _;
+    }
 
-    function mintNFT(string memory tokenURI) public returns (uint256) {
+    function mintNFT(string memory tokenURI) public onlyOwner returns (uint256) {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender, newItemId);
@@ -53,10 +57,6 @@ contract WileCard is ERC721URIStorage {
         return _tokenIds;
     }
 
-    modifier onlyOwner() {
-        require(msg.sender == Owner, "Not owner");
-        _;
-    }
 
     function deposit() public payable returns (uint256) {
         require(msg.value == 1 * (10**fee), "MONEY U KONW");
