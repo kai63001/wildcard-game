@@ -24,22 +24,39 @@ export const init = async () => {
   //   console.log(address)
   //   sign(await signer.getAddress());
   //   myAddress = await signer.getAddress();
-  return true
+  return true;
 };
 
-
-export const mint = async (data:string) => {
-  console.log(contract)
+export const mint = async (data: string) => {
+  console.log(contract);
   contract.mintNFT(data).then(function (transaction: any) {
     console.log(transaction);
   });
-}
+};
 
 export const getUserToken = () => {
-  contract.getUserToken().then(function (transaction: any) {
-    console.log(transaction.filter((data:any)=>data.toNumber() != 0 && data.toNumber()).map((data:any)=>data.toNumber()))
+  // contract.tokenURI
+  return new Promise(function (res, rej) {
+    contract.getUserToken().then(async function (transaction: any) {
+      let data = await transaction.filter(
+        (data: any) => data.toNumber() != 0 && data.toNumber()
+      );
+      data = await data.map((data: any) => data.toNumber());
+      // data = await data.map((data: any) => contract.tokenURI(data).then(async (data:any)=>{
+      //   console.log(data)
+      //   return await data
+      // }));
+      const promises = await data.map(async (data: unknown) => {
+        const numFruit = new Promise((resolve, reject) => {
+          resolve(contract.tokenURI(data))
+        });
+        return numFruit
+      })
+      const numFruits = await Promise.all(promises)
+      res(await numFruits);
+    });
   });
-}
+};
 
 export const isAuth = async () => {
   let address = "";

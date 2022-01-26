@@ -32,8 +32,11 @@ const UploadPage = () => {
     return filesAdded.cid;
   };
 
-  const list = () => {
-    getUserToken();
+  const list = async() => {
+    const test = await getUserToken().then((data: any)=>{
+        return data
+    })
+    console.log(test)
   }
   
   return (

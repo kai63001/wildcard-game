@@ -30,7 +30,7 @@ const Navbar = () => {
             <button
               className="text-black bg-white px-3 py-2 rounded-md"
             >
-              {auth}
+              {`${auth.slice(0,2)}...${auth.slice(auth.length -4 , auth.length)}`}
             </button>
           ) : (
             <button
