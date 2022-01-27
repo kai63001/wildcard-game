@@ -1,5 +1,5 @@
 import { init, isAuth } from "@/lib/Web3Client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 // import { isAuth } from "@/lib/JWT";
 // import { Cookies } from "react-cookie";
 // const cookies = new Cookies();
@@ -9,13 +9,15 @@ const Navbar = () => {
   const [auth, setAuth] = useState("");
   useEffect(() => {
     getAuth();
-  });
+  },[auth]);
 
   const getAuth = async () => {
     try {
-      init().then(async (data) => {
-        setAuth(await isAuth());
-      });
+      if(!auth){
+        init().then(async (data) => {
+          setAuth(await isAuth());
+        });
+      }
     } catch (error) {
       console.log("login first");
     }
@@ -36,7 +38,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="text-1xl mt-2">
-            <Link href="/">
+            <Link href="/marketplace">
               <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">MARKETPLACE</a>
             </Link>
           </div>
