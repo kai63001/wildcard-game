@@ -53,6 +53,10 @@ contract WileCard is ERC721URIStorage {
         return userOwnedTokens[msg.sender];
     }
 
+    function getUserTokenWithAddress(address sender) public view returns (uint256[] memory) {
+        return userOwnedTokens[sender];
+    }
+
     function totalSupply() public view returns (Counters.Counter memory) {
         return _tokenIds;
     }
