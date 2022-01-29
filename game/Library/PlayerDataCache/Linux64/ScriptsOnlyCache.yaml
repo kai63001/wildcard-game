@@ -1,6 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-firstpass.dll:
+    - UnityAsyncAwaitUtil.AsyncCoroutineRunner
     Assembly-CSharp.dll:
+    - ERC721BalanceOfExample
+    - ERC721URIExample
     - MainGame
     - MainMenu
     PhotonUnityNetworking.Demos.dll:
@@ -13,8 +17,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
-    PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -25,11 +27,8 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -86,7 +85,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3718}
     - Class: 114
-      Script: {instanceID: 5306}
+      Script: {instanceID: 5308}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -145,6 +144,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1608}
     - Class: 114
+      Script: {instanceID: 1610}
+    - Class: 114
       Script: {instanceID: 1714}
     - Class: 114
       Script: {instanceID: 1784}
@@ -154,6 +155,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1828}
     - Class: 114
       Script: {instanceID: 2074}
+    - Class: 114
+      Script: {instanceID: 2350}
     - Class: 114
       Script: {instanceID: 2520}
     - Class: 114
@@ -171,21 +174,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3718}
     - Class: 114
-      Script: {instanceID: 4378}
+      Script: {instanceID: 4380}
     - Class: 114
-      Script: {instanceID: 4832}
+      Script: {instanceID: 4834}
     - Class: 114
-      Script: {instanceID: 4838}
+      Script: {instanceID: 4840}
     - Class: 114
-      Script: {instanceID: 5076}
+      Script: {instanceID: 5078}
     - Class: 114
-      Script: {instanceID: 5148}
+      Script: {instanceID: 5150}
     - Class: 114
-      Script: {instanceID: 5738}
+      Script: {instanceID: 5740}
     - Class: 114
-      Script: {instanceID: 5928}
+      Script: {instanceID: 5930}
     - Class: 114
-      Script: {instanceID: 6382}
+      Script: {instanceID: 6384}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -979,6 +982,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CustomCallExample
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: getMyNFT
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -1811,4 +1820,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Main.unity
-  playerPath: /home/romeo/Project/wile-game/demo/test.x86_64
+  playerPath: /home/romeo/Project/wile-game/game/demo/test_Data/test.x86_64
