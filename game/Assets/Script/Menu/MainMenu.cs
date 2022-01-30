@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviourPunCallbacks
 {
 
+    public Text statusServer;
+
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -21,6 +23,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        statusServer.text = "Status: Connected"; 
         Debug.Log("OnConnectedToMaster() was called by PUN.");
     }
 
@@ -28,7 +31,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
     public void FineMatch()
     {
 
-        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
