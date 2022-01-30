@@ -6,10 +6,10 @@ public class ERC721URIExample : MonoBehaviour
 {
     async void Start()
     {
-        string chain = "ethereum";
-        string network = "ropsten";
-        string contract = "0x3Cd7f39a7488a638738D9151a55694C48c0b3Fe1";
-        string tokenId = "6";
+        string chain = "polygon";
+        string network = "mainnet";
+        string contract = "0xbCCaa7ACb552A2c7eb27C7eb77c2CC99580735b9";
+        string tokenId = "965";
 
         string uri = await ERC721.URI(chain, network, contract, tokenId);
         print(uri);
