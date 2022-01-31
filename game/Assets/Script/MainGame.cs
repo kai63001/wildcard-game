@@ -11,6 +11,7 @@ public class MainGame : MonoBehaviourPunCallbacks
     public Text countMyText;
     public Text countEnemyText;
     public Text turnText;
+    public Text countMyDrawCard;
     public GameObject WaitScreen;
     public GameObject GameScreen;
     private int playerID;
@@ -34,7 +35,6 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     //Card
     public int[][] playerCard = new int[2][];
-
 
     void Start()
     {
@@ -79,6 +79,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             playerID = PhotonNetwork.LocalPlayer.ActorNumber;
             gameStart = true;
             _playerCardRandomPushtoArray();
+            countMyDrawCard.text = playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length.ToString();
         }
     }
 
@@ -87,7 +88,8 @@ public class MainGame : MonoBehaviourPunCallbacks
         Debug.Log(_turn);
         if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            Debug.Log(playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard.Length - 1]);
+            // Debug.Log(playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard.Length - 1]);
+            countMyDrawCard.text = playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length.ToString();
             // playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
             base.photonView.RPC("randomCard", RpcTarget.All,playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1]);
             RemoveAt(ref playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1], playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1);
