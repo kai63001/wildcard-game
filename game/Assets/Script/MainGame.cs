@@ -89,8 +89,8 @@ public class MainGame : MonoBehaviourPunCallbacks
         {
             Debug.Log(playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard.Length - 1]);
             // playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
-            RemoveAt(ref playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1], playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1);
             base.photonView.RPC("randomCard", RpcTarget.All,playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1]);
+            RemoveAt(ref playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1], playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1);
             //Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
         }
