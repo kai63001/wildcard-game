@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - ERC721URIExample
     - MainGame
     - MainMenu
+    - getMyNFT
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -17,6 +18,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -27,8 +30,11 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -75,17 +81,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1476}
     - Class: 114
-      Script: {instanceID: 2870}
+      Script: {instanceID: 2878}
     - Class: 114
-      Script: {instanceID: 3058}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3310}
+      Script: {instanceID: 3318}
     - Class: 114
-      Script: {instanceID: 3582}
+      Script: {instanceID: 3590}
     - Class: 114
-      Script: {instanceID: 3718}
+      Script: {instanceID: 3726}
     - Class: 114
-      Script: {instanceID: 5308}
+      Script: {instanceID: 5326}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -148,47 +154,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1714}
     - Class: 114
-      Script: {instanceID: 1784}
+      Script: {instanceID: 1786}
     - Class: 114
-      Script: {instanceID: 1824}
+      Script: {instanceID: 1826}
     - Class: 114
-      Script: {instanceID: 1828}
+      Script: {instanceID: 1830}
     - Class: 114
-      Script: {instanceID: 2074}
+      Script: {instanceID: 2080}
     - Class: 114
-      Script: {instanceID: 2350}
+      Script: {instanceID: 2356}
     - Class: 114
-      Script: {instanceID: 2520}
+      Script: {instanceID: 2528}
     - Class: 114
-      Script: {instanceID: 2590}
+      Script: {instanceID: 2598}
     - Class: 114
-      Script: {instanceID: 2870}
+      Script: {instanceID: 2878}
     - Class: 114
-      Script: {instanceID: 3058}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3310}
+      Script: {instanceID: 3318}
     - Class: 114
-      Script: {instanceID: 3582}
+      Script: {instanceID: 3590}
     - Class: 114
-      Script: {instanceID: 3592}
+      Script: {instanceID: 3600}
     - Class: 114
-      Script: {instanceID: 3718}
+      Script: {instanceID: 3726}
     - Class: 114
-      Script: {instanceID: 4380}
+      Script: {instanceID: 3824}
     - Class: 114
-      Script: {instanceID: 4834}
+      Script: {instanceID: 4392}
     - Class: 114
-      Script: {instanceID: 4840}
+      Script: {instanceID: 4852}
     - Class: 114
-      Script: {instanceID: 5078}
+      Script: {instanceID: 4858}
     - Class: 114
-      Script: {instanceID: 5150}
+      Script: {instanceID: 5096}
     - Class: 114
-      Script: {instanceID: 5740}
+      Script: {instanceID: 5168}
     - Class: 114
-      Script: {instanceID: 5930}
+      Script: {instanceID: 5760}
     - Class: 114
-      Script: {instanceID: 6384}
+      Script: {instanceID: 5950}
+    - Class: 114
+      Script: {instanceID: 6404}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -228,16 +236,16 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: a6e561615949734e9f12f9b61661f43e
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Image
-  - hash:
-      serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: StandaloneInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: a6e561615949734e9f12f9b61661f43e
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Image
   - hash:
       serializedVersion: 2
       Hash: bcaee4c2a83047257b5f47d6ed264b75
@@ -354,12 +362,6 @@ ScriptsOnlyBuild:
     className: GameVersionField
   - hash:
       serializedVersion: 2
-      Hash: 3f4c36c74e0050c87433547fa96cb79e
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WebGLTransfer721
-  - hash:
-      serializedVersion: 2
       Hash: 6bc76e17f0d5e93f3eea7f5a2fe227f3
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -370,6 +372,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Asteroids
     className: PlayerOverviewPanel
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Web3WalletSignMessageExample
   - hash:
       serializedVersion: 2
       Hash: e80cf4684910fdd7f091d85a19a93603
@@ -462,7 +470,19 @@ ScriptsOnlyBuild:
     className: CurrentRoomIsVisibleProperty
   - hash:
       serializedVersion: 2
+      Hash: 717d33b146cb3ea80a1def6b657cb7c3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WalletLogin
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Web3WalletTransfer721Example
+  - hash:
+      serializedVersion: 2
+      Hash: c56d7ff9ac2b1177a66b6512366f0e1b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenu
@@ -522,12 +542,6 @@ ScriptsOnlyBuild:
     className: IngameControlPanel
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WebGLSendTransactionExample
-  - hash:
-      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -550,6 +564,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: VerifyExample
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AllErc1155Example
   - hash:
       serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
@@ -646,12 +666,6 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: PropertyListenerBase
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WebGLSignOut
   - hash:
       serializedVersion: 2
       Hash: 87207d40b89ca632396b05b3cb1e69b0
@@ -864,12 +878,6 @@ ScriptsOnlyBuild:
     className: SplinePosition
   - hash:
       serializedVersion: 2
-      Hash: b399509fbbbc7abf2895af22df372be4
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WebGLTransfer1155
-  - hash:
-      serializedVersion: 2
       Hash: 57d2b3ca58a430f7cf319bb757c1f0f5
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -1052,14 +1060,14 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
-    namespaceName: Photon.Chat.Demo
-    className: IgnoreUiRaycastWhenInactive
+    namespaceName: 
+    className: Web3WalletTransfer20Example
   - hash:
       serializedVersion: 2
-      Hash: cc5afa0cc7e27938f30ec51ca65a2ccf
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WebGLTransfer20
+    namespaceName: Photon.Chat.Demo
+    className: IgnoreUiRaycastWhenInactive
   - hash:
       serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
@@ -1096,6 +1104,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: SendRateOnSerializeField
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Web3WalletTransfer1155Example
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1230,6 +1244,24 @@ ScriptsOnlyBuild:
     className: TextToggleIsOnTransition
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Web3WalletSendTransactionExample
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Web3WalletLogOut
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AllErc721Example
+  - hash:
+      serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -1324,12 +1356,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Mask
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WebGLSignMessageExample
   - hash:
       serializedVersion: 2
       Hash: 523ce309f50d9eee6a8fc0e2f86c9c97
@@ -1702,12 +1728,6 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: UnityStandardAssets.Characters.ThirdPerson.PunDemos
     className: ThirdPersonUserControl
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WebGLSendContractExample
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f

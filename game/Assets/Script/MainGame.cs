@@ -1,9 +1,10 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class MainGame : MonoBehaviourPunCallbacks
 {
@@ -31,6 +32,9 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     private bool gameStart = false;
 
+    //Card
+    public int[][] playerCard = new int[2][];
+
 
     void Start()
     {
@@ -49,6 +53,22 @@ public class MainGame : MonoBehaviourPunCallbacks
         enemyHPText.text = enemyHP.ToString();
     }
 
+    private void _playerCardRandomPushtoArray() {
+        for(int i = 0; i < 2; i++) {
+            int[] temp = new int[41];
+            //loop temp
+            for(int j = 0; j < 41; j++) {
+                //random temp
+                int random = Random.Range(1, 7);
+                temp[j] = random;
+            }
+            playerCard[i] = temp;
+            print(playerCard[i]);
+            // playerCard[i] = 
+        }
+        Debug.Log(playerCard);
+    }
+
     private void _waitPlayer()
     {
         if (PhotonNetwork.PlayerList.Length == 2 && gameStart == false)
@@ -58,6 +78,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             _changeTurnText();
             playerID = PhotonNetwork.LocalPlayer.ActorNumber;
             gameStart = true;
+            _playerCardRandomPushtoArray();
         }
     }
 
@@ -66,10 +87,24 @@ public class MainGame : MonoBehaviourPunCallbacks
         Debug.Log(_turn);
         if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            base.photonView.RPC("randomCard", RpcTarget.All, Random.Range(1, 7));
+            Debug.Log(playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard.Length - 1]);
+            // playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
+            RemoveAt(ref playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1], playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1);
+            base.photonView.RPC("randomCard", RpcTarget.All,playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1]);
             //Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
         }
+    }
+
+     public static void RemoveAt<T>(ref T[] arr, int index)
+    {
+        for (int a = index; a < arr.Length - 1; a++)
+        {
+            // moving elements downwards, to fill the gap at [index]
+            arr[a] = arr[a + 1];
+        }
+        // finally, let's decrement Array's size by one
+        Array.Resize(ref arr, arr.Length - 1);
     }
 
     public void lockDraw()
