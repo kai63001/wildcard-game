@@ -10,6 +10,7 @@ public class GetMyNFT : MonoBehaviour
 
     async public Task<string> returnMyNft() {
         string chain = "ethereum";
+        string account = PlayerPrefs.GetString("Account");
 
         // set network mainnet, testnet
         string network = "ropsten";
@@ -23,7 +24,7 @@ public class GetMyNFT : MonoBehaviour
         string contract = "0x849131560A7a178F9D04cad2d681a55c51283fC3";
 
         // array of arguments for contract
-        string args = "[\"0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723\"]";
+        string args = "[\""+account+"\"]";
 
         // connects to user's browser wallet to call a transaction
         string response =
