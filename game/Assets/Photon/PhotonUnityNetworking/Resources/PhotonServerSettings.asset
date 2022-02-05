@@ -48,6 +48,8 @@ MonoBehaviour:
   - _changeEnemy
   - _playerAllLock
   - _syncPlayerLock
+  - _getPlayerNFT
+  - _syncNFT
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
