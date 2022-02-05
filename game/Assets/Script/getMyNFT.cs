@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class getMyNFT : MonoBehaviour
 {
     // Start is called before the first frame update
     async void Start()
     {
+        string jsonPath = Application.streamingAssetsPath + "../../../../artifacts/contracts/Card.sol/WileCard.json";
+        string jsonStr = File.ReadAllText(jsonPath);
+        IToken mySampleFile  = JsonUtility.FromJson<IToken>(jsonStr);
+        // Debug.Log(mySampleFile.toString);
         // set chain: ethereum, moonbeam, polygon etc
         string chain = "ethereum";
 

@@ -35,6 +35,11 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     //Card
     public int[][] playerCard = new int[2][];
+    
+
+    //NFT CARD
+    public int[][] nftCard = new int[2][];
+    
 
     void Start()
     {
@@ -69,6 +74,10 @@ public class MainGame : MonoBehaviourPunCallbacks
         Debug.Log(playerCard);
     }
 
+    private void _getPlayerNFT() {
+
+    }
+
     private void _waitPlayer()
     {
         if (PhotonNetwork.PlayerList.Length == 2 && gameStart == false)
@@ -79,6 +88,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             playerID = PhotonNetwork.LocalPlayer.ActorNumber;
             gameStart = true;
             _playerCardRandomPushtoArray();
+            _getPlayerNFT();
             countMyDrawCard.text = playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length.ToString();
         }
     }
