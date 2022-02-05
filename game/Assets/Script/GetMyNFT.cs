@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Threading.Tasks;
 
-public class getMyNFT : MonoBehaviour
+public class GetMyNFT : MonoBehaviour
 {
     // Start is called before the first frame update
-    async void Start()
-    {
-        string jsonPath = Application.streamingAssetsPath + "../../../../artifacts/contracts/Card.sol/WileCard.json";
-        string jsonStr = File.ReadAllText(jsonPath);
-        IToken mySampleFile  = JsonUtility.FromJson<IToken>(jsonStr);
-        // Debug.Log(mySampleFile.toString);
-        // set chain: ethereum, moonbeam, polygon etc
+
+    async public Task<string> returnMyNft() {
         string chain = "ethereum";
 
         // set network mainnet, testnet
@@ -33,12 +29,6 @@ public class getMyNFT : MonoBehaviour
         string response =
             await EVM.Call(chain, network, contract, abi, method, args);
 
-        // display response in game
-        print (response);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        return response;
     }
 }

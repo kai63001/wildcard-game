@@ -1,31 +1,43 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+
 using Random = UnityEngine.Random;
 
 public class MainGame : MonoBehaviourPunCallbacks
 {
     public Text countMyText;
+
     public Text countEnemyText;
+
     public Text turnText;
+
     public Text countMyDrawCard;
+
     public GameObject WaitScreen;
+
     public GameObject GameScreen;
+
     private int playerID;
 
     private int _turn = 1;
 
     // count
     private int countMy = 0;
+
     private int countEnemy = 0;
 
     // HP
     private int myHP = 50;
+
     private int enemyHP = 50;
+
     public Text myHPText;
+
     public Text enemyHPText;
 
     // LOCK
@@ -35,20 +47,22 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     //Card
     public int[][] playerCard = new int[2][];
-    
 
     //NFT CARD
-    public int[][] nftCard = new int[2][];
-    
+    public string[][] nftCard = new string[2][];
 
     void Start()
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsVisible = false;
         roomOptions.MaxPlayers = 2;
-        PhotonNetwork.JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
+        PhotonNetwork
+            .JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
         playerLock[0] = false;
         playerLock[1] = false;
+
+        //for test
+        _getPlayerNFT();
     }
 
     private void Update()
@@ -58,23 +72,36 @@ public class MainGame : MonoBehaviourPunCallbacks
         enemyHPText.text = enemyHP.ToString();
     }
 
-    private void _playerCardRandomPushtoArray() {
-        for(int i = 0; i < 2; i++) {
+    private void _playerCardRandomPushtoArray()
+    {
+        for (int i = 0; i < 2; i++)
+        {
             int[] temp = new int[41];
+
             //loop temp
-            for(int j = 0; j < 41; j++) {
+            for (int j = 0; j < 41; j++)
+            {
                 //random temp
                 int random = Random.Range(1, 7);
                 temp[j] = random;
             }
             playerCard[i] = temp;
             print(playerCard[i]);
-            // playerCard[i] = 
+            // playerCard[i] =
         }
         Debug.Log(playerCard);
     }
 
-    private void _getPlayerNFT() {
+    async private void _getPlayerNFT()
+    {
+        GetMyNFT nft = new GetMyNFT();
+        string myNFT = await nft.returnMyNft();
+        List<string> converNft = myNFT.Replace("[","").Replace("]","").Replace("\"","").Split(char.Parse(",")).ToList(); //replace [] and split to array list
+        string[] res = (from data in converNft where data != "0" select data).ToList().ToArray(); //filter zero
+
+        nftCard[PhotonNetwork.LocalPlayer.ActorNumber - 1] = res;
+
+        print(nftCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][0]);
 
     }
 
@@ -88,33 +115,48 @@ public class MainGame : MonoBehaviourPunCallbacks
             playerID = PhotonNetwork.LocalPlayer.ActorNumber;
             gameStart = true;
             _playerCardRandomPushtoArray();
-            _getPlayerNFT();
-            countMyDrawCard.text = playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length.ToString();
+            countMyDrawCard.text =
+                playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
+                    .Length
+                    .ToString();
         }
     }
 
     public void draw()
     {
-        Debug.Log(_turn);
+        Debug.Log (_turn);
         if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             // Debug.Log(playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard.Length - 1]);
-            countMyDrawCard.text = playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length.ToString();
+            countMyDrawCard.text =
+                playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
+                    .Length
+                    .ToString();
+
             // playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
-            base.photonView.RPC("randomCard", RpcTarget.All,playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1]);
-            RemoveAt(ref playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1], playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1);
+            base.photonView
+                .RPC("randomCard",
+                RpcTarget.All,
+                playerCard[PhotonNetwork.LocalPlayer.ActorNumber -
+                1][playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
+                    .Length -
+                1]);
+            RemoveAt(ref playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1],
+            playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length - 1);
+
             //Debug.Log("Player ID : " + PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
         }
     }
 
-     public static void RemoveAt<T>(ref T[] arr, int index)
+    public static void RemoveAt<T>(ref T[] arr, int index)
     {
         for (int a = index; a < arr.Length - 1; a++)
         {
             // moving elements downwards, to fill the gap at [index]
             arr[a] = arr[a + 1];
         }
+
         // finally, let's decrement Array's size by one
         Array.Resize(ref arr, arr.Length - 1);
     }
@@ -125,7 +167,10 @@ public class MainGame : MonoBehaviourPunCallbacks
         //Debug.Log("Locked : " + playerLock[1]);
         if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
         {
-            base.photonView.RPC("_syncPlayerLock", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber);
+            base.photonView
+                .RPC("_syncPlayerLock",
+                RpcTarget.All,
+                PhotonNetwork.LocalPlayer.ActorNumber);
             base.photonView.RPC("_changeTurn", RpcTarget.All);
         }
     }
@@ -148,7 +193,11 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     private void _changeTurnText()
     {
-        Debug.Log("Player " + PhotonNetwork.LocalPlayer.ActorNumber + " Turn " + _turn);
+        Debug
+            .Log("Player " +
+            PhotonNetwork.LocalPlayer.ActorNumber +
+            " Turn " +
+            _turn);
         if (PhotonNetwork.LocalPlayer.ActorNumber == _turn)
         {
             turnText.text = "Your Turn";
@@ -161,10 +210,12 @@ public class MainGame : MonoBehaviourPunCallbacks
         Debug.Log("108 line");
         Debug.Log(playerLock[0]);
         Debug.Log(playerLock[1]);
+
         // check if all players lock
         if (playerLock[0] == true && playerLock[1] == true)
         {
-            // _playerAllLock();           
+            // _playerAllLock();
+
             base.photonView.RPC("_playerAllLock", RpcTarget.All);
         }
     }
@@ -173,11 +224,15 @@ public class MainGame : MonoBehaviourPunCallbacks
     private void _playerAllLock()
     {
         Debug.Log("All Player is Locked");
-        if(countEnemy > countMy){
+        if (countEnemy > countMy)
+        {
             myHP -= countEnemy - countMy;
-        }else if(countMy > countEnemy){
-            enemyHP -= countMy- countEnemy;
         }
+        else if (countMy > countEnemy)
+        {
+            enemyHP -= countMy - countEnemy;
+        }
+
         // myHP = countEnemy;
         // enemyHP -= countMy;
         //reset count
@@ -200,10 +255,12 @@ public class MainGame : MonoBehaviourPunCallbacks
         {
             countEnemy += number;
         }
+
         //Black Jack
         if (countMy == 12 || countEnemy == 12)
         {
             Debug.Log("Black jack");
+
             // for check who got black jack
             if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
             {
@@ -213,16 +270,19 @@ public class MainGame : MonoBehaviourPunCallbacks
             {
                 enemyHP -= countMy;
             }
+
             //reset count
             countMy = 0;
             countEnemy = 0;
             playerLock[0] = false;
             playerLock[1] = false;
         }
+
         //Loser
         if (countMy > 12 || countEnemy > 12)
         {
             Debug.Log("Loser");
+
             // for check who got loser
             if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
             {
@@ -232,6 +292,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             {
                 enemyHP -= countMy;
             }
+
             //reset count
             countMy = 0;
             countEnemy = 0;
@@ -257,6 +318,4 @@ public class MainGame : MonoBehaviourPunCallbacks
         }
         _changeTurnText();
     }
-
-
 }
