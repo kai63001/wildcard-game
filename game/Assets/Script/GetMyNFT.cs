@@ -41,4 +41,5 @@ public class GetMyNFT : MonoBehaviour
         string uri = await ERC721.URI(chain, network, contract, tokenId);
         return uri;
     }
+
 }

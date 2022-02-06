@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 using Random = UnityEngine.Random;
@@ -51,6 +54,8 @@ public class MainGame : MonoBehaviourPunCallbacks
     //NFT CARD
     public string[][] nftCard = new string[2][];
 
+    Text waitText;
+
     void Start()
     {
         RoomOptions roomOptions = new RoomOptions();
@@ -60,7 +65,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             .JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
         playerLock[0] = false;
         playerLock[1] = false;
-            _getPlayerNFT();
+        _getPlayerNFT();
     }
 
     private void Update()
@@ -104,13 +109,13 @@ public class MainGame : MonoBehaviourPunCallbacks
                 playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
                     .Length
                     .ToString();
-            // _getPlayerNFT();
+            _getPlayerNFT();
         }
     }
 
     private async void _getPlayerNFT()
     {
-        print("_getPlayerNFT + "+ PhotonNetwork.LocalPlayer.ActorNumber);
+        print("_getPlayerNFT + " + PhotonNetwork.LocalPlayer.ActorNumber);
         GetMyNFT nft = new GetMyNFT();
         string myNFT = await nft.returnMyNft();
         List<string> converNft =
@@ -124,23 +129,52 @@ public class MainGame : MonoBehaviourPunCallbacks
             (from data in converNft where data != "0" select data)
                 .ToList()
                 .ToArray(); //filter zero
-        for (int i = 0; i < res.Length; i++)
-        {
-            print(await nft.returnNftURI(res[i]));
-        }
+        System.Random ran = new System.Random();
+        res = res.OrderBy(x => ran.Next()).ToArray(); //array shuffle
 
-        
-        // base.photonView
-        //     .RPC("_syncNFT",
-        //     RpcTarget.All,
-        //     PhotonNetwork.LocalPlayer.ActorNumber,
-        //     res);
+        //! Clamp func for limit array (NFT) to play
+        for (int i = 0; i < Mathf.Clamp(res.Length, 0, 3); i++)
+        {
+            print(res[i]);
+            print(await nft.returnNftURI(res[i]));
+            StartCoroutine(MakeRequest(await nft.returnNftURI(res[i]),
+            returnValue =>
+            {
+                base.photonView
+                    .RPC("_syncNFT",
+                    RpcTarget.All,
+                    PhotonNetwork.LocalPlayer.ActorNumber,
+                    returnValue);
+            }));
+        }
+    }
+
+    IEnumerator MakeRequest(string url, System.Action<string> callback = null)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        yield return request.SendWebRequest();
+
+        if (request.isNetworkError || request.isHttpError)
+        {
+            Debug.Log(request.error);
+        }
+        else
+        {
+            Debug.Log("Received" + request.downloadHandler.text);
+            var data =
+                JsonConvert
+                    .DeserializeObject<URINFT>(request.downloadHandler.text);
+
+            waitText = GameObject.Find("WaitText").GetComponent<Text>();
+            waitText.text = data.name.ToString();
+            callback(data.name.ToString());
+        }
     }
 
     [PunRPC]
-    private void _syncNFT(int player, string[] res)
+    private void _syncNFT(int player, string res)
     {
-        nftCard[player - 1] = res;
+        nftCard[player - 1][nftCard[player - 1].Length] = res;
     }
 
     public void draw()
