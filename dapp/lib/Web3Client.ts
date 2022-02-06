@@ -21,8 +21,10 @@ export const init = async () => {
   provider = new ethers.providers.Web3Provider(web3.currentProvider, "ropsten");
   await provider.send("eth_requestAccounts", []);
   const signer = provider.getSigner();
+  console.log(signer)
   contract = new ethers.Contract(conTractAddress, abi, signer);
   console.log("init");
+  console.log(contract)
   return true;
 };
 
@@ -41,6 +43,28 @@ export const getUserToken = () => {
   // contract.tokenURI
   return new Promise(function (res, rej) {
     contract.getUserToken().then(async function (transaction: any) {
+      let data = await transaction.filter(
+        (data: any) => data.toNumber() != 0 && data.toNumber()
+      );
+      data = await data.map((data: any) => data.toNumber());
+      // ? promise to get tokeURI from array token id like [1,2,3]
+      const promises = await data.map(async (data: unknown) => {
+        const numFruit = new Promise((resolve, reject) => {
+          resolve(contract.tokenURI(data))
+        });
+        return numFruit
+      })
+      const numFruits = await Promise.all(promises)
+      res(await numFruits);
+    });
+  });
+};
+
+
+export const getUserTokenViaAddress = (contract:any) => {
+  // contract.tokenURI
+  return new Promise(function (res, rej) {
+    contract.getUserTokenWithAddress('0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723').then(async function (transaction: any) {
       let data = await transaction.filter(
         (data: any) => data.toNumber() != 0 && data.toNumber()
       );
