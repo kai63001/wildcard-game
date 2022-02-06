@@ -52,8 +52,8 @@ const dataCon =(address:string) => {
             const urls = await Promise.all(promises);
             const dataIds = urls.map(async (data: any) => {
               const url = new Promise(async (resolve, reject) => {
-                const dataFect = await fetch(data);
-                resolve(await dataFect.json());
+                const dataFect:any = await fetch(data);
+                resolve((await dataFect.json())["id"]);
               });
               return url;
             });

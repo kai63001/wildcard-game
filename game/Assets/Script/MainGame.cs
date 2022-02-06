@@ -151,17 +151,17 @@ public class MainGame : MonoBehaviourPunCallbacks
             returnValue =>
             {
                 print(returnValue);
-                // base.photonView
-                //     .RPC("_syncNFT",
-                //     RpcTarget.All,
-                //     PhotonNetwork.LocalPlayer.ActorNumber,
-                //     1);
+                base.photonView
+                    .RPC("_syncNFT",
+                    RpcTarget.All,
+                    PhotonNetwork.LocalPlayer.ActorNumber,
+                    returnValue);
             }));
     }
 
-    IEnumerator MakeRequest(System.Action<URINFT[]> callback = null)
+    IEnumerator MakeRequest(System.Action<string[]> callback = null)
     {
-        UnityWebRequest request = UnityWebRequest.Get("http://localhost:3000/api/myNFT?address=0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723");
+        UnityWebRequest request = UnityWebRequest.Get("http://localhost:3000/api/myNFTonlyId?address="+PlayerPrefs.GetString("Account"));
         yield return request.SendWebRequest();
 
         if (request.isNetworkError || request.isHttpError)
@@ -173,18 +173,18 @@ public class MainGame : MonoBehaviourPunCallbacks
             Debug.Log("Received" + request.downloadHandler.text);
             var data =
                 JsonConvert
-                    .DeserializeObject<URINFT[]>(request.downloadHandler.text);
+                    .DeserializeObject<string[]>(request.downloadHandler.text);
 
             waitText = GameObject.Find("WaitText").GetComponent<Text>();
-            waitText.text = data[0].name.ToString();
+            waitText.text = data[0].ToString();
             callback(data);
         }
     }
 
     [PunRPC]
-    private void _syncNFT(int player, string res)
+    private void _syncNFT(int player, string[] res)
     {
-        nftCard[player - 1][nftCard[player - 1].Length] = res;
+        nftCard[player - 1] = res;
     }
 
     public void draw()
