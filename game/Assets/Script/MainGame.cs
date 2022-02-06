@@ -116,42 +116,52 @@ public class MainGame : MonoBehaviourPunCallbacks
     private async void _getPlayerNFT()
     {
         print("_getPlayerNFT + " + PhotonNetwork.LocalPlayer.ActorNumber);
-        GetMyNFT nft = new GetMyNFT();
-        string myNFT = await nft.returnMyNft();
-        List<string> converNft =
-            myNFT
-                .Replace("[", "")
-                .Replace("]", "")
-                .Replace("\"", "")
-                .Split(char.Parse(","))
-                .ToList(); //replace [] and split to array list
-        string[] res =
-            (from data in converNft where data != "0" select data)
-                .ToList()
-                .ToArray(); //filter zero
-        System.Random ran = new System.Random();
-        res = res.OrderBy(x => ran.Next()).ToArray(); //array shuffle
+        // GetMyNFT nft = new GetMyNFT();
+        // string myNFT = await nft.returnMyNft();
+        // List<string> converNft =
+        //     myNFT
+        //         .Replace("[", "")
+        //         .Replace("]", "")
+        //         .Replace("\"", "")
+        //         .Split(char.Parse(","))
+        //         .ToList(); //replace [] and split to array list
+        // string[] res =
+        //     (from data in converNft where data != "0" select data)
+        //         .ToList()
+        //         .ToArray(); //filter zero
+        // System.Random ran = new System.Random();
+        // res = res.OrderBy(x => ran.Next()).ToArray(); //array shuffle
 
-        //! Clamp func for limit array (NFT) to play
-        for (int i = 0; i < Mathf.Clamp(res.Length, 0, 3); i++)
-        {
-            print(res[i]);
-            print(await nft.returnNftURI(res[i]));
-            StartCoroutine(MakeRequest(await nft.returnNftURI(res[i]),
+        // //! Clamp func for limit array (NFT) to play
+        // for (int i = 0; i < Mathf.Clamp(res.Length, 0, 3); i++)
+        // {
+        //     print(res[i]);
+        //     print(await nft.returnNftURI(res[i]));
+        //     StartCoroutine(MakeRequest(await nft.returnNftURI(res[i]),
+        //     returnValue =>
+        //     {
+        //         base.photonView
+        //             .RPC("_syncNFT",
+        //             RpcTarget.All,
+        //             PhotonNetwork.LocalPlayer.ActorNumber,
+        //             1);
+        //     }));
+        // }
+         StartCoroutine(MakeRequest(
             returnValue =>
             {
-                base.photonView
-                    .RPC("_syncNFT",
-                    RpcTarget.All,
-                    PhotonNetwork.LocalPlayer.ActorNumber,
-                    1);
+                print(returnValue);
+                // base.photonView
+                //     .RPC("_syncNFT",
+                //     RpcTarget.All,
+                //     PhotonNetwork.LocalPlayer.ActorNumber,
+                //     1);
             }));
-        }
     }
 
-    IEnumerator MakeRequest(string url, System.Action<string> callback = null)
+    IEnumerator MakeRequest(System.Action<URINFT[]> callback = null)
     {
-        UnityWebRequest request = UnityWebRequest.Get(url);
+        UnityWebRequest request = UnityWebRequest.Get("http://localhost:3000/api/myNFT?address=0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723");
         yield return request.SendWebRequest();
 
         if (request.isNetworkError || request.isHttpError)
@@ -163,11 +173,11 @@ public class MainGame : MonoBehaviourPunCallbacks
             Debug.Log("Received" + request.downloadHandler.text);
             var data =
                 JsonConvert
-                    .DeserializeObject<URINFT>(request.downloadHandler.text);
+                    .DeserializeObject<URINFT[]>(request.downloadHandler.text);
 
             waitText = GameObject.Find("WaitText").GetComponent<Text>();
-            waitText.text = data.name.ToString();
-            callback(data.name.ToString());
+            waitText.text = data[0].name.ToString();
+            callback(data);
         }
     }
 
