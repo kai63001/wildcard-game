@@ -144,7 +144,7 @@ public class MainGame : MonoBehaviourPunCallbacks
                     .RPC("_syncNFT",
                     RpcTarget.All,
                     PhotonNetwork.LocalPlayer.ActorNumber,
-                    returnValue);
+                    1);
             }));
         }
     }
