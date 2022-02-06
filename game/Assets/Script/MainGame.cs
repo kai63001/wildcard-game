@@ -65,7 +65,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             .JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
         playerLock[0] = false;
         playerLock[1] = false;
-        _getPlayerNFT();
+        // _getPlayerNFT();
     }
 
     private void Update()
@@ -103,12 +103,12 @@ public class MainGame : MonoBehaviourPunCallbacks
             GameScreen.SetActive(true);
             _changeTurnText();
             playerID = PhotonNetwork.LocalPlayer.ActorNumber;
-            gameStart = true;
             _playerCardRandomPushtoArray();
             countMyDrawCard.text =
                 playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
                     .Length
                     .ToString();
+            gameStart = true;
             _getPlayerNFT();
         }
     }
@@ -116,37 +116,6 @@ public class MainGame : MonoBehaviourPunCallbacks
     private async void _getPlayerNFT()
     {
         print("_getPlayerNFT + " + PhotonNetwork.LocalPlayer.ActorNumber);
-        // GetMyNFT nft = new GetMyNFT();
-        // string myNFT = await nft.returnMyNft();
-        // List<string> converNft =
-        //     myNFT
-        //         .Replace("[", "")
-        //         .Replace("]", "")
-        //         .Replace("\"", "")
-        //         .Split(char.Parse(","))
-        //         .ToList(); //replace [] and split to array list
-        // string[] res =
-        //     (from data in converNft where data != "0" select data)
-        //         .ToList()
-        //         .ToArray(); //filter zero
-        // System.Random ran = new System.Random();
-        // res = res.OrderBy(x => ran.Next()).ToArray(); //array shuffle
-
-        // //! Clamp func for limit array (NFT) to play
-        // for (int i = 0; i < Mathf.Clamp(res.Length, 0, 3); i++)
-        // {
-        //     print(res[i]);
-        //     print(await nft.returnNftURI(res[i]));
-        //     StartCoroutine(MakeRequest(await nft.returnNftURI(res[i]),
-        //     returnValue =>
-        //     {
-        //         base.photonView
-        //             .RPC("_syncNFT",
-        //             RpcTarget.All,
-        //             PhotonNetwork.LocalPlayer.ActorNumber,
-        //             1);
-        //     }));
-        // }
          StartCoroutine(MakeRequest(
             returnValue =>
             {
@@ -174,9 +143,10 @@ public class MainGame : MonoBehaviourPunCallbacks
             var data =
                 JsonConvert
                     .DeserializeObject<string[]>(request.downloadHandler.text);
+            print("data 146:" + data);
 
-            waitText = GameObject.Find("WaitText").GetComponent<Text>();
-            waitText.text = data[0].ToString();
+            // waitText = GameObject.Find("WaitText").GetComponent<Text>();
+            // waitText.text = data[0].ToString();
             callback(data);
         }
     }
