@@ -60,6 +60,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             .JoinOrCreateRoom("romeo", roomOptions, TypedLobby.Default);
         playerLock[0] = false;
         playerLock[1] = false;
+            _getPlayerNFT();
     }
 
     private void Update()
@@ -103,7 +104,6 @@ public class MainGame : MonoBehaviourPunCallbacks
                 playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
                     .Length
                     .ToString();
-            _getPlayerNFT();
             // _getPlayerNFT();
         }
     }
@@ -124,11 +124,17 @@ public class MainGame : MonoBehaviourPunCallbacks
             (from data in converNft where data != "0" select data)
                 .ToList()
                 .ToArray(); //filter zero
-        base.photonView
-            .RPC("_syncNFT",
-            RpcTarget.All,
-            PhotonNetwork.LocalPlayer.ActorNumber,
-            res);
+        for (int i = 0; i < res.Length; i++)
+        {
+            print(await nft.returnNftURI(res[i]));
+        }
+
+        
+        // base.photonView
+        //     .RPC("_syncNFT",
+        //     RpcTarget.All,
+        //     PhotonNetwork.LocalPlayer.ActorNumber,
+        //     res);
     }
 
     [PunRPC]
