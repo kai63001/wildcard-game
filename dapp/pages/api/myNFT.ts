@@ -15,14 +15,20 @@ export default async function handler(
 ) {
   
   // console.log(contract)
-  const test = await dataCon().then((data: any) => {
+  if(!req.query.address){
+    res.json({
+        status:'address query request'
+    })
+  }
+  console.log(req.query.address)
+  const test = await dataCon(req.query.address == undefined ? '0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723' : req.query.address.toString()).then((data: any) => {
     return (data)
   });
   console.log("data :" + (await test));
-  res.send(await test);
+  res.json(await test);
 }
 
-const dataCon =() => {
+const dataCon =(address:string) => {
     return new Promise(function (res, rej) {
         const provider = new ethers.providers.JsonRpcProvider(
             "https://eth-ropsten.alchemyapi.io/v2/ItzlUeRdcRPFxf0LpW4ggGAu6R0AnjJs",
@@ -30,7 +36,7 @@ const dataCon =() => {
           );
           let contract: any = new ethers.Contract(conTractAddress, abi, provider);
         contract
-          .getUserTokenWithAddress("0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723")
+          .getUserTokenWithAddress(address)
           .then(async function (transaction: any) {
             let data = await transaction.filter(
               (data: any) => data.toNumber() != 0 && data.toNumber()
