@@ -50,8 +50,18 @@ contract WileCard is ERC721URIStorage {
     }
 
 
-    function randomNFT() public view returns(uint[] memory) {
-        return random(userOwnedTokens[Owner]);
+    function randomNFT() public returns (uint) {
+        uint randomed = random(userOwnedTokens[Owner])[0];
+        require(_isApprovedOrOwner(Owner, randomed), "ERC721: transfer caller is not owner nor approved");
+        userOwnedTokens[msg.sender].push(randomed);
+        for(uint256 i =0; i < userOwnedTokens[Owner].length;i++){
+            if(userOwnedTokens[Owner][i] == randomed){
+                userOwnedTokens[Owner][i] = userOwnedTokens[Owner][userOwnedTokens[Owner].length-1];
+                userOwnedTokens[Owner].pop();
+            }
+        }
+        _transfer(Owner, msg.sender, randomed);
+        return randomed;
     }
 
     function random(uint[] memory _myArray) public view returns(uint[] memory){
@@ -67,7 +77,7 @@ contract WileCard is ERC721URIStorage {
         }
         uint256[] memory result;
         result = _myArray;       
-        return result;        
+        return result;
     }
 
     function getUserToken() public view returns (uint256[] memory) {
