@@ -1,11 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-firstpass.dll:
+    - UnityAsyncAwaitUtil.AsyncCoroutineRunner
     Assembly-CSharp.dll:
-    - ERC721BalanceOfExample
     - ERC721URIExample
     - MainGame
     - MainMenu
     - PlayerTest
+    - getNFTMenu
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -28,8 +30,11 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -131,8 +136,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2082}
     - Class: 114
-      Script: {instanceID: 2358}
-    - Class: 114
       Script: {instanceID: 2880}
     - Class: 114
       Script: {instanceID: 3068}
@@ -140,6 +143,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3320}
     - Class: 114
       Script: {instanceID: 3728}
+    - Class: 114
+      Script: {instanceID: 18206}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1896,6 +1901,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
     className: UserIdUiForm
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: getNFTMenu
   platform: 24
   scenePathNames:
   - Assets/Web3Unity/Scenes/WebLogin.unity
