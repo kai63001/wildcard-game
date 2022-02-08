@@ -16,13 +16,14 @@ public class AllErc721Example : MonoBehaviour
     async void Start()
     {
         string chain = "ethereum";
-        string network = "rinkeby"; // mainnet ropsten kovan rinkeby goerli
-        string account = "0xebc0e6232fb9d494060acf580105108444f7c696";
-        string contract = "";
+        string network = "ropsten"; // mainnet ropsten kovan rinkeby goerli
+        string account = "0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723";
+        string contract = "0xCdA3f3a5c21925C370F0aD607456A5d0229F50f5";
         string response = await EVM.AllErc721(chain, network, account, contract);
         try
         {
             NFTs[] erc721s = JsonConvert.DeserializeObject<NFTs[]>(response);
+            print("leng : "+ erc721s.Length);
             print(erc721s[0].contract);
             print(erc721s[0].tokenId);
             print(erc721s[0].uri);

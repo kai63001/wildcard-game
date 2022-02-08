@@ -1,7 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-firstpass.dll:
-    - UnityAsyncAwaitUtil.AsyncCoroutineRunner
     Assembly-CSharp.dll:
     - ERC721BalanceOfExample
     - ERC721URIExample
@@ -32,8 +30,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -80,17 +76,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1476}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 3070}
+      Script: {instanceID: 3068}
     - Class: 114
-      Script: {instanceID: 3322}
+      Script: {instanceID: 3320}
     - Class: 114
-      Script: {instanceID: 3594}
+      Script: {instanceID: 3592}
     - Class: 114
-      Script: {instanceID: 3730}
+      Script: {instanceID: 3728}
     - Class: 114
-      Script: {instanceID: 5332}
+      Script: {instanceID: 5330}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -129,21 +125,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1476}
     - Class: 114
-      Script: {instanceID: 1612}
+      Script: {instanceID: 1610}
     - Class: 114
-      Script: {instanceID: 1716}
+      Script: {instanceID: 1714}
     - Class: 114
-      Script: {instanceID: 2084}
+      Script: {instanceID: 2082}
     - Class: 114
-      Script: {instanceID: 2360}
+      Script: {instanceID: 2358}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 3070}
+      Script: {instanceID: 3068}
     - Class: 114
-      Script: {instanceID: 3322}
+      Script: {instanceID: 3320}
     - Class: 114
-      Script: {instanceID: 3730}
+      Script: {instanceID: 3728}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -206,49 +202,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1476}
     - Class: 114
-      Script: {instanceID: 1610}
+      Script: {instanceID: 1608}
     - Class: 114
-      Script: {instanceID: 1788}
+      Script: {instanceID: 1786}
     - Class: 114
-      Script: {instanceID: 1828}
+      Script: {instanceID: 1826}
     - Class: 114
-      Script: {instanceID: 1834}
+      Script: {instanceID: 1832}
     - Class: 114
-      Script: {instanceID: 2334}
+      Script: {instanceID: 2332}
     - Class: 114
-      Script: {instanceID: 2532}
+      Script: {instanceID: 2530}
     - Class: 114
-      Script: {instanceID: 2602}
+      Script: {instanceID: 2600}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 3070}
+      Script: {instanceID: 3068}
     - Class: 114
-      Script: {instanceID: 3322}
+      Script: {instanceID: 3320}
     - Class: 114
-      Script: {instanceID: 3594}
+      Script: {instanceID: 3592}
     - Class: 114
-      Script: {instanceID: 3604}
+      Script: {instanceID: 3602}
     - Class: 114
-      Script: {instanceID: 3730}
+      Script: {instanceID: 3728}
     - Class: 114
-      Script: {instanceID: 4398}
+      Script: {instanceID: 4396}
     - Class: 114
-      Script: {instanceID: 4858}
+      Script: {instanceID: 4856}
     - Class: 114
-      Script: {instanceID: 4864}
+      Script: {instanceID: 4862}
     - Class: 114
-      Script: {instanceID: 5102}
+      Script: {instanceID: 5100}
     - Class: 114
-      Script: {instanceID: 5174}
+      Script: {instanceID: 5172}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5764}
     - Class: 114
-      Script: {instanceID: 5808}
+      Script: {instanceID: 5806}
     - Class: 114
-      Script: {instanceID: 5958}
+      Script: {instanceID: 5956}
     - Class: 114
-      Script: {instanceID: 6414}
+      Script: {instanceID: 6412}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
