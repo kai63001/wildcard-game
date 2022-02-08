@@ -1,9 +1,21 @@
 import Layout from "@/components/Layout";
+import Link from "next/link";
+
 const Marketplace = () => {
   return (
     <Layout>
       <div className="grid grid-cols-4 gap-4">
-        <div className="...">06</div>
+        <div className="...">
+          <h2 className="text-2xl mb-3">Management</h2>
+          <button className="text-center w-full py-2 bg-red-400 rounded-md mb-2">
+            Random Card
+          </button>
+          <Link href="/marketplace/sell">
+          <a className="text-center w-full py-2 bg-blue-400 rounded-md block">
+            Sell Card
+          </a>
+          </Link>
+        </div>
         <div className="col-span-3">
           <h2 className="text-2xl mb-3">Cards</h2>
           <div className="grid grid-cols-4 gap-4">
