@@ -36,3 +36,7 @@ footer {
 main {
   min-height: 86% !important;
 }
+
+.text-smm {
+  font-size: 12px;
+}
