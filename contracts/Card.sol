@@ -42,11 +42,32 @@ contract WileCard is ERC721URIStorage {
         // uint256 tokenIndex = tokenIsAtIndex[tokenId];
         for(uint256 i =0; i < userOwnedTokens[from].length;i++){
             if(userOwnedTokens[from][i] == tokenId){
-                userOwnedTokens[from][i] = 0;
-                break;
+                userOwnedTokens[from][i] = userOwnedTokens[from][userOwnedTokens[from].length-1];
+                userOwnedTokens[from].pop();
             }
         }
         _transfer(from, to, tokenId);
+    }
+
+
+    function randomNFT() public view returns(uint[] memory) {
+        return random(userOwnedTokens[Owner]);
+    }
+
+    function random(uint[] memory _myArray) public view returns(uint[] memory){
+        uint a = _myArray.length; 
+        uint b = _myArray.length;
+        for(uint i = 0; i< b ; i++){
+            uint randNumber =(uint(keccak256      
+            (abi.encodePacked(block.timestamp,_myArray[i]))) % a)+1;
+            uint interim = _myArray[randNumber - 1];
+            _myArray[randNumber-1]= _myArray[a-1];
+            _myArray[a-1] = interim;
+            a = a-1;
+        }
+        uint256[] memory result;
+        result = _myArray;       
+        return result;        
     }
 
     function getUserToken() public view returns (uint256[] memory) {
