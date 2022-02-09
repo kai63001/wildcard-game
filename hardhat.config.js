@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+const secret = require("./secret.json");
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -14,10 +15,10 @@ module.exports = {
       url: `https://eth-ropsten.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
       accounts: [`0x${ROPSTEN_PRIVATE_KEY}`],
     },
-    // testnet: {
-    //   url: secret.url,
-    //   chainId: 97,
-    //   accounts: [secret.key],
-    // },
+    testnet: {
+      url: secret.url,
+      chainId: 97,
+      accounts: [secret.key],
+    },
   },
 };

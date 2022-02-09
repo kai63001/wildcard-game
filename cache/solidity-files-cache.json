@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/romeo/Project/wile-game/contracts/Card.sol": {
-      "lastModificationDate": 1644421691536,
-      "contentHash": "961cc230bdd7a849bbd8618b97b1dc8a",
+      "lastModificationDate": 1644427899455,
+      "contentHash": "408a80fd6a648e9046421b4e54f17118",
       "sourceName": "contracts/Card.sol",
       "solcConfig": {
         "version": "0.8.5",

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "hardhat run scripts/deploy.js --network ropsten"
+    "deploy:ropsten": "hardhat run scripts/deploy.js --network ropsten",
+    "deploy:binance": "hardhat run scripts/deploy.js --network testnet"
   },
   "repository": {
     "type": "git",

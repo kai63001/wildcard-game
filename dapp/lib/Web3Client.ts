@@ -17,7 +17,7 @@ let provider: ethers.providers.Web3Provider;
  */
 export const init = async () => {
   //@ts-ignore
-  provider = new ethers.providers.Web3Provider(web3.currentProvider, "ropsten");
+  provider = new ethers.providers.Web3Provider(web3.currentProvider, "bnbt");
   await provider.send("eth_requestAccounts", []);
   const signer = provider.getSigner();
   console.log(signer);
