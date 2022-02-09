@@ -19,7 +19,7 @@ const UploadPage = () => {
     // add data
     const data = {
       name: e.target.name.value,
-      price: e.target.price.value,
+      rarity: e.target.rarity.value,
       id: e.target.id.value,
       image: `https://ipfs.infura.io/ipfs/${image}`,
     };
@@ -56,12 +56,24 @@ const UploadPage = () => {
             <div className="p-4">
               <form onSubmit={mintNFT}>
                 <Input placeholder="name" name="name" required />
-                <Input
-                  placeholder="price"
-                  type="number"
-                  name="price"
-                  required
-                />
+                <select
+                  name="rarity"
+                  className="w-full text-gray-700 bg-white mb-2 px-2 py-2"
+                  id="rarity"
+                >
+                  <option value="" disabled selected>
+                    Rarity
+                  </option>
+                  <option value="B">
+                    B
+                  </option>
+                  <option value="A">
+                    A
+                  </option>
+                  <option value="S">
+                    S
+                  </option>
+                </select>
                 <Input placeholder="id" type="number" name="id" required />
                 <Input placeholder="image" type="file" name="image" required />
                 <button type="submit" className="bg-gray-900 py-2 w-full">
