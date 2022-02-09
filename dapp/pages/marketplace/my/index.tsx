@@ -22,7 +22,7 @@ const SellCard = () => {
   const reqMft = async () => {
     await init();
     getUserToken().then((data: any) => {
-      setMyNft(data);
+      setMyNft(data.reverse());
       setLoading(true);
     });
   };
