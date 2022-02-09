@@ -100,9 +100,14 @@ export const isAuth = async () => {
 export const randomNFT = async () => {
   console.log("randomNFT");
   try {
-    contract.randomNFT().then(async function (transaction: any) {
-      console.log(transaction);
-    });
+    contract
+      .randomNFT()
+      .then(async function (transaction: any) {
+        console.log(transaction);
+      })
+      .catch((_error: any) => {
+        console.log("out of nft in collection");
+      });
   } catch (error) {
     console.log("out of nft");
   }

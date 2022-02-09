@@ -42,11 +42,14 @@ const Navbar = () => {
               <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">MARKETPLACE</a>
             </Link>
           </div>
+          {auth == '0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723' && (
+
           <div className="text-1xl mt-2">
             <Link href="/upload">
               <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">MINT NFT</a>
             </Link>
           </div>
+          )}
         </div>
         <div className="test">
           {auth ? (
