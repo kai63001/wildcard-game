@@ -25,15 +25,14 @@ contract WileCard is ERC721URIStorage {
         _;
     }
 
-    function mintNFT(string memory tokenURI) public onlyOwner returns (uint256) {
-        _tokenIds.increment();
-        uint256 newItemId = _tokenIds.current();
-        _safeMint(msg.sender, newItemId);
-        _setTokenURI(newItemId, tokenURI);
-        userOwnedTokens[msg.sender].push(newItemId);
-        // uint256 arrayLength = userOwnedTokens[msg.sender].length;
-        // tokenIsAtIndex[newItemId] = arrayLength - 1;
-        return newItemId;
+    function mintNFT(string[] memory tokenURI) public onlyOwner {
+        for(uint256 i =0; i < tokenURI.length;i++){
+            _tokenIds.increment();
+            uint256 newItemId = _tokenIds.current();
+            _safeMint(msg.sender, newItemId);
+            _setTokenURI(newItemId, tokenURI[i]);
+            userOwnedTokens[msg.sender].push(newItemId);
+        }
     }
     
     function transferNFT(address from, address to, uint256 tokenId) public {
