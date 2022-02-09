@@ -1,8 +1,10 @@
+import Layout from "@/components/Layout";
+
 const SellCard = () => {
     return (
-        <div>
+        <Layout>
             asdasd
-        </div>
+        </Layout>
     )
 }
 

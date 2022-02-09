@@ -9,11 +9,15 @@ const Navbar = () => {
   const [auth, setAuth] = useState("");
   useEffect(() => {
     getAuth();
-  },[auth]);
+    //@ts-ignore
+    window.ethereum.on("accountsChanged", function (accounts) {
+      setAuth(accounts[0]);
+    });
+  }, [auth]);
 
   const getAuth = async () => {
     try {
-      if(!auth){
+      if (!auth) {
         init().then(async (data) => {
           setAuth(await isAuth());
         });
@@ -34,21 +38,26 @@ const Navbar = () => {
           </div>
           <div className="text-1xl mt-2">
             <Link href="/">
-              <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">PLAY GAME</a>
+              <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">
+                PLAY GAME
+              </a>
             </Link>
           </div>
           <div className="text-1xl mt-2">
             <Link href="/marketplace">
-              <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">MARKETPLACE</a>
+              <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">
+                MARKETPLACE
+              </a>
             </Link>
           </div>
-          {auth == '0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723' && (
-
-          <div className="text-1xl mt-2">
-            <Link href="/upload">
-              <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">MINT NFT</a>
-            </Link>
-          </div>
+          {auth.toUpperCase() == "0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723".toUpperCase() && (
+            <div className="text-1xl mt-2">
+              <Link href="/upload">
+                <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">
+                  MINT NFT
+                </a>
+              </Link>
+            </div>
           )}
         </div>
         <div className="test">
