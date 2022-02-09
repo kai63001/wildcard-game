@@ -12,7 +12,7 @@ async function main() {
         console.log('Saved!');
     });
     console.log("My Contract deployed to : ", myContact.address);
-    await myContact.mintNFT(["https://bafybeibhhfvs4fz47l6piman2ek4uywriswdl5c2llm7c7s6hlzk5rfh3y.ipfs.infura-ipfs.io/"])
+    await myContact.mintNFT(["https://bafybeibhhfvs4fz47l6piman2ek4uywriswdl5c2llm7c7s6hlzk5rfh3y.ipfs.infura-ipfs.io/","https://bafybeigxlzbb37s7pndyjyb6ctjs6yqjxv2vk5jg2ti5oboc66bk7pktru.ipfs.infura-ipfs.io/"])
     // console.log(await myContact.mint(["https://bafybeibhhfvs4fz47l6piman2ek4uywriswdl5c2llm7c7s6hlzk5rfh3y.ipfs.infura-ipfs.io/"]));
   }
   
