@@ -38,8 +38,9 @@ export const init = async () => {
 export const mint = async (data: string) => {
   console.log(contract);
   contract.mintNFT([data]).then(function (transaction: any) {
-    console.log(transaction);
+    return transaction;
   });
+  return
 };
 
 /**

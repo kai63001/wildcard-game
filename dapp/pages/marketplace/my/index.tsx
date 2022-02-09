@@ -38,7 +38,6 @@ const SellCard = () => {
         {!loading &&
           [...Array(10)].map((item, index) => <LoadingCard key={index} />)}
         {myNft.map((item: any, index) => {
-          console.log(item);
           return <Card item={item} key={index}></Card>;
         })}
       </div>

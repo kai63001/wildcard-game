@@ -2,8 +2,13 @@ import Input from "@/components/form/Input";
 import Layout from "@/components/Layout";
 import { create } from "ipfs-http-client";
 import { mint, getUserToken } from "@/lib/Web3Client";
+import { useState } from "react";
+import Spining from "@/components/Animation/spining";
 
 const UploadPage = () => {
+
+  const [mining,setMining] = useState(false);
+
   const ipfs = create({
     host: "ipfs.infura.io",
     port: 5001,
@@ -11,6 +16,7 @@ const UploadPage = () => {
   });
   const mintNFT = async (e: any) => {
     e.preventDefault();
+    setMining(true);
     // upload file to ipfs
     const image = await addFile({
       path: "/",
@@ -29,7 +35,11 @@ const UploadPage = () => {
       content: Buffer.from(JSON.stringify(data)),
     });
     console.log(`https://ipfs.infura.io/ipfs/${res}`);
-    await mint(`https://ipfs.infura.io/ipfs/${res}`);
+    await mint(`https://ipfs.infura.io/ipfs/${res}`).then((_data)=>{
+      setMining(false);
+      //clear form
+      e.target.reset();
+    });
   };
 
   const addFile = async ({ path, content }: any) => {
@@ -56,6 +66,7 @@ const UploadPage = () => {
             <div className="p-4">
               <form onSubmit={mintNFT}>
                 <Input placeholder="name" name="name" required />
+                <Input placeholder="id" type="number" name="id" required />
                 <select
                   name="rarity"
                   className="w-full text-gray-700 bg-white mb-2 px-2 py-2"
@@ -75,9 +86,9 @@ const UploadPage = () => {
                     S
                   </option>
                 </select>
-                <Input placeholder="id" type="number" name="id" required />
                 <Input placeholder="image" type="file" name="image" required />
-                <button type="submit" className="bg-gray-900 py-2 w-full">
+                <button type="submit" disabled={mining} className="bg-gray-900 py-2 w-full">
+                  {mining && <Spining />}
                   MINT
                 </button>
               </form>
