@@ -31,7 +31,7 @@ const Marketplace = () => {
               className="form-check-label inline-block "
               htmlFor="inlineCheckbox1"
             >
-              s
+              S
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -45,7 +45,7 @@ const Marketplace = () => {
               className="form-check-label inline-block "
               htmlFor="inlineCheckbox2"
             >
-              sr
+              A
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -60,7 +60,7 @@ const Marketplace = () => {
               className="form-check-label inline-block "
               htmlFor="inlineCheckbox2"
             >
-              ssr
+              B
             </label>
           </div>
           <div className="relative pt-1">

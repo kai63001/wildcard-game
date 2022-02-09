@@ -60,6 +60,7 @@ const UploadPage = () => {
                   name="rarity"
                   className="w-full text-gray-700 bg-white mb-2 px-2 py-2"
                   id="rarity"
+                  required
                 >
                   <option value="" disabled selected>
                     Rarity
