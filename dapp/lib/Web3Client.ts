@@ -21,8 +21,8 @@ export const init = async () => {
   provider.on("network", (oldNetwork) => {
     console.log("oldNetwork");
     console.log(oldNetwork.chainId);
-    if(oldNetwork.chainId != 97){
-      alert("change to BNB testnet pls")
+    if (oldNetwork.chainId != 97) {
+      alert("change to BNB testnet pls");
       return false;
     }
   });
@@ -40,7 +40,7 @@ export const mint = async (data: string) => {
   contract.mintNFT([data]).then(function (transaction: any) {
     return transaction;
   });
-  return
+  return;
 };
 
 /**
@@ -131,4 +131,13 @@ export const randomNFT = async () => {
   } catch (error) {
     console.log("out of nft");
   }
+};
+
+export const getUriFromTokenId = async (id: number) => {
+  //return Promise
+  return new Promise(function (res, rej) {
+    contract.tokenURI(id).then(async function (transaction: any) {
+      res(await transaction);
+    });
+  });
 };
