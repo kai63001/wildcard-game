@@ -13,7 +13,7 @@ const Navbar = () => {
     window.ethereum.on("accountsChanged", function (accounts) {
       setAuth(accounts[0]);
     });
-  }, [auth]);
+  }, []);
 
   const getAuth = async () => {
     try {

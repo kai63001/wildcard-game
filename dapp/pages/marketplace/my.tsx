@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 //import getUsertoken
 import { getUserToken, init } from "@/lib/Web3Client";
 import LoadingCard from "@/components/Card/loading";
+import Card from "@/components/Card/MyCard";
 
 const SellCard = () => {
   const [myNft, setMyNft] = useState([]);
@@ -11,6 +12,11 @@ const SellCard = () => {
   useEffect(() => {
     console.log("testsss");
     reqMft();
+    //@ts-ignore
+    window.ethereum.on("accountsChanged", function (accounts) {
+      setLoading(false);
+      reqMft();
+    });
   }, []);
 
   const reqMft = async () => {
@@ -28,17 +34,11 @@ const SellCard = () => {
         {!loading &&
           [...Array(10)].map((item, index) => <LoadingCard key={index} />)}
         {myNft.map((item: any, index) => {
-            console.log(item);
+          console.log(item);
           return (
-            <div key={index}>
-              <div className="bg-white overflow-hidden rounded-md text-gray-900">
-                <img src={item.image} alt="" />
-                <div className="my-2 p-2">
-                  <h3>Cool Cat #123</h3>
-                  <p className="text-smm text-gray-600">0.001 ETH</p>
-                </div>
-              </div>
-            </div>
+            <Card item={item} key={index}>
+              
+            </Card>
           );
         })}
       </div>

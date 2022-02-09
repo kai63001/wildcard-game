@@ -14,9 +14,9 @@ const Marketplace = () => {
           >
             Random Card
           </button>
-          <Link href="/marketplace/sell">
+          <Link href="/marketplace/my">
             <a className="text-center w-full py-2 bg-blue-400 rounded-md block">
-              Sell Card
+              My Card
             </a>
           </Link>
           <h2 className="text-2xl mt-3">Rarity</h2>
