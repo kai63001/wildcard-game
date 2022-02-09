@@ -48,12 +48,21 @@ export const getUserToken = () => {
       data = await data.map((data: any) => data.toNumber());
       // ? promise to get tokeURI from array token id like [1,2,3]
       const promises = await data.map(async (data: unknown) => {
-        const numFruit = new Promise((resolve, reject) => {
+        const url = new Promise((resolve, reject) => {
           resolve(contract.tokenURI(data));
         });
-        return numFruit;
+        return url;
       });
-      const numFruits = await Promise.all(promises);
+      const urls = await Promise.all(promises);
+      const dataIds = urls.map(async (data: any) => {
+        const url = new Promise(async (resolve, reject) => {
+          const dataFect:any = await fetch(data);
+          resolve((await dataFect.json()));
+        });
+        return url;
+      });
+      console.log("dataIds : "+ await dataIds);
+      const numFruits = await Promise.all(dataIds)
       res(await numFruits);
     });
   });
