@@ -17,7 +17,15 @@ let provider: ethers.providers.Web3Provider;
  */
 export const init = async () => {
   //@ts-ignore
-  provider = new ethers.providers.Web3Provider(web3.currentProvider, "bnbt");
+  provider = new ethers.providers.Web3Provider(web3.currentProvider, "any");
+  provider.on("network", (oldNetwork) => {
+    console.log("oldNetwork");
+    console.log(oldNetwork.chainId);
+    if(oldNetwork.chainId != 97){
+      alert("change to BNB testnet pls")
+      return false;
+    }
+  });
   await provider.send("eth_requestAccounts", []);
   const signer = provider.getSigner();
   console.log(signer);
@@ -54,17 +62,17 @@ export const getUserToken = () => {
         return url;
       });
       const urls = await Promise.all(promises);
-      const dataIds = urls.map(async (req: any,index:number) => {
+      const dataIds = urls.map(async (req: any, index: number) => {
         const url = new Promise(async (resolve, reject) => {
-          const dataFect:any = await fetch(req);
+          const dataFect: any = await fetch(req);
           let urlMerge = await dataFect.json();
           urlMerge["tokenId"] = data[index];
           resolve(urlMerge);
         });
         return url;
       });
-      console.log("dataIds : "+ await dataIds);
-      const numFruits = await Promise.all(dataIds)
+      console.log("dataIds : " + (await dataIds));
+      const numFruits = await Promise.all(dataIds);
       res(await numFruits);
     });
   });

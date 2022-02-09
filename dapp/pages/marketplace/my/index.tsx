@@ -20,10 +20,14 @@ const SellCard = () => {
   }, []);
 
   const reqMft = async () => {
-    await init();
-    getUserToken().then((data: any) => {
-      setMyNft(data.reverse());
-      setLoading(true);
+    init().then((data: any) => {
+      if (!data) {
+        return;
+      }
+      getUserToken().then((data: any) => {
+        setMyNft(data.reverse());
+        setLoading(true);
+      });
     });
   };
 
@@ -35,11 +39,7 @@ const SellCard = () => {
           [...Array(10)].map((item, index) => <LoadingCard key={index} />)}
         {myNft.map((item: any, index) => {
           console.log(item);
-          return (
-            <Card item={item} key={index}>
-              
-            </Card>
-          );
+          return <Card item={item} key={index}></Card>;
         })}
       </div>
     </Layout>
