@@ -54,10 +54,12 @@ export const getUserToken = () => {
         return url;
       });
       const urls = await Promise.all(promises);
-      const dataIds = urls.map(async (data: any) => {
+      const dataIds = urls.map(async (req: any,index:number) => {
         const url = new Promise(async (resolve, reject) => {
-          const dataFect:any = await fetch(data);
-          resolve((await dataFect.json()));
+          const dataFect:any = await fetch(req);
+          let urlMerge = await dataFect.json();
+          urlMerge["tokenId"] = data[index];
+          resolve(urlMerge);
         });
         return url;
       });
