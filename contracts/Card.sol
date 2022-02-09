@@ -13,9 +13,21 @@ contract WileCard is ERC721URIStorage {
     address payable public Owner;
     uint256 fee = 8;
 
+
     mapping(address => uint256[]) public userOwnedTokens;
-    // mapping(uint256 => uint256) public tokenIsAtIndex;
-    
+
+
+    struct MarketItem {
+        uint itemId;
+        uint256 tokenId;
+        address payable seller;
+        address payable owner;
+        uint256 price;
+    }
+
+    mapping(uint256 => MarketItem) private idToMarketItem;
+    Counters.Counter private _itemIds;
+    Counters.Counter private _itemsSold;
 
     constructor() ERC721("WileCard", "Wile") {
         Owner = payable(msg.sender);
@@ -29,9 +41,9 @@ contract WileCard is ERC721URIStorage {
         for(uint256 i =0; i < tokenURI.length;i++){
             _tokenIds.increment();
             uint256 newItemId = _tokenIds.current();
-            _safeMint(msg.sender, newItemId);
+            _safeMint(Owner, newItemId);
             _setTokenURI(newItemId, tokenURI[i]);
-            userOwnedTokens[msg.sender].push(newItemId);
+            userOwnedTokens[Owner].push(newItemId);
         }
     }
     
@@ -47,6 +59,79 @@ contract WileCard is ERC721URIStorage {
         }
         _transfer(from, to, tokenId);
     }
+
+    function addItemToMarket(
+    uint256 tokenId,
+    uint256 price
+    ) public payable {
+        require(price > 0, "Price must be at least 1 wei");
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
+        _itemIds.increment();
+        uint256 itemId = _itemIds.current();
+    
+        idToMarketItem[itemId] =  MarketItem(
+        itemId,
+        tokenId,
+        payable(msg.sender),
+        payable(address(0)),
+        price
+        );
+        userOwnedTokens[address(this)].push(tokenId);
+        // uint256 tokenIndex = tokenIsAtIndex[tokenId];
+        for(uint256 i =0; i < userOwnedTokens[msg.sender].length;i++){
+            if(userOwnedTokens[msg.sender][i] == tokenId){
+                userOwnedTokens[msg.sender][i] = userOwnedTokens[msg.sender][userOwnedTokens[msg.sender].length-1];
+                userOwnedTokens[msg.sender].pop();
+            }
+        }
+        _transfer(msg.sender, address(this), tokenId);
+    }
+    
+    function getMarketItemById(uint256 marketItemId) public view returns (MarketItem memory) {
+        MarketItem memory item = idToMarketItem[marketItemId];
+        return item;
+    }
+
+    function getUnsoldItems() public view returns (MarketItem[] memory) {
+        uint itemCount = _itemIds.current();
+        uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
+        uint currentIndex = 0;
+
+        MarketItem[] memory items = new MarketItem[](unsoldItemCount);
+        for (uint i = 0; i < itemCount; i++) {
+            if (idToMarketItem[i + 1].owner == address(0)) {
+                uint currentId = i + 1;
+                MarketItem memory currentItem = idToMarketItem[currentId];
+                items[currentIndex] = currentItem;
+                currentIndex += 1;
+            }
+        }
+    
+        return items;
+    }
+
+    function sellItemAndTransferOwnership(
+    uint256 itemId
+    ) public payable  {
+        uint price = idToMarketItem[itemId].price;
+        uint tokenId = idToMarketItem[itemId].tokenId;
+        require(msg.value == price, "Please submit the asking price in order to complete the purchase");
+
+        idToMarketItem[itemId].seller.transfer(msg.value);
+        idToMarketItem[itemId].owner = payable(msg.sender);
+        _itemsSold.increment();
+
+        userOwnedTokens[msg.sender].push(tokenId);
+        // uint256 tokenIndex = tokenIsAtIndex[tokenId];
+        for(uint256 i =0; i < userOwnedTokens[address(this)].length;i++){
+            if(userOwnedTokens[address(this)][i] == tokenId){
+                userOwnedTokens[address(this)][i] = userOwnedTokens[address(this)][userOwnedTokens[address(this)].length-1];
+                userOwnedTokens[address(this)].pop();
+            }
+        }
+        _transfer(address(this), msg.sender, tokenId);
+    }
+    
 
 
     function randomNFT() public returns (uint) {
