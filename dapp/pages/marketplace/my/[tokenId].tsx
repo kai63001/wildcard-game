@@ -24,8 +24,8 @@ const MyTokenIdNft = (props: any) => {
             <Image
               className="rounded-md h-96"
               src={nft.image}
-              alt={"asdasd"}
-              title={"asdasd"}
+              alt={nft.name}
+              title={nft.name}
               layout="intrinsic"
               width={300}
               height={384}
@@ -44,7 +44,7 @@ const MyTokenIdNft = (props: any) => {
               console.log(nft);
             }}
           >
-            Cool Cat #123
+            {nft.name} #{props.tokenId}
           </h1>
         </div>
       </div>

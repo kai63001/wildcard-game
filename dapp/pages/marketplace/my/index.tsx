@@ -14,6 +14,7 @@ const SellCard = () => {
     reqMft();
     //@ts-ignore
     window.ethereum.on("accountsChanged", function (accounts) {
+      setMyNft([]);
       setLoading(false);
       reqMft();
     });
