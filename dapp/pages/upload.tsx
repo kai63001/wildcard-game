@@ -85,6 +85,15 @@ const UploadPage = () => {
                   <option value="S">
                     S
                   </option>
+                  <option value="R">
+                    R
+                  </option>
+                  <option value="SR">
+                    SR
+                  </option>
+                  <option value="SSR">
+                    SSR
+                  </option>
                 </select>
                 <Input placeholder="image" type="file" name="image" required />
                 <button type="submit" disabled={mining} className="bg-gray-900 py-2 w-full">
