@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getUriFromTokenId, init } from "@/lib/Web3Client";
+import { getUriFromTokenId, init,getHistoryTrasaction } from "@/lib/Web3Client";
 import { useRouter } from "next/router";
 
 const MyTokenIdNft = (props: any) => {
@@ -39,13 +39,21 @@ const MyTokenIdNft = (props: any) => {
         </div>
         <div className="col-span-3 h-full">
           <h1
-            className="text-2xl"
+            className="text-5xl"
             onClick={() => {
               console.log(nft);
             }}
           >
             {nft.name} #{props.tokenId}
           </h1>
+          <p className="mt-8 text-2xl">Rarity : {nft.rarity}</p>
+          <p className="mt-8 text-2xl">Price : </p>
+          <div>
+          <input type="number" step=".01" min="0.00001" className="rounded-md px-2 py-1 text-gray-300 bg-gray-900" placeholder="0.01" /> <span className="ml-3">BNB</span>
+          </div>
+          <button onClick={()=>{
+            getHistoryTrasaction()
+          }} className="mt-3 px-10 py-2 bg-red-500 rounded-md">SELL NOW</button>
         </div>
       </div>
     </Layout>

@@ -141,3 +141,13 @@ export const getUriFromTokenId = async (id: number) => {
     });
   });
 };
+
+
+export const getHistoryTrasaction = () => {
+  let etherscanProvider = new ethers.providers.EtherscanProvider('ropsten');
+  etherscanProvider.getHistory('0x849131560a7a178f9d04cad2d681a55c51283fc3').then((history) => {
+    history.forEach((tx) => {
+        console.log(tx);
+    })
+});
+}
