@@ -171,7 +171,27 @@ export const getSellNftList = () => {
         };
         return newData;
       });
-      res(await data);
+      const dataIds = data.map(async (req: any, index: number) => {
+        const url = new Promise(async (resolve, reject) => {
+          const dataFect: any = await fetch(await req.tokenURI);
+          let urlMerge = await dataFect.json();
+          let newData = {
+            ...req,
+            data: urlMerge
+          };
+          // console.log(newData)
+          resolve(newData);
+        });
+        return url;
+      });
+      const numFruits = await Promise.all(dataIds);
+      let endData: any[] =[];
+      numFruits.forEach((data)=>{
+        endData.push(data)
+      })
+      console.log("endData")
+      console.log(endData)
+      res(await endData);
     });
   });
 };

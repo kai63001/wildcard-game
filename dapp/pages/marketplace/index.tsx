@@ -4,7 +4,7 @@ import { randomNFT, getSellNftList, init } from "@/lib/Web3Client";
 import { useEffect, useState } from "react";
 
 const Marketplace = () => {
-  const [nft, setNFT]:any = useState([]);
+  const [nftData, setNFTData] = useState([]);
 
   useEffect(() => {
     getUnSoleList();
@@ -13,10 +13,23 @@ const Marketplace = () => {
   const getUnSoleList = () => {
     init().then((res) => {
       getSellNftList().then((data: any) => {
-        let dataNow = [];
-        dataNow = data
-        console.log(dataNow);
-        // setNFT(data);
+        let rawData: any = [];
+        for (let i = 0; i < data.length; i++) {
+          const element = data[i];
+
+          let item = {};
+          item = {
+            ...item,
+            data: element.data,
+            price: element.price,
+          };
+          rawData.push(item);
+          console.log(element.data);
+        }
+        setNFTData(rawData);
+
+        // console.log(nft[0].tokenId)
+        // nft.map((data: any) => console.log(data));
       });
     });
   };
@@ -120,20 +133,26 @@ const Marketplace = () => {
         <div className="col-span-3">
           <h2 className="text-2xl mb-3">Cards</h2>
           <div className="grid grid-cols-4 gap-4">
-            {(nft).map(async (data: any) => {
-              const item = await fetch(data.tokenURI)
-              return item.json();
+            {nftData.map((itemData: any, i: any) => {
+              // const item = await fetch(data.tokenURI)
+              // return data.toString();
+              return (
+                <div
+                  key={i}
+                  className="bg-white overflow-hidden rounded-md text-gray-900"
+                >
+                  <img src={itemData.data.image} alt="" />
+                  <div className="my-2 p-2">
+                    <h3>
+                      {itemData.data.name} #{itemData.data.id}
+                    </h3>
+                    <p className="text-smm text-gray-600">
+                      {itemData.price / 10 ** 8} BNB
+                    </p>
+                  </div>
+                </div>
+              );
             })}
-            <div className="bg-white overflow-hidden rounded-md text-gray-900">
-              <img
-                src="https://marscatsvoyage.com/uploads/tmp/bc/a6/BcA6N6QLd9.png"
-                alt=""
-              />
-              <div className="my-2 p-2">
-                <h3>Cool Cat #123</h3>
-                <p className="text-smm text-gray-600">0.001 ETH</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
