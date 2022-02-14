@@ -1,8 +1,26 @@
 import Layout from "@/components/Layout";
 import Link from "next/link";
-import { randomNFT } from "@/lib/Web3Client";
+import { randomNFT, getSellNftList, init } from "@/lib/Web3Client";
+import { useEffect, useState } from "react";
 
 const Marketplace = () => {
+  const [nft, setNFT]:any = useState([]);
+
+  useEffect(() => {
+    getUnSoleList();
+  }, []);
+
+  const getUnSoleList = () => {
+    init().then((res) => {
+      getSellNftList().then((data: any) => {
+        let dataNow = [];
+        dataNow = data
+        console.log(dataNow);
+        // setNFT(data);
+      });
+    });
+  };
+
   return (
     <Layout>
       <div className="grid grid-cols-4 gap-4">
@@ -102,6 +120,10 @@ const Marketplace = () => {
         <div className="col-span-3">
           <h2 className="text-2xl mb-3">Cards</h2>
           <div className="grid grid-cols-4 gap-4">
+            {(nft).map(async (data: any) => {
+              const item = await fetch(data.tokenURI)
+              return item.json();
+            })}
             <div className="bg-white overflow-hidden rounded-md text-gray-900">
               <img
                 src="https://marscatsvoyage.com/uploads/tmp/bc/a6/BcA6N6QLd9.png"

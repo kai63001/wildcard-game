@@ -20,6 +20,7 @@ contract WileCard is ERC721URIStorage {
     struct MarketItem {
         uint itemId;
         uint256 tokenId;
+        string tokenURI;
         address payable seller;
         address payable owner;
         uint256 price;
@@ -72,6 +73,7 @@ contract WileCard is ERC721URIStorage {
         idToMarketItem[itemId] =  MarketItem(
         itemId,
         tokenId,
+        tokenURI(tokenId),
         payable(msg.sender),
         payable(address(0)),
         price

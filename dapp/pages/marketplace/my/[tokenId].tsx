@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getUriFromTokenId, init,getHistoryTrasaction ,addSell} from "@/lib/Web3Client";
+import { getUriFromTokenId, init ,addSell} from "@/lib/Web3Client";
 import { useRouter } from "next/router";
 
 const MyTokenIdNft = (props: any) => {

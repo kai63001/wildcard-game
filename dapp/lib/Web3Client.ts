@@ -20,7 +20,6 @@ export const init = async () => {
   //@ts-ignore
   provider = new ethers.providers.Web3Provider(web3.currentProvider, "any");
   provider.on("network", (oldNetwork) => {
-    console.log("oldNetwork");
     console.log(oldNetwork.chainId);
     if (oldNetwork.chainId != 97) {
       alert("change to BNB testnet pls");
@@ -29,10 +28,8 @@ export const init = async () => {
   });
   await provider.send("eth_requestAccounts", []);
   const signer = provider.getSigner();
-  console.log(signer);
   contract = new ethers.Contract(conTractAddress, abi, signer);
   console.log("init");
-  console.log(contract);
   return true;
 };
 
@@ -138,37 +135,43 @@ export const getUriFromTokenId = async (id: number) => {
   //return Promise
   return new Promise(function (res, rej) {
     contract.tokenURI(id).then(async function (transaction: any) {
+      console.log('getUriFromTokenId')
       res(await transaction);
     });
   });
 };
 
-
-export const getHistoryTrasaction = async () => {
-  // let etherscanProvider = new ethers.providers.EtherscanProvider("");
-  // etherscanProvider.getHistory('0x849131560a7a178f9d04cad2d681a55c51283fc3').then((history) => {
-  //   history.forEach((tx) => {
-  //       console.log(tx);
-  //   })
-// });
-const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545")
-console.log(await web3.eth.getBlock(1))
-web3.eth.getTransactionCount('0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723', 'latest', (err, current)=>{
-  for (var i=i; i <= current; i++) {
-    web3.eth.getBlock(i, (err, res) => {
-      console.log(res)
-    })
-  }
-});
-}
-
-export const addSell = async (id:any,price:number) => {
+export const addSell = async (id: any, price: number) => {
   // console.log((parseFloat(price) * (10 ** 8)))
   return new Promise(function (res, rej) {
     contract
-      .addItemToMarket(id,(price * (10 ** 8)))
+      .addItemToMarket(id, price * 10 ** 8)
       .then(async function (transaction: any) {
         res(transaction);
       });
   });
-}
+};
+
+export const getSellNftList = () => {
+  // contract.tokenURI
+  return new Promise(function (res, rej) {
+    contract.getUnsoldItems().then(async function (transaction: any) {
+      console.log("HELLO")
+      // let data = await transaction.filter(
+      //   (data: any) => data.itemId.toNumber() != 0 && data.itemId.toNumber()
+      // );
+      let data = await transaction.map((item: any) => {
+        console.log("WTF")
+        let req = item.tokenId.toNumber();
+        let price = item.price.toNumber();
+        let newData = {
+          ...item,
+          ["tokenId"]: req,
+          ["price"]: price,
+        };
+        return newData;
+      });
+      res(await data);
+    });
+  });
+};
