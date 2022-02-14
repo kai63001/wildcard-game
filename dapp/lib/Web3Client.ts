@@ -1,4 +1,5 @@
 import { BigNumber, ethers } from "ethers";
+import Web3 from "web3";
 import data from "../../artifacts/contracts/Card.sol/WileCard.json"; // get data abi
 import addressData from "../../deploy.json";
 
@@ -143,11 +144,31 @@ export const getUriFromTokenId = async (id: number) => {
 };
 
 
-export const getHistoryTrasaction = () => {
-  let etherscanProvider = new ethers.providers.EtherscanProvider('ropsten');
-  etherscanProvider.getHistory('0x849131560a7a178f9d04cad2d681a55c51283fc3').then((history) => {
-    history.forEach((tx) => {
-        console.log(tx);
+export const getHistoryTrasaction = async () => {
+  // let etherscanProvider = new ethers.providers.EtherscanProvider("");
+  // etherscanProvider.getHistory('0x849131560a7a178f9d04cad2d681a55c51283fc3').then((history) => {
+  //   history.forEach((tx) => {
+  //       console.log(tx);
+  //   })
+// });
+const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545")
+console.log(await web3.eth.getBlock(1))
+web3.eth.getTransactionCount('0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723', 'latest', (err, current)=>{
+  for (var i=i; i <= current; i++) {
+    web3.eth.getBlock(i, (err, res) => {
+      console.log(res)
     })
+  }
 });
+}
+
+export const addSell = async (id:any,price:number) => {
+  // console.log((parseFloat(price) * (10 ** 8)))
+  return new Promise(function (res, rej) {
+    contract
+      .addItemToMarket(id,(price * (10 ** 8)))
+      .then(async function (transaction: any) {
+        res(transaction);
+      });
+  });
 }

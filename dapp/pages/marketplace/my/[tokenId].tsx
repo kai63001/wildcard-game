@@ -1,11 +1,14 @@
 import Layout from "@/components/Layout";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getUriFromTokenId, init,getHistoryTrasaction } from "@/lib/Web3Client";
+import { getUriFromTokenId, init,getHistoryTrasaction ,addSell} from "@/lib/Web3Client";
 import { useRouter } from "next/router";
 
 const MyTokenIdNft = (props: any) => {
   const [nft, setNft]: any = useState({});
+
+  const [price,setPrice] = useState(0);
+
   useEffect(() => {
     init().then(async (_data: any) => {
       getUriFromTokenId(props.tokenId).then(async (data: any) => {
@@ -15,6 +18,17 @@ const MyTokenIdNft = (props: any) => {
       });
     });
   }, []);
+
+
+  const sellItem = () => {
+    if(price < 0.01){
+      alert("Please enter a price greater than 0.01");
+      return;
+    }
+    addSell(props.tokenId,price).then((data)=>{
+      console.log(data)
+    });
+  }
 
   return (
     <Layout>
@@ -49,10 +63,11 @@ const MyTokenIdNft = (props: any) => {
           <p className="mt-8 text-2xl">Rarity : {nft.rarity}</p>
           <p className="mt-8 text-2xl">Price : </p>
           <div>
-          <input type="number" step=".01" min="0.00001" className="rounded-md px-2 py-1 text-gray-300 bg-gray-900" placeholder="0.01" /> <span className="ml-3">BNB</span>
+          <input onChange={(e:any)=>setPrice(e.target.value)} type="number" step=".01" min="0.01" className="rounded-md px-2 py-1 text-gray-300 bg-gray-900" placeholder="0.01" /> <span className="ml-3">BNB</span>
           </div>
           <button onClick={()=>{
-            getHistoryTrasaction()
+            sellItem();
+            // getHistoryTrasaction('0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723',1,1000,1)
           }} className="mt-3 px-10 py-2 bg-red-500 rounded-md">SELL NOW</button>
         </div>
       </div>
