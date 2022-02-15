@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getSellingNft, init } from "@/lib/Web3Client";
+import { getSellingNft, init , buyNFT } from "@/lib/Web3Client";
 import Image from "next/image"
 import Spining from "@/components/Animation/spining";
 
@@ -20,6 +20,16 @@ const SellCardComponent = (props: any) => {
       });
     });
   };
+
+  const letBuyNft = () => {
+    setOnBuying(true)
+    init().then((req) => {
+      buyNFT(props.tokenId,nft.price).then((data: any) => {
+        console.log(data);
+        setOnBuying(false);
+      });
+    });
+  }
 
   return (
     <div className="grid grid-cols-4 gap-4 h-full">
@@ -42,7 +52,7 @@ const SellCardComponent = (props: any) => {
       </div>
       <div className="col-span-2 h-full">
         <h1 className="text-5xl">
-          {nft.data && nft.data.name} #{props.tokenId}
+          {nft.data && nft.data.name} #{nft.tokenId}
         </h1>
         <p className="mt-8 text-2xl">Rarity : {nft.data && nft.data.rarity}</p>
         <p className="mt-8 text-2xl">Price : </p>
@@ -61,7 +71,7 @@ const SellCardComponent = (props: any) => {
           id="sell-button"
           disabled={onBuying}
           onClick={() => {
-            // sellItem();
+            letBuyNft();
           }}
           className="mt-3 px-10 py-2 bg-green-500 rounded-md"
         >
