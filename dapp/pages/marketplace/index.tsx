@@ -2,9 +2,12 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 import { randomNFT, getSellNftList, init } from "@/lib/Web3Client";
 import { useEffect, useState } from "react";
+import Loading from "@/components/Card/loading";
+import SellCard from "@/components/Card/SellCard";
 
 const Marketplace = () => {
   const [nftData, setNFTData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getUnSoleList();
@@ -22,14 +25,13 @@ const Marketplace = () => {
             ...item,
             data: element.data,
             price: element.price,
+            tokenId: element.tokenId,
           };
           rawData.push(item);
           console.log(element.data);
         }
         setNFTData(rawData);
-
-        // console.log(nft[0].tokenId)
-        // nft.map((data: any) => console.log(data));
+        setLoading(false);
       });
     });
   };
@@ -133,26 +135,7 @@ const Marketplace = () => {
         <div className="col-span-3">
           <h2 className="text-2xl mb-3">Cards</h2>
           <div className="grid grid-cols-4 gap-4">
-            {nftData.map((itemData: any, i: any) => {
-              // const item = await fetch(data.tokenURI)
-              // return data.toString();
-              return (
-                <div
-                  key={i}
-                  className="bg-white overflow-hidden rounded-md text-gray-900"
-                >
-                  <img src={itemData.data.image} alt="" />
-                  <div className="my-2 p-2">
-                    <h3>
-                      {itemData.data.name} #{itemData.data.id}
-                    </h3>
-                    <p className="text-smm text-gray-600">
-                      {itemData.price / 10 ** 8} BNB
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+            {loading ? <Loading /> : nftData.map((item: any,i:any) => (<SellCard key={i} item={item}/>))}
           </div>
         </div>
       </div>

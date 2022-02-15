@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Card = (props: any) => {
+const SellCard = (props: any) => {
   return (
     <Link href={`/marketplace/my/${props.item.tokenId}`}>
       <a>
@@ -9,9 +9,9 @@ const Card = (props: any) => {
           <div className="bg-gray-300 h-60 overflow-hidden relative">
             <Image
               className="rounded-tr-md rounded-tl-md max-h-56"
-              src={props.item.image}
-              alt={props.item.name}
-              title={props.item.name}
+              src={props.item.data.image}
+              alt={props.item.data.name}
+              title={props.item.data.name}
               layout="fill"
               blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               placeholder="blur"
@@ -19,8 +19,9 @@ const Card = (props: any) => {
           </div>
           <div className="my-2 p-2">
             <h3>
-              {props.item.name} #{props.item.tokenId}
+              {props.item.data.name} #{props.item.tokenId}
             </h3>
+            <p className="text-smm text-gray-600">{props.item.price /(10 ** 8)} BNB</p>
           </div>
         </div>
       </a>
@@ -28,4 +29,4 @@ const Card = (props: any) => {
   );
 };
 
-export default Card;
+export default SellCard;
