@@ -6,6 +6,8 @@ import Loading from "@/components/Card/loading";
 import SellCard from "@/components/Card/SellCard";
 import Spining from "@/components/Animation/spining";
 import { useRouter } from "next/router";
+import Modal from 'react-modal';
+import SellCardComponent from "@/components/Modal/SellCard";
 
 const Marketplace = () => {
   const router = useRouter();
@@ -48,6 +50,20 @@ const Marketplace = () => {
         setLoading(false);
       });
     });
+  };
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      width: '40%',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: "black",
+      borderRadius: "10px"
+    },
   };
 
   return (
@@ -154,6 +170,9 @@ const Marketplace = () => {
             {loading ? <Loading /> : nftData.map((item: any,i:any) => (<SellCard key={i} item={item}/>))}
           </div>
         </div>
+        <Modal ariaHideApp={false} onRequestClose={()=>router.push('/marketplace')} style={customStyles} isOpen={!!router.query.tokenId}>
+          <SellCardComponent tokenId={router.query.tokenId} />
+      </Modal>
       </div>
     </Layout>
   );
