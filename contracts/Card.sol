@@ -117,7 +117,7 @@ contract WileCard is ERC721URIStorage {
     ) public payable  {
         uint price = idToMarketItem[itemId].price;
         uint tokenId = idToMarketItem[itemId].tokenId;
-        require(msg.value == price ** 10, "Please submit the asking price in order to complete the purchase");
+        require(msg.value == price * (10 ** 10), "Please submit the asking price in order to complete the purchase");
 
         idToMarketItem[itemId].seller.transfer(msg.value);
         idToMarketItem[itemId].owner = payable(msg.sender);

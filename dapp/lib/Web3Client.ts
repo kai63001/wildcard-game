@@ -159,7 +159,7 @@ export const addSell = async (id: any, price: number) => {
   // console.log((parseFloat(price) * (10 ** 8)))
   return new Promise(function (res, rej) {
     contract
-      .addItemToMarket(id, price * 10 ** 18)
+      .addItemToMarket(id, price * (10 ** 8))
       .then(async function (transaction: any) {
         let transactionReceipt = null;
           while (transactionReceipt == null) {
@@ -248,8 +248,9 @@ export const getSellingNft = (itemId:number) => {
 
 export const buyNFT = (itemId:any,price:any) => {
   return new Promise(function (res, rej) {
+    console.log(price)
     contract
-      .sellItemAndTransferOwnership(itemId, {value:price})
+      .sellItemAndTransferOwnership(itemId, {value:BigInt(price * (10 ** 10))})
       .then(async function (transaction: any) {
         let transactionReceipt = null;
           while (transactionReceipt == null) {
@@ -266,3 +267,4 @@ export const buyNFT = (itemId:any,price:any) => {
 
 //10000000000000 = 0.00001
 //100000000000000 = 0.0001
+// default decimals is 18 shit
