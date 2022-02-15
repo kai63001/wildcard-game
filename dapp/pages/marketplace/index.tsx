@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import Loading from "@/components/Card/loading";
 import SellCard from "@/components/Card/SellCard";
 import Spining from "@/components/Animation/spining";
+import { useRouter } from "next/router";
 
 const Marketplace = () => {
+  const router = useRouter();
   const [nftData, setNFTData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,6 +18,7 @@ const Marketplace = () => {
     setRandoming(true)
     randomNFT().then((data: any)=>{
       setRandoming(false)
+      router.push('/marketplace/my');
     })
   }
 

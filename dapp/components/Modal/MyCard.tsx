@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getUriFromTokenId, init, addSell } from "@/lib/Web3Client";
+import { useRouter } from "next/router";
+import Spining from "../Animation/spining";
 
 const MyCard = (props: any) => {
+  const router = useRouter();
   const [nft, setNft]: any = useState({});
-
   const [price, setPrice] = useState(0);
+  const [onSelling, setOnSelling] = useState(false);
 
   useEffect(() => {
     init().then(async (_data: any) => {
@@ -22,8 +25,10 @@ const MyCard = (props: any) => {
       alert("Please enter a price greater than 0.01");
       return;
     }
+    setOnSelling(true);
     addSell(props.tokenId, price).then((data) => {
-      console.log(data);
+      router.push("/marketplace");
+      setOnSelling(false);
     });
   };
   return (
@@ -63,13 +68,15 @@ const MyCard = (props: any) => {
           <span className="ml-3">BNB</span>
         </div>
         <button
+          id="sell-button"
+          disabled={onSelling}
           onClick={() => {
             sellItem();
-            // getHistoryTrasaction('0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723',1,1000,1)
           }}
           className="mt-3 px-10 py-2 bg-red-500 rounded-md"
         >
-          SELL NOW
+            {onSelling &&  <Spining />}
+          <span>SELL NOW</span>
         </button>
       </div>
     </div>
