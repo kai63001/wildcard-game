@@ -161,6 +161,13 @@ export const addSell = async (id: any, price: number) => {
     contract
       .addItemToMarket(id, price * 10 ** 8)
       .then(async function (transaction: any) {
+        let transactionReceipt = null;
+          while (transactionReceipt == null) {
+            transactionReceipt = await provider.getTransactionReceipt(
+              transaction.hash
+            );
+            await sleep(1000);
+          }
         res(transaction);
       });
   });
