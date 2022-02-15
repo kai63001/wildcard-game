@@ -220,3 +220,27 @@ export const getSellNftList = () => {
 const sleep = (milliseconds: number | undefined) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
+
+export const getSellingNft = (itemId:number) => {
+  console.log('asdasdas')
+  return new Promise(function (res, rej) {
+    contract
+      .getMarketItemById(itemId)
+      .then(async function (transaction: any) {
+          console.log("WTF");
+          let req = transaction.tokenId.toNumber();
+          let price = transaction.price.toNumber();
+          let newData = {
+            ...transaction,
+            ["tokenId"]: req,
+            ["price"]: price,
+          };
+          const fetchData = await fetch(newData.tokenURI);
+          newData = {
+            ...newData,
+            data : await fetchData.json()
+          }
+        res(newData);
+      });
+  });
+}

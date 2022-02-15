@@ -58,6 +58,7 @@ const UploadPage = () => {
   return (
     <Layout>
       <div className="grid grid-cols-3 gap-4 mt-10">
+        <div></div>
         <div className="">
           <div className="border-2 border-gray-800 col-span-1">
             <div className="p-4 bg-gray-800">
@@ -105,31 +106,7 @@ const UploadPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-2 bg-red-300">
-          <button onClick={list}>test</button>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-        </div>
+        
       </div>
     </Layout>
   );

@@ -39,6 +39,7 @@ const Marketplace = () => {
             data: element.data,
             price: element.price,
             tokenId: element.tokenId,
+            itemId: element.itemId
           };
           rawData.push(item);
           console.log(element.data);

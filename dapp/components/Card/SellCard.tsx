@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const SellCard = (props: any) => {
   return (
-    <Link href={`/marketplace/my/${props.item.tokenId}`}>
+    <Link href={`/marketplace/sell/${props.item.itemId}`}>
       <a>
         <div className="bg-white overflow-hidden rounded-md text-gray-900">
           <div className="bg-gray-300 h-60 overflow-hidden relative">
