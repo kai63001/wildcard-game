@@ -4,10 +4,20 @@ import { randomNFT, getSellNftList, init } from "@/lib/Web3Client";
 import { useEffect, useState } from "react";
 import Loading from "@/components/Card/loading";
 import SellCard from "@/components/Card/SellCard";
+import Spining from "@/components/Animation/spining";
 
 const Marketplace = () => {
   const [nftData, setNFTData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [randoming, setRandoming] = useState(false);
+
+  const getRandom = () => {
+    setRandoming(true)
+    randomNFT().then((data: any)=>{
+      setRandoming(false)
+    })
+  }
 
   useEffect(() => {
     getUnSoleList();
@@ -42,10 +52,12 @@ const Marketplace = () => {
         <div className="...">
           <h2 className="text-2xl mb-3">Management</h2>
           <button
-            onClick={() => randomNFT()}
+            disabled={randoming}
+            onClick={() => getRandom()}
             className="text-center w-full py-2 border-2 border-red-400 text-red-400 hover:bg-red-400 hover:text-white duration-150 rounded-md mb-2"
           >
-            Random Card
+            {randoming ? <Spining /> : ""}
+            <span>Random Card</span>
           </button>
           <Link href="/marketplace/my">
             <a className="text-center w-full py-2 bg-blue-400 rounded-md block">
