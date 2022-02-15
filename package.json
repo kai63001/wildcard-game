@@ -19,11 +19,13 @@
   },
   "homepage": "https://github.com/kai63001/wile-game#readme",
   "dependencies": {
-    "@openzeppelin/contracts": "^4.4.2"
+    "@openzeppelin/contracts": "^4.4.2",
+    "react-modal": "^3.14.4"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-waffle": "^2.0.2",
+    "@types/react-modal": "^3.13.1",
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.0",
     "hardhat": "^2.8.3",
