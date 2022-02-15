@@ -71,9 +71,10 @@ const UploadPage = () => {
                   name="rarity"
                   className="w-full text-gray-700 bg-white mb-2 px-2 py-2"
                   id="rarity"
+                  defaultValue={'F'}
                   required
                 >
-                  <option value="" disabled selected>
+                  <option value="F" disabled>
                     Rarity
                   </option>
                   <option value="B">

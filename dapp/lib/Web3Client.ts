@@ -34,11 +34,21 @@ export const init = async () => {
 };
 
 export const mint = async (data: string) => {
-  console.log(contract);
-  contract.mintNFT([data]).then(function (transaction: any) {
-    return transaction;
+  return new Promise(function (res, rej) {
+    contract.mintNFT([data]).then(async function (transaction: any) {
+      console.log("transaction");
+      console.log(transaction);
+      let transactionReceipt = null;
+      while (transactionReceipt == null) {
+        // Waiting expectedBlockTime until the transaction is mined
+        transactionReceipt = await provider.getTransactionReceipt(
+          transaction.hash
+        );
+        await sleep(1000);
+      }
+      res(transaction);
+    });
   });
-  return;
 };
 
 /**
@@ -135,7 +145,7 @@ export const getUriFromTokenId = async (id: number) => {
   //return Promise
   return new Promise(function (res, rej) {
     contract.tokenURI(id).then(async function (transaction: any) {
-      console.log('getUriFromTokenId')
+      console.log("getUriFromTokenId");
       res(await transaction);
     });
   });
@@ -156,12 +166,12 @@ export const getSellNftList = () => {
   // contract.tokenURI
   return new Promise(function (res, rej) {
     contract.getUnsoldItems().then(async function (transaction: any) {
-      console.log("HELLO")
+      console.log("HELLO");
       // let data = await transaction.filter(
       //   (data: any) => data.itemId.toNumber() != 0 && data.itemId.toNumber()
       // );
       let data = await transaction.map((item: any) => {
-        console.log("WTF")
+        console.log("WTF");
         let req = item.tokenId.toNumber();
         let price = item.price.toNumber();
         let newData = {
@@ -177,7 +187,7 @@ export const getSellNftList = () => {
           let urlMerge = await dataFect.json();
           let newData = {
             ...req,
-            data: urlMerge
+            data: urlMerge,
           };
           // console.log(newData)
           resolve(newData);
@@ -185,13 +195,17 @@ export const getSellNftList = () => {
         return url;
       });
       const numFruits = await Promise.all(dataIds);
-      let endData: any[] =[];
-      numFruits.forEach((data)=>{
-        endData.push(data)
-      })
-      console.log("endData")
-      console.log(endData)
+      let endData: any[] = [];
+      numFruits.forEach((data) => {
+        endData.push(data);
+      });
+      console.log("endData");
+      console.log(endData);
       res(await endData);
     });
   });
+};
+
+const sleep = (milliseconds: number | undefined) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
