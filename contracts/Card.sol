@@ -17,7 +17,7 @@ contract WileCard is ERC721URIStorage {
     mapping(address => uint256[]) public userOwnedTokens;
 
 
-    struct MarketItem {
+    struct CardNFTMarket {
         uint itemId;
         uint256 tokenId;
         string tokenURI;
@@ -26,7 +26,7 @@ contract WileCard is ERC721URIStorage {
         uint256 price;
     }
 
-    mapping(uint256 => MarketItem) private idToMarketItem;
+    mapping(uint256 => CardNFTMarket) private idToCardNFTMarket;
     Counters.Counter private _itemIds;
     Counters.Counter private _itemsSold;
 
@@ -49,7 +49,7 @@ contract WileCard is ERC721URIStorage {
     }
     
     function transferNFT(address from, address to, uint256 tokenId) public {
-        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "Your are not owner this NFT");
         userOwnedTokens[to].push(tokenId);
         // uint256 tokenIndex = tokenIsAtIndex[tokenId];
         for(uint256 i =0; i < userOwnedTokens[from].length;i++){
@@ -65,18 +65,18 @@ contract WileCard is ERC721URIStorage {
     uint256 tokenId,
     uint256 price
     ) public payable {
-        require(price > 0, "Price must be at least 1 wei");
-        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
+        require(price > 0, "Price must be at least 1 ** decimals");
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "Your are not owner this NFT");
         _itemIds.increment();
         uint256 itemId = _itemIds.current();
     
-        idToMarketItem[itemId] =  MarketItem(
-        itemId,
-        tokenId,
-        tokenURI(tokenId),
-        payable(msg.sender),
-        payable(address(0)),
-        price
+        idToCardNFTMarket[itemId] =  CardNFTMarket(
+            itemId,
+            tokenId,
+            tokenURI(tokenId),
+            payable(msg.sender),
+            payable(address(0)),
+            price
         );
         userOwnedTokens[address(this)].push(tokenId);
         // uint256 tokenIndex = tokenIsAtIndex[tokenId];
@@ -89,21 +89,21 @@ contract WileCard is ERC721URIStorage {
         _transfer(msg.sender, address(this), tokenId);
     }
     
-    function getMarketItemById(uint256 marketItemId) public view returns (MarketItem memory) {
-        MarketItem memory item = idToMarketItem[marketItemId];
+    function getCardNFTMarketById(uint256 CardNFTMarketId) public view returns (CardNFTMarket memory) {
+        CardNFTMarket memory item = idToCardNFTMarket[CardNFTMarketId];
         return item;
     }
 
-    function getUnsoldItems() public view returns (MarketItem[] memory) {
+    function getUnsoldItems() public view returns (CardNFTMarket[] memory) {
         uint itemCount = _itemIds.current();
         uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
         uint currentIndex = 0;
 
-        MarketItem[] memory items = new MarketItem[](unsoldItemCount);
+        CardNFTMarket[] memory items = new CardNFTMarket[](unsoldItemCount);
         for (uint i = 0; i < itemCount; i++) {
-            if (idToMarketItem[i + 1].owner == address(0)) {
+            if (idToCardNFTMarket[i + 1].owner == address(0)) {
                 uint currentId = i + 1;
-                MarketItem memory currentItem = idToMarketItem[currentId];
+                CardNFTMarket memory currentItem = idToCardNFTMarket[currentId];
                 items[currentIndex] = currentItem;
                 currentIndex += 1;
             }
@@ -115,12 +115,12 @@ contract WileCard is ERC721URIStorage {
     function sellItemAndTransferOwnership(
     uint256 itemId
     ) public payable  {
-        uint price = idToMarketItem[itemId].price;
-        uint tokenId = idToMarketItem[itemId].tokenId;
-        require(msg.value == price * (10 ** 10), "Please submit the asking price in order to complete the purchase");
-
-        idToMarketItem[itemId].seller.transfer(msg.value);
-        idToMarketItem[itemId].owner = payable(msg.sender);
+        uint price = idToCardNFTMarket[itemId].price;
+        uint tokenId = idToCardNFTMarket[itemId].tokenId;
+        require(msg.value == price * (10 ** 10), "msg.value != price ** decimals");
+        
+        idToCardNFTMarket[itemId].seller.transfer(msg.value);
+        idToCardNFTMarket[itemId].owner = payable(msg.sender);
         _itemsSold.increment();
 
         userOwnedTokens[msg.sender].push(tokenId);
@@ -138,7 +138,7 @@ contract WileCard is ERC721URIStorage {
 
     function randomNFT() public returns (uint) {
         uint randomed = random(userOwnedTokens[Owner])[0];
-        require(_isApprovedOrOwner(Owner, randomed), "ERC721: transfer caller is not owner nor approved");
+        require(_isApprovedOrOwner(Owner, randomed), "Your are not owner this NFT");
         userOwnedTokens[msg.sender].push(randomed);
         for(uint256 i =0; i < userOwnedTokens[Owner].length;i++){
             if(userOwnedTokens[Owner][i] == randomed){

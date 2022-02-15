@@ -15,7 +15,6 @@ const SellCardComponent = (props: any) => {
   const getDataSeller = () => {
     init().then((req) => {
       getSellingNft(props.tokenId).then((data: any) => {
-        console.log(data);
         setNft(data);
       });
     });
@@ -25,8 +24,8 @@ const SellCardComponent = (props: any) => {
     setOnBuying(true)
     init().then((req) => {
       buyNFT(props.tokenId,nft.price).then((data: any) => {
-        console.log(data);
         setOnBuying(false);
+        router.push('/marketplace/my')
       });
     });
   }

@@ -19,14 +19,34 @@ export const init = async () => {
   provider.on("network", (oldNetwork) => {
     console.log(oldNetwork.chainId);
     if (oldNetwork.chainId != 97) {
-      alert("change to BNB testnet pls");
+      //@ts-ignore
+      window.ethereum
+        .request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: "0x61",
+              chainName: "Binance Smart Chain Testnet",
+              nativeCurrency: {
+                name: "Binance Coin",
+                symbol: "BNB",
+                decimals: 18,
+              },
+              rpcUrls: ["https://data-seed-prebsc-2-s2.binance.org:8545/"],
+              blockExplorerUrls: ["https://testnet.bscscan.com"],
+            },
+          ],
+        })
+        .catch((error: any) => {
+          console.log(error);
+        });
       return false;
     }
   });
   await provider.send("eth_requestAccounts", []);
   const signer = provider.getSigner();
   contract = new ethers.Contract(conTractAddress, abi, signer);
-  console.log("init");
+  console.log("init...");
   return true;
 };
 
@@ -133,7 +153,7 @@ export const randomNFT = async () => {
             );
             await sleep(1000);
           }
-          res(transaction)
+          res(transaction);
         })
         .catch((_error: any) => {
           rej("out of nft in collection");
@@ -142,7 +162,6 @@ export const randomNFT = async () => {
       rej("out of nft");
     }
   });
-  
 };
 
 export const getUriFromTokenId = async (id: number) => {
@@ -159,15 +178,15 @@ export const addSell = async (id: any, price: number) => {
   // console.log((parseFloat(price) * (10 ** 8)))
   return new Promise(function (res, rej) {
     contract
-      .addItemToMarket(id, price * (10 ** 8))
+      .addItemToMarket(id, price * 10 ** 8)
       .then(async function (transaction: any) {
         let transactionReceipt = null;
-          while (transactionReceipt == null) {
-            transactionReceipt = await provider.getTransactionReceipt(
-              transaction.hash
-            );
-            await sleep(1000);
-          }
+        while (transactionReceipt == null) {
+          transactionReceipt = await provider.getTransactionReceipt(
+            transaction.hash
+          );
+          await sleep(1000);
+        }
         res(transaction);
       });
   });
@@ -221,49 +240,45 @@ const sleep = (milliseconds: number | undefined) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
-export const getSellingNft = (itemId:number) => {
-  console.log('asdasdas')
+export const getSellingNft = (itemId: number) => {
+  console.log("asdasdas");
   return new Promise(function (res, rej) {
-    contract
-      .getMarketItemById(itemId)
-      .then(async function (transaction: any) {
-          console.log("WTF");
-          let req = transaction.tokenId.toNumber();
-          let price = transaction.price.toNumber();
-          let newData = {
-            ...transaction,
-            ["tokenId"]: req,
-            ["price"]: price,
-          };
-          const fetchData = await fetch(newData.tokenURI);
-          newData = {
-            ...newData,
-            data : await fetchData.json()
-          }
-        res(newData);
-      });
+    contract.getMarketItemById(itemId).then(async function (transaction: any) {
+      console.log("WTF");
+      let req = transaction.tokenId.toNumber();
+      let price = transaction.price.toNumber();
+      let newData = {
+        ...transaction,
+        ["tokenId"]: req,
+        ["price"]: price,
+      };
+      const fetchData = await fetch(newData.tokenURI);
+      newData = {
+        ...newData,
+        data: await fetchData.json(),
+      };
+      res(newData);
+    });
   });
-}
+};
 
-
-export const buyNFT = (itemId:any,price:any) => {
+export const buyNFT = (itemId: any, price: any) => {
   return new Promise(function (res, rej) {
-    console.log(price)
+    console.log(price);
     contract
-      .sellItemAndTransferOwnership(itemId, {value:BigInt(price * (10 ** 10))})
+      .sellItemAndTransferOwnership(itemId, { value: BigInt(price * 10 ** 10) })
       .then(async function (transaction: any) {
         let transactionReceipt = null;
-          while (transactionReceipt == null) {
-            transactionReceipt = await provider.getTransactionReceipt(
-              transaction.hash
-            );
-            await sleep(1000);
-          }
+        while (transactionReceipt == null) {
+          transactionReceipt = await provider.getTransactionReceipt(
+            transaction.hash
+          );
+          await sleep(1000);
+        }
         res(transaction);
       });
   });
-}
-
+};
 
 //10000000000000 = 0.00001
 //100000000000000 = 0.0001
