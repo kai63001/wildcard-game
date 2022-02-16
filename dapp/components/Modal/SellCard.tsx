@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getSellingNft, init , buyNFT } from "@/lib/Web3Client";
 import Image from "next/image"
 import Spining from "@/components/Animation/spining";
+import TradingHistory from "../Card/TradingHistory";
 
 const SellCardComponent = (props: any) => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const SellCardComponent = (props: any) => {
   }
 
   return (
+    <>
     <div className="grid grid-cols-4 gap-4 h-full">
       <div className="col-span-2 relative rounded-md overflow-hidden">
         {nft.data ? (
@@ -79,6 +81,8 @@ const SellCardComponent = (props: any) => {
         </button>
       </div>
     </div>
+    <TradingHistory tokenId={props.tokenId}/>
+    </>
   );
 };
 
