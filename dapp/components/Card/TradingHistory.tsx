@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import dayjs from "@/lib/dayjs"
 
 const TradingHistory = (props: any) => {
   const [history, setHistory] = useState([]);
@@ -32,7 +33,7 @@ const TradingHistory = (props: any) => {
               <div className="">{item.value / (10 ** 18)} BNB</div>
               <div className="text-ellipsis overflow-hidden">{item.log_events[0].decoded.params[0].value}</div>
               <div className="text-ellipsis overflow-hidden">{item.log_events[0].decoded.params[1].value}</div>
-              <div className="">{item.block_signed_at}</div>
+              <div className="">{dayjs().to(Date.parse(item.block_signed_at))}</div>
             </>
           );
         })}
