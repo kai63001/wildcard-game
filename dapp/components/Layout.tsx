@@ -1,11 +1,13 @@
 import Header from "./Header";
 import dynamic from "next/dynamic";
 import Head from 'next/head';
-const Navbar = dynamic(
-  //@ts-ignore
-  () => import("@/components/Navbar"),
-  { ssr: false }
-);
+// const Navbar = dynamic(
+//   //@ts-ignore
+//   () => import("@/components/Navbar"),
+//   { ssr: false }
+// );
+import Navbar from "@/components/Navbar"
+
 const Layout = (props: any) => {
   return (
     <>

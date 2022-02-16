@@ -283,3 +283,4 @@ export const buyNFT = (itemId: any, price: any) => {
 //10000000000000 = 0.00001
 //100000000000000 = 0.0001
 // default decimals is 18 shit
+//https://api.covalenthq.com/v1/97/tokens/0x50B5BdBeaCeDe6AEB22d1C2b4A8A37a1A1FD71E9/nft_transactions/5/?&key=ckey_08290dd811f54239a7d5ac20831

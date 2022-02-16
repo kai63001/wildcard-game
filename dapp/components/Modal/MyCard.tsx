@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getUriFromTokenId, init, addSell } from "@/lib/Web3Client";
 import { useRouter } from "next/router";
 import Spining from "../Animation/spining";
+import TradingHistory from "../Card/TradingHistory";
 
 const MyCard = (props: any) => {
   const router = useRouter();
@@ -32,7 +33,8 @@ const MyCard = (props: any) => {
     });
   };
   return (
-    <div className="grid grid-cols-4 gap-4 h-full">
+    <>
+      <div className="grid grid-cols-4 gap-4 h-full">
       <div className="col-span-2 relative rounded-md overflow-hidden">
         {nft.image ? (
           <Image
@@ -80,6 +82,8 @@ const MyCard = (props: any) => {
         </button>
       </div>
     </div>
+      <TradingHistory tokenId={props.tokenId}/>
+    </>
   );
 };
 
