@@ -46,7 +46,7 @@ const Marketplace = () => {
           rawData.push(item);
           console.log(element.data);
         }
-        setNFTData(rawData);
+        setNFTData(rawData.reverse());
         setLoading(false);
       });
     });
@@ -58,7 +58,7 @@ const Marketplace = () => {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-      width: '40%',
+      width: '50%',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: "black",

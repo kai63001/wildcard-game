@@ -81,7 +81,9 @@ const SellCardComponent = (props: any) => {
         </button>
       </div>
     </div>
-    <TradingHistory tokenId={props.tokenId}/>
+    {nft.data && (
+    <TradingHistory tokenId={nft.tokenId}/>
+    )}
     </>
   );
 };

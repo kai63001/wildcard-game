@@ -243,7 +243,7 @@ const sleep = (milliseconds: number | undefined) => {
 export const getSellingNft = (itemId: number) => {
   console.log("asdasdas");
   return new Promise(function (res, rej) {
-    contract.getMarketItemById(itemId).then(async function (transaction: any) {
+    contract.getCardNFTMarketById(itemId).then(async function (transaction: any) {
       console.log("WTF");
       let req = transaction.tokenId.toNumber();
       let price = transaction.price.toNumber();

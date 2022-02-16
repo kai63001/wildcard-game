@@ -42,7 +42,7 @@ const SellCard = () => {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-      width: '40%',
+      width: '50%',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: "black",
