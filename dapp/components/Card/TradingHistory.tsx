@@ -4,7 +4,7 @@ import React from "react";
 import deploy from "../../../deploy.json";
 
 const TradingHistory = (props: any) => {
-  const [history, setHistory] = useState([]);
+  const [history, setHistory]: any = useState([]);
 
   useEffect(() => {
     getHistory();
@@ -30,14 +30,14 @@ const TradingHistory = (props: any) => {
       event.log_events[0].decoded.params[1].value.toUpperCase() ==
       deploy.address.toUpperCase()
     ) {
-      return "List";
+      return "Sell";
     }
     if (
       event.log_events[0].decoded.params[0].value.toUpperCase() ==
         deploy.address.toUpperCase() &&
       event.value != 0
     ) {
-      return "Sell";
+      return "Buy";
     }
     if (
       event.log_events[0].decoded.params[0].value.toUpperCase() ==
@@ -77,6 +77,19 @@ const TradingHistory = (props: any) => {
     return address;
   };
 
+  const priceReturn = (price: any, event: any, index: any) => {
+    console.log(history.length, index);
+    if (getEventCalue(event) == "Sell" && index == 0) {
+      return props.price;
+    }
+    if (getEventCalue(event) == "Sell") {
+      console.log(history.length, "> ", index + 2);
+      return history[index - 1].value / 10 ** 18;
+    }
+
+    return price / 10 ** 18;
+  };
+
   return (
     <div className="mt-2">
       <h2 className="text-xl">Trading History</h2>
@@ -99,16 +112,24 @@ const TradingHistory = (props: any) => {
             return (
               <React.Fragment key={index}>
                 <div className="">{getEventCalue(item)}</div>
-                <div className="">{item.value / 10 ** 18} BNB</div>
-                <div className="text-ellipsis overflow-hidden">
+                <div className="">
+                  {priceReturn(item.value, item, index)} BNB
+                </div>
+                <div
+                  className="text-ellipsis overflow-hidden"
+                  title={item.log_events[0].decoded.params[0].value}
+                >
                   {fromAddressReturn(
                     item.log_events[0].decoded.params[0].value
                   )}
                 </div>
-                <div className="text-ellipsis overflow-hidden">
+                <div
+                  className="text-ellipsis overflow-hidden"
+                  title={item.log_events[0].decoded.params[1].value}
+                >
                   {toAddressReturn(item.log_events[0].decoded.params[1].value)}
                 </div>
-                <div className="">
+                <div className="text-ellipsis overflow-hidden">
                   {
                     //@ts-ignore
                     dayjs().to(Date.parse(item.block_signed_at))

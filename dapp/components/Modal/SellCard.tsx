@@ -82,7 +82,7 @@ const SellCardComponent = (props: any) => {
       </div>
     </div>
     {nft.data && (
-    <TradingHistory tokenId={nft.tokenId}/>
+    <TradingHistory price={nft.price / (10 ** 8)} tokenId={nft.tokenId}/>
     )}
     </>
   );
