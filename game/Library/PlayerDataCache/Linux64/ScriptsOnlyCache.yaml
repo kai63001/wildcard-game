@@ -100,6 +100,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
     - Class: 223
@@ -1597,7 +1599,7 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: 55bb50053a927f14de5539940e466b31
+      Hash: 270bb1d768e6d795ed1f98eb1a44bc32
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainGame
