@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - UnityAsyncAwaitUtil.AsyncCoroutineRunner
     Assembly-CSharp.dll:
     - ERC721URIExample
+    - Health
     - MainGame
     - MainMenu
     - PlayerTest
@@ -47,10 +48,12 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Shadow
@@ -91,7 +94,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3730}
     - Class: 114
+      Script: {instanceID: 4590}
+    - Class: 114
       Script: {instanceID: 5332}
+    - Class: 114
+      Script: {instanceID: 6302}
+    - Class: 114
+      Script: {instanceID: 32010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1909,6 +1918,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
     className: UserIdUiForm
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Health
   platform: 24
   scenePathNames:
   - Assets/Web3Unity/Scenes/WebLogin.unity
