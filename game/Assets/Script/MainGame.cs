@@ -25,7 +25,7 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     public GameObject GameScreen;
 
-    private int playerID;
+    private int playerID = 1;
 
     private int _turn = 1;
 
@@ -54,7 +54,13 @@ public class MainGame : MonoBehaviourPunCallbacks
     //NFT CARD
     public string[][] nftCard = new string[2][];
 
-    Text waitText;
+    //My Mana
+    private int myMana = 20;
+
+    private int enemyMana = 20;
+    public Text myManaText;
+
+    public Text enemyManaText;
 
     void Start()
     {
@@ -73,6 +79,8 @@ public class MainGame : MonoBehaviourPunCallbacks
         _waitPlayer();
         myHPText.text = myHP.ToString();
         enemyHPText.text = enemyHP.ToString();
+        myManaText.text = myMana.ToString();
+        enemyManaText.text = enemyMana.ToString();
     }
 
     private void _playerCardRandomPushtoArray()
@@ -104,6 +112,7 @@ public class MainGame : MonoBehaviourPunCallbacks
             _changeTurnText();
             playerID = PhotonNetwork.LocalPlayer.ActorNumber;
             _playerCardRandomPushtoArray();
+            _generateMana();
             countMyDrawCard.text =
                 playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
                     .Length
@@ -111,6 +120,16 @@ public class MainGame : MonoBehaviourPunCallbacks
             gameStart = true;
             _getPlayerNFT();
         }
+    }
+
+    private void _generateMana() {
+        // for (int i = 0; i < 2; i++)
+        // {
+        //     mana[i] = 20;
+        //     // print(mana[i]);
+        // }
+        // mana[0] = 25;
+        // mana[1] = 20;
     }
 
     private async void _getPlayerNFT()
