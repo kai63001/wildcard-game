@@ -103,10 +103,10 @@ export const getUserToken = () => {
   });
 };
 
-export const getUserTokenViaAddress = (contract: any) => {
+export const getUserTokenViaAddress = (address: any) => {
   return new Promise(function (res, rej) {
     contract
-      .getUserTokenWithAddress("0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723")
+      .getUserTokenWithAddress(address)
       .then(async function (transaction: any) {
         let data = await transaction.filter(
           (data: any) => data.toNumber() != 0 && data.toNumber()
@@ -114,12 +114,22 @@ export const getUserTokenViaAddress = (contract: any) => {
         data = await data.map((data: any) => data.toNumber());
         // ? promise to get tokeURI from array token id like [1,2,3]
         const promises = await data.map(async (data: unknown) => {
-          const numFruit = new Promise((resolve, reject) => {
+          const url = new Promise((resolve, reject) => {
             resolve(contract.tokenURI(data));
           });
-          return numFruit;
+          return url;
         });
-        const numFruits = await Promise.all(promises);
+        const urls = await Promise.all(promises);
+        const dataIds = urls.map(async (req: any, index: number) => {
+          const url = new Promise(async (resolve, reject) => {
+            const dataFect: any = await fetch(req);
+            let urlMerge = await dataFect.json();
+            urlMerge["tokenId"] = data[index];
+            resolve(urlMerge);
+          });
+          return url;
+        });
+        const numFruits = await Promise.all(dataIds);
         res(await numFruits);
       });
   });
