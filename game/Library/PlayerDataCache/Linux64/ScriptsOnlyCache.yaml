@@ -4,7 +4,6 @@ ScriptsOnlyBuild:
     - UnityAsyncAwaitUtil.AsyncCoroutineRunner
     Assembly-CSharp.dll:
     - ERC721URIExample
-    - Health
     - MainGame
     - MainMenu
     - PlayerTest
@@ -48,7 +47,6 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
-    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -94,13 +92,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3730}
     - Class: 114
-      Script: {instanceID: 4590}
+      Script: {instanceID: 5334}
     - Class: 114
-      Script: {instanceID: 5332}
-    - Class: 114
-      Script: {instanceID: 6302}
-    - Class: 114
-      Script: {instanceID: 32010}
+      Script: {instanceID: 6304}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -199,8 +193,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -244,23 +236,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3730}
     - Class: 114
-      Script: {instanceID: 4398}
+      Script: {instanceID: 4400}
     - Class: 114
-      Script: {instanceID: 4858}
+      Script: {instanceID: 4860}
     - Class: 114
-      Script: {instanceID: 4864}
+      Script: {instanceID: 4866}
     - Class: 114
-      Script: {instanceID: 5102}
+      Script: {instanceID: 5104}
     - Class: 114
-      Script: {instanceID: 5174}
+      Script: {instanceID: 5176}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 5808}
+      Script: {instanceID: 5810}
     - Class: 114
-      Script: {instanceID: 5958}
+      Script: {instanceID: 5960}
     - Class: 114
-      Script: {instanceID: 6414}
+      Script: {instanceID: 6416}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1116,6 +1108,12 @@ ScriptsOnlyBuild:
     className: CullingHandler
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Health
+  - hash:
+      serializedVersion: 2
       Hash: afb97f21bf5ca1f779240368ac4bb239
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
@@ -1608,7 +1606,7 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: 270bb1d768e6d795ed1f98eb1a44bc32
+      Hash: a89abe001cbf111178259c0161a7185f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainGame
@@ -1918,12 +1916,6 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
     className: UserIdUiForm
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Health
   platform: 24
   scenePathNames:
   - Assets/Web3Unity/Scenes/WebLogin.unity

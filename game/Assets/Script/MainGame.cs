@@ -19,6 +19,8 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     public Text turnText;
 
+    public Text waitText;
+
     public Text countMyDrawCard;
 
     public GameObject WaitScreen;
@@ -46,6 +48,9 @@ public class MainGame : MonoBehaviourPunCallbacks
     // LOCK
     private bool[] playerLock = new bool[2];
 
+
+    private bool[] playLoadedNFT = new bool[2]{false,false};
+
     private bool gameStart = false;
 
     //Card
@@ -61,6 +66,11 @@ public class MainGame : MonoBehaviourPunCallbacks
     public Text myManaText;
 
     public Text enemyManaText;
+
+    public GameObject[] nftId;
+    public GameObject MyGridAreaCard;
+    
+    private bool nftLoading = true;
 
     void Start()
     {
@@ -81,6 +91,7 @@ public class MainGame : MonoBehaviourPunCallbacks
         enemyHPText.text = enemyHP.ToString();
         myManaText.text = myMana.ToString();
         enemyManaText.text = enemyMana.ToString();
+        _waitNFT();
     }
 
     private void _playerCardRandomPushtoArray()
@@ -107,8 +118,6 @@ public class MainGame : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.PlayerList.Length == 2 && gameStart == false)
         {
-            WaitScreen.SetActive(false);
-            GameScreen.SetActive(true);
             _changeTurnText();
             playerID = PhotonNetwork.LocalPlayer.ActorNumber;
             _playerCardRandomPushtoArray();
@@ -117,8 +126,17 @@ public class MainGame : MonoBehaviourPunCallbacks
                 playerCard[PhotonNetwork.LocalPlayer.ActorNumber - 1]
                     .Length
                     .ToString();
+            waitText.text = "Loading NFT";
             gameStart = true;
             _getPlayerNFT();
+        }
+    }
+
+    private void _waitNFT() {
+        if(playLoadedNFT[0] && playLoadedNFT[1] && nftLoading){
+            WaitScreen.SetActive(false);
+            GameScreen.SetActive(true);
+            nftLoading = false;
         }
     }
 
@@ -130,6 +148,11 @@ public class MainGame : MonoBehaviourPunCallbacks
         // }
         // mana[0] = 25;
         // mana[1] = 20;
+    }
+
+    private void _getDataCard() {
+        GameObject playerCardNFt = Instantiate(nftId[0],new Vector3(0,0,0),Quaternion.identity);
+        playerCardNFt.transform.SetParent(MyGridAreaCard.transform, false);
     }
 
     private async void _getPlayerNFT()
@@ -144,6 +167,7 @@ public class MainGame : MonoBehaviourPunCallbacks
                     RpcTarget.All,
                     PhotonNetwork.LocalPlayer.ActorNumber,
                     returnValue);
+                _getDataCard();
             }));
     }
 
@@ -173,6 +197,7 @@ public class MainGame : MonoBehaviourPunCallbacks
     [PunRPC]
     private void _syncNFT(int player, string[] res)
     {
+        playLoadedNFT[player-1] = true;
         nftCard[player - 1] = res;
     }
 

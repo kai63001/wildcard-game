@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Web3Unity/Scenes/WebLogin.unity
+- path: Assets/Scenes/Main.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
