@@ -731,7 +731,7 @@ RectTransform:
   m_Children:
   - {fileID: 508145439}
   m_Father: {fileID: 1103310345}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -869,6 +869,8 @@ MonoBehaviour:
   enemyManaText: {fileID: 1945762473}
   nftId:
   - {fileID: 7340454196460930721, guid: a3d645af65631a89da50950a472af860, type: 3}
+  - {fileID: 8163143473133206989, guid: 6c19264504802ce4e920852e8e2f950e, type: 3}
+  - {fileID: 3343291523033646646, guid: d87076655e430985b97366964b2ff73e, type: 3}
   MyGridAreaCard: {fileID: 807963958}
 --- !u!114 &931333461
 MonoBehaviour:
@@ -1047,9 +1049,9 @@ RectTransform:
   - {fileID: 1323813648}
   - {fileID: 1001380064}
   - {fileID: 136059148}
+  - {fileID: 1362015025}
   - {fileID: 1627409211}
   - {fileID: 807963959}
-  - {fileID: 1362015025}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1403,7 +1405,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1103310345}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1765,7 +1767,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1103310345}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

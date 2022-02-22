@@ -151,8 +151,11 @@ public class MainGame : MonoBehaviourPunCallbacks
     }
 
     private void _getDataCard() {
-        GameObject playerCardNFt = Instantiate(nftId[0],new Vector3(0,0,0),Quaternion.identity);
-        playerCardNFt.transform.SetParent(MyGridAreaCard.transform, false);
+        for(int i =0;i<nftCard[PhotonNetwork.LocalPlayer.ActorNumber - 1].Length;i++){
+            print("NFT ID :" + int.Parse(nftCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][i]));
+            GameObject playerCardNFt = Instantiate(nftId[int.Parse(nftCard[PhotonNetwork.LocalPlayer.ActorNumber - 1][i]) - 1],new Vector3(0,0,0),Quaternion.identity);
+            playerCardNFt.transform.SetParent(MyGridAreaCard.transform, false);
+        }
     }
 
     private async void _getPlayerNFT()
