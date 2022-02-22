@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4439954210460855578}
   - component: {fileID: 4040573919282050863}
   - component: {fileID: 1190463486707607032}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 72.536224, y: 95.99867}
+  m_Size: {x: 73.3842, y: 96.8581}
   m_EdgeRadius: 0
 --- !u!50 &1190463486707607032
 Rigidbody2D:

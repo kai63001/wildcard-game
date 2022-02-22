@@ -25,11 +25,13 @@ public class Health : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision){
         isOverDropZone = true;
         DropZone = collision.gameObject;
+        print("OnCollisionEnter2D");
     }
 
     private void OnCollisionExit2D(Collision2D collision){
         isOverDropZone = false;
         DropZone = null;
+        print("OnCollisionExit2D");
     }
 
     public void StartDrag() {
