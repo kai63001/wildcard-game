@@ -22,6 +22,11 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision){
+        isOverDropZone = true;
+        DropZone = collision.gameObject;
+    }
+
     public void StartDrag() {
         startPosition = transform.position;
         isDragging = true;
