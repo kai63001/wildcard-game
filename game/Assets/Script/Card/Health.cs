@@ -27,6 +27,11 @@ public class Health : MonoBehaviour
         DropZone = collision.gameObject;
     }
 
+    private void OnCollisionExit2D(Collision2D collision){
+        isOverDropZone = false;
+        DropZone = null;
+    }
+
     public void StartDrag() {
         startPosition = transform.position;
         isDragging = true;

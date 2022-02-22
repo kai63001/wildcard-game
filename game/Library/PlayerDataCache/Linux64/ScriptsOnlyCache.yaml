@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-firstpass.dll:
+    - UnityAsyncAwaitUtil.AsyncCoroutineRunner
     Assembly-CSharp.dll:
     - ERC721URIExample
     - Health
