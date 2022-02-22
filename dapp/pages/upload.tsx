@@ -52,7 +52,6 @@ const UploadPage = () => {
     const test = await getUserToken().then((data: any) => {
       return data;
     });
-    console.log(test);
   };
 
   return (
