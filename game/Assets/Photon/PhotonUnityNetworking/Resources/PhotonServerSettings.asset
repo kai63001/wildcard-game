@@ -50,6 +50,7 @@ MonoBehaviour:
   - _syncPlayerLock
   - _getPlayerNFT
   - _syncNFT
+  - _syncMana
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -12,6 +12,8 @@ public class Health : MonoBehaviourPunCallbacks
     private Vector2 startPosition;
     private MainGame gameStart;
 
+    public int manaUse = 6;
+    private bool letLock = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,17 +43,33 @@ public class Health : MonoBehaviourPunCallbacks
     }
 
     public void StartDrag() {
-        startPosition = transform.position;
-        isDragging = true;
+        if (gameStart._turn == PhotonNetwork.LocalPlayer.ActorNumber && letLock == false)
+        {
+            startPosition = transform.position;
+            isDragging = true;
+        }
     }
 
     public void EndDrag() {
-        isDragging = false;
-        if(isOverDropZone){
-            print(gameStart.myMana);
-            transform.SetParent(DropZone.transform,false);
-        }else{
-            transform.position = startPosition;
+        if (gameStart._turn == PhotonNetwork.LocalPlayer.ActorNumber && letLock == false)
+        {
+            isDragging = false;
+            print(DropZone.name);
+            if(isOverDropZone)
+            {
+                if (DropZone.name == "DropCardZone" && gameStart.myMana >= manaUse)
+                {
+                    letLock = true;
+                    gameStart.photonView.RPC("_syncMana", RpcTarget.All, manaUse);
+                    transform.SetParent(DropZone.transform, false);
+                }
+                else
+                {
+                    transform.position = startPosition;
+                }
+            }else{
+                transform.position = startPosition;
+            }
         }
     }
 }

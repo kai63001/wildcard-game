@@ -29,7 +29,7 @@ public class MainGame : MonoBehaviourPunCallbacks
 
     private int playerID = 1;
 
-    private int _turn = 1;
+    public int _turn = 1;
 
     // count
     private int countMy = 0;
@@ -400,5 +400,18 @@ public class MainGame : MonoBehaviourPunCallbacks
             _turn = 1;
         }
         _changeTurnText();
+    }
+
+    [PunRPC]
+    private void _syncMana(int number)
+    {
+        if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            myMana -= number;
+        }
+        else
+        {
+            enemyMana -= number;
+        }
     }
 }
