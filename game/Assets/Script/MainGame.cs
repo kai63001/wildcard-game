@@ -60,7 +60,7 @@ public class MainGame : MonoBehaviourPunCallbacks
     public string[][] nftCard = new string[2][];
 
     //My Mana
-    private int myMana = 20;
+    public int myMana = 20;
 
     private int enemyMana = 20;
     public Text myManaText;

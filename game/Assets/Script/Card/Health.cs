@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviourPunCallbacks
 {
     private bool isDragging = false;
     private bool isOverDropZone = false;
     private GameObject DropZone;
     private Vector2 startPosition;
+    private MainGame gameStart;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameStart = GameObject.Find("GameScript").GetComponent<MainGame>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -42,6 +48,7 @@ public class Health : MonoBehaviour
     public void EndDrag() {
         isDragging = false;
         if(isOverDropZone){
+            print(gameStart.myMana);
             transform.SetParent(DropZone.transform,false);
         }else{
             transform.position = startPosition;
