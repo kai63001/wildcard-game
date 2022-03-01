@@ -6,7 +6,7 @@ var moralis = JavaScript.get_interface("Moralis")
 
 
 func _ready():
-	$UI/Address/Label.text = moralis.User.current().get("ethAddress").substr(0,6)+"..."
+	$UI/Address/Label.text = moralis.User.current().get("ethAddress").substr(0,6)+".."
 	pass
 
 func _on_Exit_pressed():

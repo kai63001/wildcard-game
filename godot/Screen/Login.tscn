@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Screen/Login.gd" type="Script" id=1]
+[ext_resource path="res://Script/Login.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/Dark Shade/Purple Menu Buttons/6.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/7.png" type="Texture" id=3]
 [ext_resource path="res://Assets/background.png" type="Texture" id=4]

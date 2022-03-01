@@ -99,6 +99,8 @@ margin_right = 96.5
 margin_bottom = 16.5
 custom_fonts/font = SubResource( 2 )
 text = "FIND MATCH"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false

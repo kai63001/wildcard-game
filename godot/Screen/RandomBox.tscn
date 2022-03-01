@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Script/RandomBox.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="RandomBox" type="Control"]
+margin_right = 1025.0
+margin_bottom = 597.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -195.5
+margin_top = 83.0
+margin_right = 196.5
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 1 )
+text = "Chose the box"
+__meta__ = {
+"_edit_use_anchors_": false
+}
