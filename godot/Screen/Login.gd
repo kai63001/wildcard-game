@@ -45,7 +45,7 @@ func logout():
 func _on_logged_in(args):
 	current_user = args[0]
 	#$Control/Label.text = "Logged in!\nETH Address: " + args[0].get("ethAddress")
-	get_tree().change_scene("res://Screen/Lobby.tscn")
+	get_tree().change_scene("res://Screen/Main.tscn")
 	
 	
 func _on_logged_out(args):

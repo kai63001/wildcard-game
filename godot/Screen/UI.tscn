@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/0.png" type="Texture" id=2]
+[ext_resource path="res://Assets/background.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/9.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/Dark Shade/Purple Menu Buttons/9.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/8.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Script/UI.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 7 )
+
+[node name="UI" type="Control"]
+margin_left = 1.0
+margin_top = 4.0
+margin_right = 1021.0
+margin_bottom = 597.0
+rect_pivot_offset = Vector2( 351, 208 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 1.0
+margin_top = -5.0
+margin_right = 1022.0
+margin_bottom = 601.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="Sprite" parent="Panel"]
+position = Vector2( 514, 302 )
+scale = Vector2( 1.06875, 1.005 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Exit" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -114.0
+margin_top = 18.0
+margin_right = -20.0
+margin_bottom = 62.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+expand = true
+
+[node name="Address" type="Sprite" parent="."]
+position = Vector2( 938.25, 95 )
+scale = Vector2( 1.88281, 1.375 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Address"]
+margin_left = -28.0
+margin_top = -8.0
+margin_right = 28.0
+margin_bottom = 6.0
+custom_fonts/font = SubResource( 1 )
+text = "0x123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayGame" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -291.0
+margin_top = -75.0
+margin_right = -17.0
+margin_bottom = -15.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PlayGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.5
+margin_top = -16.5
+margin_right = 96.5
+margin_bottom = 16.5
+custom_fonts/font = SubResource( 2 )
+text = "FIND MATCH"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="PlayGame" to="." method="_on_PlayGame_pressed"]
