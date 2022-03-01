@@ -62,6 +62,8 @@ public class Health : MonoBehaviourPunCallbacks
                     letLock = true;
                     gameStart.photonView.RPC("_syncMana", RpcTarget.All, manaUse);
                     transform.SetParent(DropZone.transform, false);
+                    gameStart.photonView.RPC("_syncHP", RpcTarget.All, 3);
+                    Destroy(gameObject);
                 }
                 else
                 {

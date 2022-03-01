@@ -414,4 +414,17 @@ public class MainGame : MonoBehaviourPunCallbacks
             enemyMana -= number;
         }
     }
+
+    [PunRPC]
+    private void _syncHP(int number)
+    {
+        if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            myHP = Mathf.Clamp(myHP + 3,0,50);
+        }
+        else
+        {
+            enemyHP -= number;
+        }
+    }
 }
