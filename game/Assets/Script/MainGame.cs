@@ -420,11 +420,24 @@ public class MainGame : MonoBehaviourPunCallbacks
     {
         if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            myHP = Mathf.Clamp(myHP + 3,0,50);
+            myHP = Mathf.Clamp(myHP + number,0,50);
         }
         else
         {
-            enemyHP -= number;
+            enemyHP = Mathf.Clamp(enemyHP + number, 0, 50);
+        }
+    }
+
+    [PunRPC]
+    private void _syncAttaktHP(int number)
+    {
+        if (_turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            enemyHP = Mathf.Clamp(enemyHP - number, 0, 50);
+        }
+        else
+        {
+            myHP = Mathf.Clamp(myHP - number, 0, 50);
         }
     }
 }
