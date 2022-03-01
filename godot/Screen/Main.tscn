@@ -13,3 +13,14 @@ app_id = "F67nhhKSaGYL5v7QL0guzStZF3Bmk1kVkhzqpkux"
 script = ExtResource( 1 )
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
+
+[node name="Button" type="Button" parent="."]
+margin_left = 503.0
+margin_top = 524.0
+margin_right = 693.0
+margin_bottom = 575.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="ServerConnect" method="_on_Button_pressed"]

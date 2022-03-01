@@ -3,7 +3,7 @@ const KEY := "defaultkey"
 onready var client := Nakama.create_client(KEY, "127.0.0.1", 7350, "http")
 var session : NakamaSession
 onready var socket := Nakama.create_socket_from(client)
-
+var match_id
 
 func _ready():
 	var lobby := get_parent().get_node(".");
@@ -15,6 +15,7 @@ func _ready():
 	print("Successfully authenticated: %s" % session)
 	_connect_to_server_async()
 	socket.connect("received_matchmaker_matched", self, "_on_matchmaker_matched")
+	socket.connect("received_match_state", self, "_on_match_state")
 
 
 func _connect_to_server_async():
@@ -48,3 +49,13 @@ func _on_matchmaker_matched(p_matched : NakamaRTAPI.MatchmakerMatched):
 		print("An error occured: %s" % joined_match)
 		return
 	print("Joined match: %s" % [joined_match])
+	match_id = joined_match.match_id
+
+func _on_match_state(p_state : NakamaRTAPI.MatchData):
+	print("Received match state with opcode %s, data %s" % [p_state.op_code, parse_json(p_state.data)])
+
+
+func _on_Button_pressed():
+	var op_code = 1
+	var new_state = {"hello": "world"}
+	socket.send_match_state_async(match_id, op_code, JSON.print(new_state))
