@@ -1,5 +1,7 @@
 extends TextureButton
 
+signal myCountValue(count)
+
 onready var StartGame = get_parent().get_parent().get_node(".")
 
 func _on_DrawCard_pressed():
@@ -8,4 +10,6 @@ func _on_DrawCard_pressed():
 	CardFlip.set_position(Vector2(10,0))
 	$".".add_child(CardFlip);
 	$".".get_child($".".get_child_count()-1).cardNumber = StartGame.cardNumber[0]
+	StartGame.myCount += StartGame.cardNumber[0];
+	emit_signal("myCountValue",StartGame.myCount)
 	StartGame.cardNumber.remove(0)

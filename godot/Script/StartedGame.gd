@@ -1,6 +1,7 @@
 extends Node2D
 
 var cardNumber = [];
+var myCount = 0;
 
 func _ready():
 	_randomCardNumber();
