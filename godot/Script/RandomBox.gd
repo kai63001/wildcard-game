@@ -53,3 +53,4 @@ func _process(delta):
 func _nextChangeState():
 	yield(get_tree().create_timer(2.0), "timeout")
 	queue_free();
+	get_node("/root/Main/MainGame")._instanceStartGame()
