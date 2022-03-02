@@ -66,10 +66,11 @@ func _on_matchmaker_matched(p_matched : NakamaRTAPI.MatchmakerMatched):
 	
 
 func _on_match_state(p_state : NakamaRTAPI.MatchData):
-	print("Received match state with opcode %s, data %s" % [p_state.op_code, parse_json(p_state.data)])
+	print("Received match state with opcode %s" % [p_state.op_code])
+	match p_state.op_code: 
+		0: #randomBoxEnemyCallBack
+			get_parent().get_node("MainGame").get_node("RandomBox").enemySelectd(int(p_state.data));
 
 
-func _on_Button_pressed():
-	var op_code = 1
-	var new_state = {"hello": "world"}
-	socket.send_match_state_async(match_id, op_code, JSON.print(new_state))
+func _sendStateData(code,data):
+	socket.send_match_state_async(match_id, code, data)

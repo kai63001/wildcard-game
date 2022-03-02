@@ -5,20 +5,50 @@ var yPos = 0;
 
 var choseBox = false;
 
+var enemyPoint = 0;
+var myPoint = 0;
+var end = false;
+
 func _ready():
+	_initRandom();
+		
+
+func _initRandom():
 	xPos = (get_viewport_rect().size.x / 2) - 200
 	yPos = get_viewport_rect().size.y / 2
+	enemyPoint = 0;
+	myPoint = 0;
 	for n in 3:
 		var randomBox_resource = load("res://Item/BoxItem.tscn")
 		var randomBox = randomBox_resource.instance()
 		randomBox.set_position(Vector2(xPos,yPos))
-		add_child(randomBox)
+		get_node("RandomArea").add_child(randomBox)
 		xPos += 200
-		
+
 func _clearRandomBox():
-	for n in [0,2,3]:
-		if(n == 0):
-			if(get_node("BoxItem").num == 0):
-				get_node("BoxItem").queue_free()
-		elif(get_node("@BoxItem@"+String(n)).num == 0):
-			get_node("@BoxItem@"+String(n)).queue_free()
+	if(enemyPoint == 0):
+		$Label.text = "WAIT FOR ENEMY CHOOSE THE BOX";
+
+func enemySelectd(num):
+	enemyPoint = num;
+	
+func _process(delta):
+	if(enemyPoint != 0 && myPoint != 0 && end == false):
+		if(enemyPoint == myPoint):
+			$Label.text = "CHOOSE THE BOX AGAIN";
+			for n in get_node("RandomArea").get_children():
+				get_node("RandomArea").remove_child(n)
+				n.queue_free()
+			choseBox = false
+			_initRandom();
+		elif(enemyPoint > myPoint):
+			$Label.text = "ENEMY GOT "+String(enemyPoint) + " ENEMY WIN";
+			end = true
+			_nextChangeState();
+		elif(enemyPoint < myPoint):
+			$Label.text = "ENEMY GOT "+String(enemyPoint) + " YOU WIN";
+			end = true
+			_nextChangeState();
+
+func _nextChangeState():
+	pass

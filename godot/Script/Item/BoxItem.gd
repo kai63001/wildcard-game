@@ -4,7 +4,7 @@ onready var player = get_node("AnimationPlayer")
 var num = 0
 
 func _on_TextureButton_pressed():
-	var node = get_node("../.")
+	var node = get_node("../../.")
 	print(node.choseBox)
 	if(node.choseBox == false):
 		node.choseBox = true
@@ -20,4 +20,7 @@ func _on_TextureButton_pressed():
 		add_child(number)
 		player.stop();
 		node._clearRandomBox();
+		node.myPoint = num;
+		var server = get_node("/root/Main/ServerConnect")
+		server._sendStateData(0,String(num))
 
