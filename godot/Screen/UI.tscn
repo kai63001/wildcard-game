@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/0.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Pixel Buttons v1.0/2 Menu Buttons/White Shade/Purple Menu Buttons/8.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Script/UI.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Asset_14x-8.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 7 )
@@ -103,6 +104,17 @@ align = 1
 valign = 1
 __meta__ = {
 "_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 40.0
+margin_top = 21.0
+margin_right = 567.0
+margin_bottom = 139.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
 "_edit_use_anchors_": false
 }
 
