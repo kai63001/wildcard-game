@@ -2,6 +2,7 @@ extends Node2D
 
 var cardNumber = [];
 var myCount = 0;
+onready var MainGame = get_parent().get_node(".")
 
 func _ready():
 	_randomCardNumber();

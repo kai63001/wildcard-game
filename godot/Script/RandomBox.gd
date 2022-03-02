@@ -48,6 +48,7 @@ func _process(delta):
 		elif(enemyPoint < myPoint):
 			$Label.text = "ENEMY GOT "+String(enemyPoint) + " YOU WIN";
 			end = true
+			get_node("/root/Main/MainGame").myTurn = true
 			_nextChangeState();
 
 func _nextChangeState():

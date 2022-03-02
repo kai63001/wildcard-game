@@ -1,5 +1,7 @@
 extends Node2D
 
+var myTurn = false;
+
 func _ready():
 	#instance RandomBox
 	var randomBox_resource = load("res://Screen/RandomBox.tscn")
