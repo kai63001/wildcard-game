@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/CardDeck2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Script/StartedGame.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Count/borderCountPoinBgt.png" type="Texture" id=5]
 [ext_resource path="res://Script/myCountBar.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Count/borderCountPoinBgRed.png" type="Texture" id=7]
 
 [node name="StartGame" type="Node2D"]
 script = ExtResource( 4 )
@@ -15,6 +16,42 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 1021.0
 margin_bottom = 602.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountBar" type="Control" parent="EnemyUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 194.0
+margin_top = -81.5
+margin_right = 580.0
+margin_bottom = -29.5
+rect_rotation = 180.0
+rect_pivot_offset = Vector2( 0, 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BorderCountPoint" type="Sprite" parent="EnemyUI/CountBar"]
+position = Vector2( 194, 25 )
+texture = ExtResource( 2 )
+
+[node name="enemyCountBar" type="TextureProgress" parent="EnemyUI/CountBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -172.0
+margin_top = -20.0
+margin_right = 172.0
+margin_bottom = 20.0
+max_value = 96.0
+value = 96.0
+texture_progress = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,6 +80,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CountBar" type="Control" parent="MyUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -191.0
+margin_top = -5.0
+margin_right = 195.0
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BorderCountPoint" type="Sprite" parent="MyUI/CountBar"]
+position = Vector2( 194, 25 )
+texture = ExtResource( 2 )
+
+[node name="myCountBar" type="TextureProgress" parent="MyUI/CountBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -172.0
+margin_top = -20.0
+margin_right = 172.0
+margin_bottom = 20.0
+max_value = 96.0
+texture_progress = ExtResource( 5 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DrawCard" type="TextureButton" parent="MyUI"]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -53,29 +124,6 @@ margin_bottom = -30.0
 texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CountBar" type="Control" parent="MyUI"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BorderCountPoint" type="Sprite" parent="MyUI/CountBar"]
-position = Vector2( 504, 323 )
-texture = ExtResource( 2 )
-
-[node name="myCountBar" type="TextureProgress" parent="MyUI/CountBar"]
-margin_left = 333.0
-margin_top = 305.0
-margin_right = 677.0
-margin_bottom = 345.0
-max_value = 96.0
-texture_progress = ExtResource( 5 )
-script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
