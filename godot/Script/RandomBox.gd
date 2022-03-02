@@ -1,7 +1,7 @@
 extends Control
 
 var xPos = 100;
-var yPos = 0;
+var yPos = 100;
 
 var choseBox = false;
 
@@ -14,8 +14,6 @@ func _ready():
 		
 
 func _initRandom():
-	xPos = (get_viewport_rect().size.x / 2) - 200
-	yPos = get_viewport_rect().size.y / 2
 	for n in 3:
 		var randomBox_resource = load("res://Item/BoxItem.tscn")
 		var randomBox = randomBox_resource.instance()

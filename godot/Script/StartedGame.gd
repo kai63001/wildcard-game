@@ -1,18 +1,18 @@
 extends Node2D
 
-var cardNumber = [];
+var cardNumber = [1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6];
 var myCount = 0;
 onready var MainGame = get_parent().get_node(".")
 
 func _ready():
 	_randomCardNumber();
-
-func _on_DrawCard_pressed():
-	print("test")
+	_checkMyTurn();
 
 func _randomCardNumber():
-	for i in 41:
-		var rng = RandomNumberGenerator.new()
-		rng.randomize()
-		var num = rng.randi_range(1, 6)
-		cardNumber.append(num)
+	randomize()
+	cardNumber.shuffle()
+	print(cardNumber)
+
+func _checkMyTurn():
+	if(MainGame.myTurn):
+		$MyUI/Timer/Timer.start()
