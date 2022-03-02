@@ -1,20 +1,16 @@
 extends Node2D
 
+var cardNumber = [];
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	_randomCardNumber();
 
 func _on_DrawCard_pressed():
 	print("test")
+
+func _randomCardNumber():
+	for i in 41:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		var num = rng.randi_range(1, 6)
+		cardNumber.append(num)

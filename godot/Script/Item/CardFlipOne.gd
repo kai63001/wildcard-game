@@ -4,12 +4,13 @@ onready var ap: AnimationPlayer = $AnimationPlayer
 var is_face_up = false
 var front_texture: Texture
 export var back_texture: Texture
+var cardNumber = 1;
 func _ready():
 	set_texture()
 	flip();
 	
 func set_texture(a_texture = null):
-	front_texture = load("res://Assets/CardNumber/Card2.png")
+	front_texture = load("res://Assets/CardNumber/Card"+String(cardNumber)+".png")
 	if a_texture == null:
 		texture = front_texture if is_face_up else back_texture
 	else:
