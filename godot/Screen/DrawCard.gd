@@ -4,6 +4,7 @@ signal myCountValue(count)
 
 onready var StartGame = get_parent().get_parent().get_node(".")
 onready var MainGame = get_parent().get_parent().get_parent().get_node(".")
+onready var ServerConnect = get_node("/root/Main/ServerConnect")
 
 func _on_DrawCard_pressed():
 	if(MainGame.myTurn):
@@ -15,3 +16,5 @@ func _on_DrawCard_pressed():
 		StartGame.myCount += StartGame.cardNumber[0];
 		emit_signal("myCountValue",StartGame.myCount)
 		StartGame.cardNumber.remove(0)
+		StartGame.changeTurn()
+		ServerConnect._sendStateData(1,String(StartGame.myCount))

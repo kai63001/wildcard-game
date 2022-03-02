@@ -52,7 +52,6 @@ margin_top = -20.0
 margin_right = 172.0
 margin_bottom = 20.0
 max_value = 96.0
-value = 96.0
 texture_progress = ExtResource( 7 )
 script = ExtResource( 6 )
 __meta__ = {
@@ -184,5 +183,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
+[connection signal="timeout" from="MyUI/Timer/Timer" to="MyUI/Timer" method="_on_Timer_timeout"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/CountBar/myCountBar" method="_on_DrawCard_myCountValue"]
 [connection signal="pressed" from="MyUI/DrawCard" to="MyUI/DrawCard" method="_on_DrawCard_pressed"]
