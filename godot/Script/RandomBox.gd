@@ -16,8 +16,6 @@ func _ready():
 func _initRandom():
 	xPos = (get_viewport_rect().size.x / 2) - 200
 	yPos = get_viewport_rect().size.y / 2
-	enemyPoint = 0;
-	myPoint = 0;
 	for n in 3:
 		var randomBox_resource = load("res://Item/BoxItem.tscn")
 		var randomBox = randomBox_resource.instance()
@@ -40,6 +38,8 @@ func _process(delta):
 				get_node("RandomArea").remove_child(n)
 				n.queue_free()
 			choseBox = false
+			enemyPoint = 0;
+			myPoint = 0;
 			_initRandom();
 		elif(enemyPoint > myPoint):
 			$Label.text = "ENEMY GOT "+String(enemyPoint) + " ENEMY WIN";
@@ -51,4 +51,5 @@ func _process(delta):
 			_nextChangeState();
 
 func _nextChangeState():
-	pass
+	yield(get_tree().create_timer(2.0), "timeout")
+	queue_free();
