@@ -12,12 +12,7 @@ func _ready():
 
 func _process(delta):
 	if isShake:
-		shake(delta)    
-
-func _input(event):
-	if Input.is_mouse_button_pressed(BUTTON_LEFT) and not isShake:
-		elapsedtime = 0
-		isShake = true
+		shake(delta)
 
 func shake(delta):
 	if elapsedtime<shake_time:

@@ -7,19 +7,24 @@
 script = ExtResource( 2 )
 
 [node name="BackGround" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 5.0
+margin_right = 1022.0
+margin_bottom = 599.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="Panel" parent="BackGround"]
-margin_left = 1.0
-margin_top = -5.0
-margin_right = 1022.0
-margin_bottom = 601.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.5
+margin_top = -303.0
+margin_right = 510.5
+margin_bottom = 303.0
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Background" type="Sprite" parent="BackGround/Panel"]

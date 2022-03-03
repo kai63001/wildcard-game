@@ -5,6 +5,7 @@ onready var HPProgress = get_node("HealthProgress")
 onready var StartGame = get_parent().get_parent().get_node(".")
 onready var HPENEMYProgress = get_parent().get_parent().get_node("EnemyUI/Health/HealthProgress")
 onready var HPENEMY = get_parent().get_parent().get_node("EnemyUI/Health")
+onready var CameraMain =  get_node("/root/Main/Camera2D")
 
 signal changeMyCountBar(value)
 signal changeEnemyCountBar(value)
@@ -17,6 +18,7 @@ func _on_DrawCard_myCountValue(count):
 		var calHP = count - 12
 		HP -= calHP
 		print(HP)
+		CameraMain.isShake = true
 		HPProgress.value = HP
 		StartGame.myCount = 0
 		StartGame.enemyCount = 0
@@ -38,6 +40,7 @@ func _on_DrawCard_myCountValue(count):
 		if(StartGame.enemyCount > StartGame.myCount):
 			var calHP = StartGame.enemyCount - StartGame.myCount
 			HP -= calHP
+			CameraMain.isShake = true			
 			HPProgress.value = HP
 		elif(StartGame.enemyCount < StartGame.myCount):
 			var calHP = StartGame.myCount - StartGame.enemyCount
