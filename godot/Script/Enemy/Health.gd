@@ -7,11 +7,12 @@ onready var StartGame = get_parent().get_parent().get_node(".")
 signal changeMyCountBar(value)
 signal changeEnemyCountBar(value)
 
-
 func _ready():
 	pass # Replace with function body.
 
-func _on_DrawCard_myCountValue(count):
+
+func _on_StartGame_enemyCountChangeSignal(count):
+	print("Enemy Count : %s " % count)
 	if(count > 12):
 		var calHP = count - 12
 		HP -= calHP

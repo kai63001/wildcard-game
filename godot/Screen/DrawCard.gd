@@ -14,7 +14,7 @@ func _on_DrawCard_pressed():
 		$".".add_child(CardFlip);
 		$".".get_child($".".get_child_count()-1).cardNumber = StartGame.cardNumber[0]
 		StartGame.myCount += StartGame.cardNumber[0];
-		emit_signal("myCountValue",StartGame.myCount)
 		StartGame.cardNumber.remove(0)
 		StartGame.changeTurn()
 		ServerConnect._sendStateData(1,String(StartGame.myCount))
+		emit_signal("myCountValue",StartGame.myCount)

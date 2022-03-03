@@ -11,3 +11,7 @@ func _on_StartGame_enemyCountChangeSignal(count):
 
 func _on_Health_changeMyCountBar(count):
 	value = count * 8;
+
+
+func _on_Health_changeEnemyCountBar(count):
+	value = count * 8;

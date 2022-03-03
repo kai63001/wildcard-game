@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/CardDeck2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/health/healthbg.png" type="Texture" id=12]
 [ext_resource path="res://Assets/health/healthcolor.png" type="Texture" id=13]
 [ext_resource path="res://Script/My/Health.gd" type="Script" id=14]
+[ext_resource path="res://Script/Enemy/Health.gd" type="Script" id=15]
 
 [node name="StartGame" type="Node2D"]
 script = ExtResource( 4 )
@@ -97,10 +98,41 @@ margin_top = -15.5
 margin_right = 292.5
 margin_bottom = 20.5
 rect_scale = Vector2( 0.74, 0.635 )
-max_value = 5.0
-value = 5.0
+max_value = 60.0
+value = 60.0
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Control" parent="EnemyUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -204.5
+margin_top = 87.0
+margin_right = 204.5
+margin_bottom = 116.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthProgress" type="TextureProgress" parent="EnemyUI/Health"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -207.0
+margin_top = -20.0
+margin_right = 257.0
+margin_bottom = 20.0
+rect_scale = Vector2( 0.891, 1 )
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource( 12 )
+texture_progress = ExtResource( 13 )
+fill_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -168,8 +200,8 @@ margin_top = -15.5
 margin_right = 294.5
 margin_bottom = 20.5
 rect_scale = Vector2( 0.74, 0.635 )
-max_value = 5.0
-value = 5.0
+max_value = 60.0
+value = 60.0
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 9 )
 __meta__ = {
@@ -201,7 +233,7 @@ margin_right = 257.0
 margin_bottom = 20.0
 rect_scale = Vector2( 0.891, 1 )
 max_value = 50.0
-value = 30.0
+value = 50.0
 texture_under = ExtResource( 12 )
 texture_progress = ExtResource( 13 )
 __meta__ = {
@@ -228,6 +260,10 @@ one_shot = true
 
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_enemyCountChangeSignal"]
+[connection signal="enemyCountChangeSignal" from="." to="EnemyUI/Health" method="_on_StartGame_enemyCountChangeSignal"]
+[connection signal="changeEnemyCountBar" from="EnemyUI/Health" to="EnemyUI/CountBar/enemyCountBar" method="_on_Health_changeEnemyCountBar"]
+[connection signal="changeMyCountBar" from="EnemyUI/Health" to="MyUI/CountBar/myCountBar" method="_on_Health_changeMyCountBar"]
+[connection signal="changeEnemyCountBar" from="MyUI/Health" to="EnemyUI/CountBar/enemyCountBar" method="_on_Health_changeEnemyCountBar"]
 [connection signal="changeMyCountBar" from="MyUI/Health" to="MyUI/CountBar/myCountBar" method="_on_Health_changeMyCountBar"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/CountBar/myCountBar" method="_on_DrawCard_myCountValue"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/TimerMy" method="_on_DrawCard_myCountValue"]
