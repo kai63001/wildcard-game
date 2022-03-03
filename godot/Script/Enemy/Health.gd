@@ -1,6 +1,6 @@
 extends Control
 
-var HP = 50;
+var HP = 30;
 onready var HPProgress = get_node("HealthProgress")
 onready var StartGame = get_parent().get_parent().get_node(".")
 onready var HPMy = get_parent().get_parent().get_node("MyUI/Health")

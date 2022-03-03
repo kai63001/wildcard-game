@@ -1,6 +1,6 @@
 extends Control
 
-var HP = 50;
+var HP = 30;
 onready var HPProgress = get_node("HealthProgress")
 onready var StartGame = get_parent().get_parent().get_node(".")
 onready var HPENEMYProgress = get_parent().get_parent().get_node("EnemyUI/Health/HealthProgress")
@@ -31,3 +31,7 @@ func _on_DrawCard_myCountValue(count):
 		StartGame.enemyCount = 0
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
+
+
+func _on_TimerMy_myCountValue(value):
+	_on_DrawCard_myCountValue(value)

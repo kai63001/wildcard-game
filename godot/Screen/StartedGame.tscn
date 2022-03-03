@@ -128,8 +128,8 @@ margin_top = -20.0
 margin_right = 257.0
 margin_bottom = 20.0
 rect_scale = Vector2( 0.891, 1 )
-max_value = 50.0
-value = 50.0
+max_value = 30.0
+value = 30.0
 texture_under = ExtResource( 12 )
 texture_progress = ExtResource( 13 )
 fill_mode = 1
@@ -232,8 +232,8 @@ margin_top = -20.0
 margin_right = 257.0
 margin_bottom = 20.0
 rect_scale = Vector2( 0.891, 1 )
-max_value = 50.0
-value = 50.0
+max_value = 30.0
+value = 30.0
 texture_under = ExtResource( 12 )
 texture_progress = ExtResource( 13 )
 __meta__ = {
@@ -263,6 +263,8 @@ one_shot = true
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/Health" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="changeEnemyCountBar" from="EnemyUI/Health" to="EnemyUI/CountBar/enemyCountBar" method="_on_Health_changeEnemyCountBar"]
 [connection signal="changeMyCountBar" from="EnemyUI/Health" to="MyUI/CountBar/myCountBar" method="_on_Health_changeMyCountBar"]
+[connection signal="myCountValue" from="MyUI/TimerMy" to="MyUI/CountBar/myCountBar" method="_on_TimerMy_myCountValue"]
+[connection signal="myCountValue" from="MyUI/TimerMy" to="MyUI/Health" method="_on_TimerMy_myCountValue"]
 [connection signal="changeEnemyCountBar" from="MyUI/Health" to="EnemyUI/CountBar/enemyCountBar" method="_on_Health_changeEnemyCountBar"]
 [connection signal="changeMyCountBar" from="MyUI/Health" to="MyUI/CountBar/myCountBar" method="_on_Health_changeMyCountBar"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/CountBar/myCountBar" method="_on_DrawCard_myCountValue"]
