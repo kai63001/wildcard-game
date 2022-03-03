@@ -1,6 +1,7 @@
 extends Sprite
 
 onready var player = get_node("AnimationPlayer")
+onready var button = get_node("TextureButton")
 var num = 0
 
 func _on_TextureButton_pressed():
@@ -10,14 +11,12 @@ func _on_TextureButton_pressed():
 		node.choseBox = true
 		player.play("ItemShake");
 		yield(get_tree().create_timer(2.0), "timeout")
-		get_node("TextureButton").queue_free()
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
-		num = rng.randi_range(1, 6)
+		num = rng.randi_range(0, 9)
 		print(num)
-		var number_resourc = load("res://Item/Number/"+String(num)+".tscn")
-		var number = number_resourc.instance()
-		add_child(number)
+		var number_resourc = load("res://Item/Number/"+String(num)+".png")
+		button.texture_normal = number_resourc
 		player.stop();
 		node._clearRandomBox();
 		node.myPoint = num;
