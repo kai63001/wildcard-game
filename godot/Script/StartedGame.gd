@@ -15,6 +15,13 @@ signal enemyCountChangeSignal(value)
 func _ready():
 	_randomCardNumber();
 	_checkMyTurn();
+	
+func _process(delta):
+	if(lock && !enemyLock):
+		MainGame.myTurn = false
+	elif(enemyLock):
+		MainGame.myTurn = true
+	
 
 func _randomCardNumber():
 	randomize()

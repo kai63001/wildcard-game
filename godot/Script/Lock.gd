@@ -14,10 +14,16 @@ signal lock()
 func _process(delta):
 	if StartGame.myCount > StartGame.enemyCount:
 		LockButton.texture_normal = sword
-		LockButton.texture_hover = sword_hover
+		if(MainGame.myTurn):
+			LockButton.texture_hover = sword_hover
+		else:
+			LockButton.texture_hover = sword
 	else:
 		LockButton.texture_normal = shield
-		LockButton.texture_hover = shield_hover
+		if(MainGame.myTurn):
+			LockButton.texture_hover = shield_hover
+		else:
+			LockButton.texture_hover = shield
 
 
 func _on_TextureButton_pressed():

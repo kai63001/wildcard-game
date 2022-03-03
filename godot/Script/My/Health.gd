@@ -34,7 +34,7 @@ func _on_DrawCard_myCountValue(count):
 		StartGame.enemyLock = false
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
-	elif(StartGame.lock && StartGame.enemyLock):
+	elif(StartGame.lock == true && StartGame.enemyLock == true):
 		if(StartGame.enemyCount > StartGame.myCount):
 			var calHP = StartGame.enemyCount - StartGame.myCount
 			HP -= calHP
@@ -42,7 +42,7 @@ func _on_DrawCard_myCountValue(count):
 		elif(StartGame.enemyCount < StartGame.myCount):
 			var calHP = StartGame.myCount - StartGame.enemyCount
 			HPENEMY.HP -= calHP
-			HPENEMYProgress.value = HP
+			HPENEMYProgress.value = HPENEMY.HP
 		StartGame.myCount = 0
 		StartGame.enemyCount = 0
 		StartGame.lock = false
