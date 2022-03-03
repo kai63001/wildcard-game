@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Script/My/Health.gd" type="Script" id=14]
 [ext_resource path="res://Script/Enemy/Health.gd" type="Script" id=15]
 [ext_resource path="res://Assets/CardDeck2.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Individual icons (48x48)/56-export.png" type="Texture" id=17]
+[ext_resource path="res://Script/Lock.gd" type="Script" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -293,9 +295,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Lock" type="Control" parent="MyUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -183.0
+margin_top = -187.0
+margin_right = -26.0
+margin_bottom = -44.0
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="MyUI/Lock"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -47.5
+margin_top = -49.5
+margin_right = 47.5
+margin_bottom = 49.5
+texture_normal = ExtResource( 17 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 60.0
-one_shot = true
 
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_enemyCountChangeSignal"]

@@ -11,7 +11,7 @@ signal myCountValue(value)
 func _ready():
 	timer.wait_time = 60
 
-func _process(delta):
+func _physics_process(delta):
 	if(get_node("/root/Main/MainGame").myTurn):
 		pb.value = timer.time_left
 
@@ -29,3 +29,4 @@ func _on_DrawCard_myCountValue(count):
 	if(get_node("/root/Main/MainGame").myTurn):
 		timer.start(60);
 		pb.value = 60
+		pbEnemy.value = 60
