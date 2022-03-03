@@ -9,9 +9,8 @@ onready var HPENEMY = get_parent().get_parent().get_node("EnemyUI/Health")
 signal changeMyCountBar(value)
 signal changeEnemyCountBar(value)
 
-
-func _ready():
-	pass # Replace with function body.
+func _process(delta):
+	$Label.text = String(HP)
 
 func _on_DrawCard_myCountValue(count):
 	if(count > 12):
@@ -31,6 +30,7 @@ func _on_DrawCard_myCountValue(count):
 		StartGame.enemyCount = 0
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
+	$Label.text = String(HP)
 
 
 func _on_TimerMy_myCountValue(value):

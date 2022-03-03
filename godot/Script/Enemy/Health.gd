@@ -9,8 +9,8 @@ onready var HPMyProgress = get_parent().get_parent().get_node("MyUI/Health/Healt
 signal changeMyCountBar(value)
 signal changeEnemyCountBar(value)
 
-func _ready():
-	pass # Replace with function body.
+func _process(delta):
+	$Label.text = String(HP)
 
 
 func _on_StartGame_enemyCountChangeSignal(count):
