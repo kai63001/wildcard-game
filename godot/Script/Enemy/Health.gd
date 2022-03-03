@@ -32,3 +32,18 @@ func _on_StartGame_enemyCountChangeSignal(count):
 		StartGame.enemyCount = 0
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
+	elif(StartGame.lock && StartGame.enemyLock):
+		if(StartGame.enemyCount > StartGame.myCount):
+			var calHP = StartGame.enemyCount - StartGame.myCount
+			HPMy.HP -= calHP
+			HPMyProgress.value = HP
+		elif(StartGame.enemyCount < StartGame.myCount):
+			var calHP = StartGame.myCount - StartGame.enemyCount
+			HP -= calHP
+			HPProgress.value = HP
+		StartGame.myCount = 0
+		StartGame.enemyCount = 0
+		StartGame.lock = false
+		StartGame.enemyLock = false
+		emit_signal("changeMyCountBar",0)
+		emit_signal("changeEnemyCountBar",0)

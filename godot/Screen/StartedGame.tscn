@@ -340,4 +340,6 @@ wait_time = 60.0
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/TimerMy" method="_on_DrawCard_myCountValue"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/Health" method="_on_DrawCard_myCountValue"]
 [connection signal="pressed" from="MyUI/DrawCard" to="MyUI/DrawCard" method="_on_DrawCard_pressed"]
+[connection signal="lock" from="MyUI/Lock" to="MyUI/Health" method="_on_Lock_lock"]
+[connection signal="pressed" from="MyUI/Lock/TextureButton" to="MyUI/Lock" method="_on_TextureButton_pressed"]
 [connection signal="timeout" from="Timer" to="MyUI/TimerMy" method="_on_Timer_timeout"]

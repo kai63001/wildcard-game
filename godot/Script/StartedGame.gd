@@ -5,6 +5,10 @@ var cardNumber = [1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,
 var myCount = 0;
 var enemyCount = 0;
 onready var MainGame = get_parent().get_node(".")
+onready var ServerConnect = get_node("/root/Main/ServerConnect")
+
+var lock = false;
+var enemyLock = false;
 
 signal enemyCountChangeSignal(value)
 
@@ -29,4 +33,8 @@ func enemyCountChange(count):
 	enemyCount = count
 	emit_signal("enemyCountChangeSignal",count)
 	changeTurn()
-
+	
+func enemyGetLocked():
+	enemyLock = true
+	emit_signal("enemyCountChangeSignal",enemyCount)
+	changeTurn()

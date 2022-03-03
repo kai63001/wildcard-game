@@ -20,6 +20,8 @@ func _on_DrawCard_myCountValue(count):
 		HPProgress.value = HP
 		StartGame.myCount = 0
 		StartGame.enemyCount = 0
+		StartGame.lock = false
+		StartGame.enemyLock = false
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
 	elif(count == 12):
@@ -28,6 +30,23 @@ func _on_DrawCard_myCountValue(count):
 		HPENEMYProgress.value = HPENEMY.HP
 		StartGame.myCount = 0
 		StartGame.enemyCount = 0
+		StartGame.lock = false
+		StartGame.enemyLock = false
+		emit_signal("changeMyCountBar",0)
+		emit_signal("changeEnemyCountBar",0)
+	elif(StartGame.lock && StartGame.enemyLock):
+		if(StartGame.enemyCount > StartGame.myCount):
+			var calHP = StartGame.enemyCount - StartGame.myCount
+			HP -= calHP
+			HPProgress.value = HP
+		elif(StartGame.enemyCount < StartGame.myCount):
+			var calHP = StartGame.myCount - StartGame.enemyCount
+			HPENEMY.HP -= calHP
+			HPENEMYProgress.value = HP
+		StartGame.myCount = 0
+		StartGame.enemyCount = 0
+		StartGame.lock = false
+		StartGame.enemyLock = false
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
 	$Label.text = String(HP)
@@ -35,3 +54,7 @@ func _on_DrawCard_myCountValue(count):
 
 func _on_TimerMy_myCountValue(value):
 	_on_DrawCard_myCountValue(value)
+
+
+func _on_Lock_lock():
+	_on_DrawCard_myCountValue(StartGame.myCount)

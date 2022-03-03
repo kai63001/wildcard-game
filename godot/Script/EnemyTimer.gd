@@ -18,5 +18,6 @@ func _on_StartGame_enemyCountChangeSignal(value):
 		pb.value = 60
 		timer.start(60);
 	else:
+		timer.wait_time = 60
 		pb.value = 60
-		timer.stop();
+		timer.stop(60);
