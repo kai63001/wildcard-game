@@ -14,6 +14,8 @@ func _ready():
 		
 
 func _initRandom():
+	xPos = 100;
+	yPos = 100;
 	for n in 3:
 		var randomBox_resource = load("res://Item/BoxItem.tscn")
 		var randomBox = randomBox_resource.instance()
