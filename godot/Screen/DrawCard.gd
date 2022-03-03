@@ -8,6 +8,7 @@ onready var ServerConnect = get_node("/root/Main/ServerConnect")
 
 onready var CardBack = load("res://Assets/CardDeck2.png")
 onready var CardBackBorder = load("res://Assets/CardDeckBorder.png")
+onready var CardBackLock = load("res://Assets/CardDeckLock.png")
 
 func _on_DrawCard_pressed():
 	if(MainGame.myTurn):
@@ -23,7 +24,17 @@ func _on_DrawCard_pressed():
 		emit_signal("myCountValue",StartGame.myCount)
 
 func _process(delta):
-	if(MainGame.myTurn):
+	_countCardNumber()
+	if(StartGame.lock):
+		texture_normal = CardBackLock
+	elif(MainGame.myTurn):
 		texture_normal = CardBackBorder
 	else:
 		texture_normal = CardBack
+
+func _countCardNumber():
+	if(StartGame.lock):
+		$Label.hide()
+	else:
+		$Label.show()
+		$Label.text = String(len(StartGame.cardNumber))

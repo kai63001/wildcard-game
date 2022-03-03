@@ -72,8 +72,7 @@ func _on_match_state(p_state : NakamaRTAPI.MatchData):
 			get_parent().get_node("MainGame").get_node("RandomBox").enemySelectd(int(p_state.data));
 		1: #enemy count card number
 			get_parent().get_node("MainGame").get_node("StartGame").enemyCountChange(int(p_state.data))
-		2:
-			print("enemyLock")
+		2: #enemy Lock
 			get_parent().get_node("MainGame").get_node("StartGame").enemyGetLocked()
 
 

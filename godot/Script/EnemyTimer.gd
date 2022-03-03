@@ -11,6 +11,9 @@ func _ready():
 func _process(delta):
 	if(!get_node("/root/Main/MainGame").myTurn):
 		pb.value = timer.time_left
+	else:
+		pb.value = 60
+		timer.wait_time = 60
 
 func _on_StartGame_enemyCountChangeSignal(value):
 	if(!get_node("/root/Main/MainGame").myTurn):
