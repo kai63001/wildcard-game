@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/CardDeck2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Timer/timer.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Timer/timerbg.png" type="Texture" id=9]
 [ext_resource path="res://Script/Timer.gd" type="Script" id=10]
+[ext_resource path="res://Script/EnemyTimer.gd" type="Script" id=11]
 
 [node name="StartGame" type="Node2D"]
 script = ExtResource( 4 )
@@ -73,16 +74,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Control" parent="EnemyUI"]
+[node name="TimerEnemy" type="Control" parent="EnemyUI"]
 margin_left = 344.0
 margin_top = 240.0
 margin_right = 679.0
 margin_bottom = 257.0
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="TextureProgress" parent="EnemyUI/Timer"]
+[node name="TimerProgressBarEnemy" type="TextureProgress" parent="EnemyUI/TimerEnemy"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -92,9 +94,13 @@ margin_top = -15.5
 margin_right = 292.5
 margin_bottom = 20.5
 rect_scale = Vector2( 0.74, 0.635 )
-value = 100.0
+max_value = 5.0
+value = 5.0
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MyUI" type="Control" parent="."]
 margin_left = -2.0
@@ -139,7 +145,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Control" parent="MyUI"]
+[node name="TimerMy" type="Control" parent="MyUI"]
 margin_left = 344.0
 margin_top = 349.0
 margin_right = 679.0
@@ -149,7 +155,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimerProgressBar" type="TextureProgress" parent="MyUI/Timer"]
+[node name="TimerProgressBarMy" type="TextureProgress" parent="MyUI/TimerMy"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -159,15 +165,13 @@ margin_top = -15.5
 margin_right = 294.5
 margin_bottom = 20.5
 rect_scale = Vector2( 0.74, 0.635 )
-max_value = 80.0
-value = 80.0
+max_value = 5.0
+value = 5.0
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Timer" type="Timer" parent="MyUI/Timer"]
 
 [node name="DrawCard" type="TextureButton" parent="MyUI"]
 anchor_top = 1.0
@@ -183,7 +187,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
-[connection signal="timeout" from="MyUI/Timer/Timer" to="MyUI/Timer" method="_on_Timer_timeout"]
+[connection signal="enemyCountChangeSignal" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/CountBar/myCountBar" method="_on_DrawCard_myCountValue"]
+[connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/TimerMy" method="_on_DrawCard_myCountValue"]
 [connection signal="pressed" from="MyUI/DrawCard" to="MyUI/DrawCard" method="_on_DrawCard_pressed"]
+[connection signal="timeout" from="Timer" to="MyUI/TimerMy" method="_on_Timer_timeout"]

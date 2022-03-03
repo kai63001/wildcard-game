@@ -70,7 +70,7 @@ func _on_match_state(p_state : NakamaRTAPI.MatchData):
 	match p_state.op_code: 
 		0: #randomBoxEnemyCallBack
 			get_parent().get_node("MainGame").get_node("RandomBox").enemySelectd(int(p_state.data));
-		1:
+		1: #enemy count card number
 			get_parent().get_node("MainGame").get_node("StartGame").enemyCountChange(int(p_state.data))
 
 

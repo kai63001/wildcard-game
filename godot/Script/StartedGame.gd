@@ -17,8 +17,7 @@ func _randomCardNumber():
 	print(cardNumber)
 
 func _checkMyTurn():
-	if(MainGame.myTurn):
-		$MyUI/Timer/Timer.start()
+	$Timer.start()
 	
 func changeTurn():
 	print("change turn");
