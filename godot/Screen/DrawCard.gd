@@ -6,6 +6,9 @@ onready var StartGame = get_parent().get_parent().get_node(".")
 onready var MainGame = get_parent().get_parent().get_parent().get_node(".")
 onready var ServerConnect = get_node("/root/Main/ServerConnect")
 
+onready var CardBack = load("res://Assets/CardDeck.png")
+onready var CardBackBorder = load("res://Assets/CardDeckBorder.png")
+
 func _on_DrawCard_pressed():
 	if(MainGame.myTurn):
 		var CardFlip_resource = load("res://Item/CardFlip/CardFlipOne.tscn")
@@ -18,3 +21,9 @@ func _on_DrawCard_pressed():
 		StartGame.changeTurn()
 		ServerConnect._sendStateData(1,String(StartGame.myCount))
 		emit_signal("myCountValue",StartGame.myCount)
+
+func _process(delta):
+	if(MainGame.myTurn):
+		texture_normal = CardBackBorder
+	else:
+		texture_normal = CardBack
