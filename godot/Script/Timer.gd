@@ -12,7 +12,6 @@ func _ready():
 func _process(delta):
 	if(get_node("/root/Main/MainGame").myTurn):
 		pb.value = timer.time_left
-		print(timer.time_left)
 
 
 func _on_Timer_timeout():

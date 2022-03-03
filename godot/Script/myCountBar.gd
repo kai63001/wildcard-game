@@ -7,3 +7,7 @@ func _on_DrawCard_myCountValue(count):
 
 func _on_StartGame_enemyCountChangeSignal(count):
 	value = count * 8;
+
+
+func _on_Health_changeMyCountBar(count):
+	value = count * 8;
