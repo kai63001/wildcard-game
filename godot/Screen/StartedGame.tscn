@@ -106,6 +106,7 @@ __meta__ = {
 }
 
 [node name="TimerProgressBarEnemy" type="TextureProgress" parent="EnemyUI/TimerEnemy"]
+pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -224,6 +225,7 @@ __meta__ = {
 }
 
 [node name="TimerProgressBarMy" type="TextureProgress" parent="MyUI/TimerMy"]
+pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -352,6 +354,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+pause_mode = 2
 wait_time = 60.0
 
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
