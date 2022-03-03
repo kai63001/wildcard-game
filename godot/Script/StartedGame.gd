@@ -11,6 +11,7 @@ var lock = false;
 var enemyLock = false;
 
 signal enemyCountChangeSignal(value)
+signal syncTime(value)
 
 func _ready():
 	_randomCardNumber();
@@ -29,11 +30,12 @@ func _randomCardNumber():
 	print(cardNumber)
 
 func _checkMyTurn():
-	$Timer.start()
+	$Timer.start(60)
 	
 func changeTurn():
 	print("change turn");
 	MainGame.myTurn = !MainGame.myTurn
+	$Timer.start(60)
 	
 #Enemy Zone
 func enemyCountChange(count):

@@ -357,6 +357,7 @@ wait_time = 60.0
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/Health" method="_on_StartGame_enemyCountChangeSignal"]
+[connection signal="syncTime" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_syncTime"]
 [connection signal="changeEnemyCountBar" from="EnemyUI/Health" to="EnemyUI/CountBar/enemyCountBar" method="_on_Health_changeEnemyCountBar"]
 [connection signal="changeMyCountBar" from="EnemyUI/Health" to="MyUI/CountBar/myCountBar" method="_on_Health_changeMyCountBar"]
 [connection signal="myCountValue" from="MyUI/TimerMy" to="MyUI/CountBar/myCountBar" method="_on_TimerMy_myCountValue"]

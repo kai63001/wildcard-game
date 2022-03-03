@@ -63,4 +63,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 514, 304 )
+current = true
+
 [connection signal="pressed" from="Control/TextureButton" to="." method="_on_TextureButton_pressed"]

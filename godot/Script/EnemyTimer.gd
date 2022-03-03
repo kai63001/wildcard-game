@@ -8,7 +8,7 @@ onready var ServerConnect = get_node("/root/Main/ServerConnect")
 func _ready():
 	timer.wait_time = 60
 
-func _process(delta):
+func _physics_process(delta):
 	if(!get_node("/root/Main/MainGame").myTurn):
 		pb.value = timer.time_left
 	else:
@@ -24,3 +24,4 @@ func _on_StartGame_enemyCountChangeSignal(value):
 		timer.wait_time = 60
 		pb.value = 60
 		timer.stop(60);
+
