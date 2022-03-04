@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import type { NextApiRequest, NextApiResponse } from "next";
 import data from "../../../artifacts/contracts/Card.sol/WileCard.json"; // get data abi
 import addressData from "../../../deploy.json";
+import NextCors from 'nextjs-cors';
 
 const conTractAddress = addressData.address; // * nft contractaddress
 // * abi of nft address
@@ -13,6 +14,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+ });
   // console.log(contract)
   if (!req.query.address) {
     res.json({
@@ -29,7 +36,7 @@ export default async function handler(
   });
   console.log("data :" + (await test));
   shuffle(await test)
-  res.json(await test.slice(0,4));
+  res.json(await test);
 }
 
 function shuffle(array:any) {
