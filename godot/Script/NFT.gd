@@ -3,13 +3,13 @@ extends Control
 onready var animation = get_node("AnimationPlayer")
 var moveNFT = false
 var played = false
-var allMyNftSize
+var MaxMyNftSize
 
 
 func _ready():
 	animation.play("moveNFT")
 	played = true
-	allMyNftSize = self.get_node("Card").get_children().size() + 1
+	MaxMyNftSize = 5
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -20,7 +20,7 @@ func _input(event):
 		
 func _physics_process(delta):
 	#calu resiponsive card
-	var data = ((allMyNftSize - self.get_node("Card").get_children().size())  * (130 / 2)) - 45
+	var data = ((MaxMyNftSize - self.get_node("Card").get_children().size())  * (130 / 2)) - 40
 	for _i in self.get_node("Card").get_children():
 		_i.set_position(Vector2(data , 0))
 		data += 130

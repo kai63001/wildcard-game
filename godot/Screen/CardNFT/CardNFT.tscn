@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/CardNFT/CardNFT.gd" type="Script" id=1]
+[ext_resource path="res://Assets/NFT/Asset 1@4x-8.png" type="Texture" id=2]
+
+[node name="CardNFT" type="TextureButton"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.0
+margin_right = 74.0
+margin_bottom = 192.0
+texture_normal = ExtResource( 2 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
