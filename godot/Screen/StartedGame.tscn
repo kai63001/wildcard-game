@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -19,9 +19,24 @@
 [ext_resource path="res://Assets/Individual icons (48x48)/56-export.png" type="Texture" id=17]
 [ext_resource path="res://Script/Lock.gd" type="Script" id=18]
 [ext_resource path="res://Script/Enemy/DrawEnemy.gd" type="Script" id=19]
+[ext_resource path="res://Assets/Mana/mana.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Mana/manacolor.png" type="Texture" id=21]
+[ext_resource path="res://script/my/mana.gd" type="Script" id=22]
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 19
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
@@ -40,6 +55,35 @@ margin_left = -509.0
 margin_top = -299.0
 margin_right = 511.0
 margin_bottom = 302.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerEnemy" type="Control" parent="EnemyUI"]
+margin_left = 344.0
+margin_top = 240.0
+margin_right = 679.0
+margin_bottom = 257.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerProgressBarEnemy" type="TextureProgress" parent="EnemyUI/TimerEnemy"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -171.5
+margin_top = -15.5
+margin_right = 292.5
+margin_bottom = 20.5
+rect_scale = Vector2( 0.74, 0.635 )
+max_value = 60.0
+value = 60.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -79,6 +123,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="EnemyUI/CountBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -26.0
+margin_top = -32.5
+margin_right = 24.0
+margin_bottom = -6.5
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DrawEnemy" type="TextureButton" parent="EnemyUI"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -91,35 +151,6 @@ expand = true
 flip_h = true
 flip_v = true
 script = ExtResource( 19 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TimerEnemy" type="Control" parent="EnemyUI"]
-margin_left = 344.0
-margin_top = 240.0
-margin_right = 679.0
-margin_bottom = 257.0
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TimerProgressBarEnemy" type="TextureProgress" parent="EnemyUI/TimerEnemy"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -171.5
-margin_top = -15.5
-margin_right = 292.5
-margin_bottom = 20.5
-rect_scale = Vector2( 0.74, 0.635 )
-max_value = 60.0
-value = 60.0
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -171,45 +202,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="mana" type="Control" parent="EnemyUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -208.0
+margin_top = 51.0
+margin_right = 203.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaProgress" type="TextureProgress" parent="EnemyUI/mana"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.5
+margin_top = -13.0
+margin_right = 257.5
+margin_bottom = 27.0
+rect_scale = Vector2( 0.897, 0.619 )
+value = 90.0
+texture_under = ExtResource( 20 )
+texture_progress = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EnemyUI/mana"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -22.0
+margin_right = 11.0
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 4 )
+text = "20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MyUI" type="Control" parent="."]
 margin_left = -512.0
 margin_top = -300.0
 margin_right = 508.0
 margin_bottom = 301.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CountBar" type="Control" parent="MyUI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -191.0
-margin_top = -5.0
-margin_right = 195.0
-margin_bottom = 47.0
-rect_pivot_offset = Vector2( 0, 43 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BorderCountPoint" type="Sprite" parent="MyUI/CountBar"]
-position = Vector2( 194, 25 )
-texture = ExtResource( 2 )
-
-[node name="myCountBar" type="TextureProgress" parent="MyUI/CountBar"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -172.0
-margin_top = -20.0
-margin_right = 172.0
-margin_bottom = 20.0
-max_value = 96.0
-texture_progress = ExtResource( 5 )
-script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -239,6 +279,56 @@ max_value = 60.0
 value = 60.0
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountBar" type="Control" parent="MyUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -191.0
+margin_top = -5.0
+margin_right = 195.0
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BorderCountPoint" type="Sprite" parent="MyUI/CountBar"]
+position = Vector2( 194, 25 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="MyUI/CountBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -26.0
+margin_top = 3.5
+margin_right = 24.0
+margin_bottom = 29.5
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="myCountBar" type="TextureProgress" parent="MyUI/CountBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -172.0
+margin_top = -20.0
+margin_right = 172.0
+margin_bottom = 20.0
+max_value = 96.0
+texture_progress = ExtResource( 5 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -353,12 +443,58 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="mana" type="Control" parent="MyUI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -191.0
+margin_top = -85.0
+margin_right = 217.0
+margin_bottom = -61.0
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaProgress" type="TextureProgress" parent="MyUI/mana"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -210.0
+margin_top = -12.0
+margin_right = 254.0
+margin_bottom = 28.0
+rect_scale = Vector2( 0.896, 0.619 )
+value = 90.0
+texture_under = ExtResource( 20 )
+texture_progress = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MyUI/mana"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -13.0
+margin_top = -1.0
+margin_right = 7.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 4 )
+text = "20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Timer" type="Timer" parent="."]
 pause_mode = 2
 wait_time = 60.0
 
-[connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_enemyCountChangeSignal"]
+[connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/Health" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="syncTime" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_syncTime"]
 [connection signal="changeEnemyCountBar" from="EnemyUI/Health" to="EnemyUI/CountBar/enemyCountBar" method="_on_Health_changeEnemyCountBar"]
@@ -367,8 +503,8 @@ wait_time = 60.0
 [connection signal="myCountValue" from="MyUI/TimerMy" to="MyUI/Health" method="_on_TimerMy_myCountValue"]
 [connection signal="changeEnemyCountBar" from="MyUI/Health" to="EnemyUI/CountBar/enemyCountBar" method="_on_Health_changeEnemyCountBar"]
 [connection signal="changeMyCountBar" from="MyUI/Health" to="MyUI/CountBar/myCountBar" method="_on_Health_changeMyCountBar"]
-[connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/CountBar/myCountBar" method="_on_DrawCard_myCountValue"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/TimerMy" method="_on_DrawCard_myCountValue"]
+[connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/CountBar/myCountBar" method="_on_DrawCard_myCountValue"]
 [connection signal="myCountValue" from="MyUI/DrawCard" to="MyUI/Health" method="_on_DrawCard_myCountValue"]
 [connection signal="pressed" from="MyUI/DrawCard" to="MyUI/DrawCard" method="_on_DrawCard_pressed"]
 [connection signal="lock" from="MyUI/Lock" to="MyUI/Health" method="_on_Lock_lock"]

@@ -22,7 +22,12 @@ func _process(delta):
 		MainGame.myTurn = false
 	elif(enemyLock):
 		MainGame.myTurn = true
-	
+	_labelCountBar()
+
+func _labelCountBar():
+	print("myCount")
+	get_node("MyUI/CountBar/Label").text = String(myCount)
+	get_node("EnemyUI/CountBar/Label").text = String(enemyCount)
 
 func _randomCardNumber():
 	randomize()
