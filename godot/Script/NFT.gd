@@ -5,12 +5,21 @@ var moveNFT = false
 var played = false
 var MaxMyNftSize
 var selected = false
+onready var Main = get_node("/root/Main")
 
 func _ready():
 	animation.play("moveNFT")
 	played = true
 	MaxMyNftSize = 5
+	_generateNFT()
 	cal()
+	
+func _generateNFT():
+	var CardNFT = load("res://Screen/CardNFT/CardNFT.tscn")
+	for i in Main.myNFT:
+		var card = CardNFT.instance()
+		card.NFTId = i
+		get_node("Card").add_child(card)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -21,7 +30,6 @@ func _input(event):
 		cal()
 		
 func cal():
-	print("cal")
 	#calu resiponsive card
 	var data = ((MaxMyNftSize - self.get_node("Card").get_children().size())  * (130 / 2)) - 40
 	for _i in self.get_node("Card").get_children():

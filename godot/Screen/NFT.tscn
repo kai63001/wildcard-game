@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Script/NFT.gd" type="Script" id=1]
-[ext_resource path="res://Screen/CardNFT/CardNFT.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -61,11 +60,3 @@ anims/moveNFTback = SubResource( 3 )
 
 [node name="Card" type="Node2D" parent="."]
 position = Vector2( 236, 556 )
-
-[node name="CardNFT4" parent="Card" instance=ExtResource( 4 )]
-
-[node name="CardNFT3" parent="Card" instance=ExtResource( 4 )]
-
-[node name="CardNFT2" parent="Card" instance=ExtResource( 4 )]
-
-[node name="CardNFT" parent="Card" instance=ExtResource( 4 )]
