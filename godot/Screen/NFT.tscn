@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Script/NFT.gd" type="Script" id=1]
+[ext_resource path="res://Assets/NFT/Asset 1@4x-8.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 229, 554 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "moveNFT"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 229, 554 ), Vector2( 229, 377 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "moveNFTback"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 229, 377 ), Vector2( 229, 554 ) ]
+}
+
+[node name="NFT" type="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -283.0
+margin_top = -46.0
+margin_right = 316.0
+margin_bottom = 204.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/moveNFT = SubResource( 6 )
+anims/moveNFTback = SubResource( 7 )
+
+[node name="NFT1" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.5
+margin_top = -120.0
+margin_right = 73.5
+margin_bottom = 80.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="mouse_entered" from="NFT1" to="." method="_on_TextureButton_mouse_entered"]

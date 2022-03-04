@@ -25,7 +25,6 @@ func _process(delta):
 	_labelCountBar()
 
 func _labelCountBar():
-	print("myCount")
 	get_node("MyUI/CountBar/Label").text = String(myCount)
 	get_node("EnemyUI/CountBar/Label").text = String(enemyCount)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -21,7 +21,9 @@
 [ext_resource path="res://Script/Enemy/DrawEnemy.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Mana/mana.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Mana/manacolor.png" type="Texture" id=21]
-[ext_resource path="res://script/my/mana.gd" type="Script" id=22]
+[ext_resource path="res://Script/My/mana.gd" type="Script" id=22]
+[ext_resource path="res://Script/Enemy/mana.gd" type="Script" id=23]
+[ext_resource path="res://Screen/NFT.tscn" type="PackedScene" id=24]
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
@@ -209,6 +211,7 @@ margin_left = -208.0
 margin_top = 51.0
 margin_right = 203.0
 margin_bottom = 75.0
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -218,12 +221,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -206.5
-margin_top = -13.0
-margin_right = 257.5
-margin_bottom = 27.0
+margin_left = -204.5
+margin_top = -11.0
+margin_right = 259.5
+margin_bottom = 29.0
 rect_scale = Vector2( 0.897, 0.619 )
-value = 90.0
+max_value = 20.0
+value = 20.0
 texture_under = ExtResource( 20 )
 texture_progress = ExtResource( 21 )
 __meta__ = {
@@ -235,10 +239,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -9.0
-margin_top = -22.0
-margin_right = 11.0
-margin_bottom = -4.0
+margin_left = -8.5
+margin_top = -18.0
+margin_right = 11.5
 custom_fonts/font = SubResource( 4 )
 text = "20"
 __meta__ = {
@@ -247,9 +250,10 @@ __meta__ = {
 
 [node name="MyUI" type="Control" parent="."]
 margin_left = -512.0
-margin_top = -300.0
+margin_top = -304.0
 margin_right = 508.0
-margin_bottom = 301.0
+margin_bottom = 297.0
+rect_clip_content = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -467,7 +471,8 @@ margin_top = -12.0
 margin_right = 254.0
 margin_bottom = 28.0
 rect_scale = Vector2( 0.896, 0.619 )
-value = 90.0
+max_value = 20.0
+value = 20.0
 texture_under = ExtResource( 20 )
 texture_progress = ExtResource( 21 )
 __meta__ = {
@@ -488,6 +493,12 @@ text = "20"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="NFT" parent="MyUI" instance=ExtResource( 24 )]
+margin_left = 229.0
+margin_top = 554.0
+margin_right = 828.0
+margin_bottom = 804.0
 
 [node name="Timer" type="Timer" parent="."]
 pause_mode = 2
