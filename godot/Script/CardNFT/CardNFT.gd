@@ -13,8 +13,6 @@ func _physics_process(_delta):
 func floowMouse():
 	position = get_global_mouse_position() + mouse_offset
 
-
-
 func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
@@ -26,9 +24,17 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx):
 			selected = false
 			NFT.selected = false
 			NFT.cal()
+			_callNFT()
 
 
 func _on_Area2D_mouse_exited():
 	selected = false
 	NFT.selected = false
 	NFT.cal()
+	
+
+func _callNFT():
+	print(get_global_mouse_position().y + mouse_offset.y)
+	if(get_global_mouse_position().y + mouse_offset.y < -120):
+		queue_free()
+		NFT.cal()

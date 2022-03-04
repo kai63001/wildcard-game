@@ -21,6 +21,7 @@ func _input(event):
 		_moveNFT()
 		
 func cal():
+	print("cal")
 	#calu resiponsive card
 	var data = ((MaxMyNftSize - self.get_node("Card").get_children().size())  * (130 / 2)) - 40
 	for _i in self.get_node("Card").get_children():
@@ -42,5 +43,6 @@ func _moveNFT():
 	elif(!moveNFT && played):
 		animation.stop()
 		played = false
-		animation.play("moveNFTback")		
+		animation.play("moveNFTback")
+		cal()
 
