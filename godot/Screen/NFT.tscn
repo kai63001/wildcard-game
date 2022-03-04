@@ -57,8 +57,8 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -283.0
 margin_top = -46.0
-margin_right = 316.0
-margin_bottom = 204.0
+margin_right = -283.0
+margin_bottom = -43.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -70,48 +70,17 @@ anims/moveNFT = SubResource( 6 )
 anims/moveNFTback = SubResource( 7 )
 
 [node name="Card" type="Control" parent="."]
-anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = 3.0
 rect_pivot_offset = Vector2( 1323, -927 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CardNFT2" parent="Card" instance=ExtResource( 4 )]
-anchor_left = 0.0
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-margin_left = 0.0
-margin_top = -96.0
-margin_right = 124.0
-margin_bottom = 96.0
 
 [node name="CardNFT3" parent="Card" instance=ExtResource( 4 )]
-anchor_left = 0.0
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-margin_left = 0.0
-margin_top = -96.0
-margin_right = 124.0
-margin_bottom = 96.0
 
 [node name="CardNFT4" parent="Card" instance=ExtResource( 4 )]
-anchor_left = 0.0
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-margin_left = 0.0
-margin_top = -96.0
-margin_right = 124.0
-margin_bottom = 96.0
 
 [node name="CardNFT5" parent="Card" instance=ExtResource( 4 )]
-anchor_left = 0.0
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-margin_left = 0.0
-margin_top = -96.0
-margin_right = 124.0
-margin_bottom = 96.0

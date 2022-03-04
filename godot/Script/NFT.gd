@@ -4,12 +4,14 @@ onready var animation = get_node("AnimationPlayer")
 var moveNFT = false
 var played = false
 var MaxMyNftSize
+var selected = false
 
 
 func _ready():
 	animation.play("moveNFT")
 	played = true
 	MaxMyNftSize = 5
+	cal()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -18,7 +20,7 @@ func _input(event):
 		_getMoveNFT(event.position)
 		_moveNFT()
 		
-func _physics_process(delta):
+func cal():
 	#calu resiponsive card
 	var data = ((MaxMyNftSize - self.get_node("Card").get_children().size())  * (130 / 2)) - 40
 	for _i in self.get_node("Card").get_children():
@@ -27,10 +29,10 @@ func _physics_process(delta):
 
 func _getMoveNFT(p):
 	if(!moveNFT):
-		if((p.x > 300 && p.x < 700) && (p.y > 555)):
+		if((p.x > 300 && p.x < 800) && (p.y > 555)):
 			moveNFT = true
 	else:
-		if(p.y < 330 || (p.x < 300) || (p.x > 700)):
+		if((p.y < 330 || (p.x < 300) || (p.x > 800)) && !selected):
 			moveNFT = false
 
 func _moveNFT():
