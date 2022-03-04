@@ -1,11 +1,10 @@
-extends Control
+extends Node2D
 
 onready var animation = get_node("AnimationPlayer")
 var moveNFT = false
 var played = false
 var MaxMyNftSize
 var selected = false
-
 
 func _ready():
 	animation.play("moveNFT")
@@ -19,6 +18,7 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		_getMoveNFT(event.position)
 		_moveNFT()
+		cal()
 		
 func cal():
 	print("cal")
@@ -40,9 +40,10 @@ func _moveNFT():
 	if(moveNFT && !played):
 		animation.play("moveNFT")
 		played = true
+		cal()
 	elif(!moveNFT && played):
+		cal()
 		animation.stop()
 		played = false
 		animation.play("moveNFTback")
-		cal()
 

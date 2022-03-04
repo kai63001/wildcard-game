@@ -3,10 +3,10 @@
 [ext_resource path="res://Script/NFT.gd" type="Script" id=1]
 [ext_resource path="res://Screen/CardNFT/CardNFT.tscn" type="PackedScene" id=4]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -15,14 +15,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 229, 554 ) ]
+"values": [ Vector2( 0, -1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "moveNFT"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -31,14 +31,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 229, 554 ), Vector2( 229, 377 ) ]
+"values": [ Vector2( 0, -1 ), Vector2( 0, -200 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "moveNFTback"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,40 +47,25 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 229, 377 ), Vector2( 229, 554 ) ]
+"values": [ Vector2( 0, -200 ), Vector2( 0, -1 ) ]
 }
 
-[node name="NFT" type="Control"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -283.0
-margin_top = -46.0
-margin_right = -283.0
-margin_bottom = -43.0
+[node name="NFT" type="Node2D"]
+position = Vector2( 0, -1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 5 )
-anims/moveNFT = SubResource( 6 )
-anims/moveNFTback = SubResource( 7 )
+anims/RESET = SubResource( 2 )
+anims/moveNFT = SubResource( 1 )
+anims/moveNFTback = SubResource( 3 )
 
-[node name="Card" type="Control" parent="."]
-margin_left = -1.0
-margin_right = 3.0
-rect_pivot_offset = Vector2( 1323, -927 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CardNFT2" parent="Card" instance=ExtResource( 4 )]
-
-[node name="CardNFT3" parent="Card" instance=ExtResource( 4 )]
+[node name="Card" type="Node2D" parent="."]
+position = Vector2( 236, 556 )
 
 [node name="CardNFT4" parent="Card" instance=ExtResource( 4 )]
 
-[node name="CardNFT5" parent="Card" instance=ExtResource( 4 )]
+[node name="CardNFT3" parent="Card" instance=ExtResource( 4 )]
+
+[node name="CardNFT2" parent="Card" instance=ExtResource( 4 )]
+
+[node name="CardNFT" parent="Card" instance=ExtResource( 4 )]

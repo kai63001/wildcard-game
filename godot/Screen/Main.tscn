@@ -1,50 +1,10 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Script/ServerConnect.gd" type="Script" id=1]
 [ext_resource path="res://Script/Main.gd" type="Script" id=2]
 [ext_resource path="res://Screen/UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Script/Camera.gd" type="Script" id=4]
-[ext_resource path="res://Assets/background.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export4.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export5.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export6.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export9.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export10.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export11.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export12.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export17.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export2.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export1.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export15.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export7.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export3.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export8.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export14.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export13.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export16.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export18.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export20.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export26.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export22.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export29.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export31.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export32.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export23.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export19.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export30.png" type="Texture" id=32]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export27.png" type="Texture" id=33]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export28.png" type="Texture" id=34]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export21.png" type="Texture" id=35]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export24.png" type="Texture" id=36]
-[ext_resource path="res://Assets/Loading/rog-a-de-souza-card-full-gif-export25.png" type="Texture" id=37]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 18 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 19 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 21 ), ExtResource( 20 ), ExtResource( 16 ), ExtResource( 22 ), ExtResource( 13 ), ExtResource( 23 ), ExtResource( 31 ), ExtResource( 24 ), ExtResource( 35 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 25 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 27 ), ExtResource( 32 ), ExtResource( 28 ), ExtResource( 29 ) ],
-"loop": true,
-"name": "default",
-"speed": 20.0
-} ]
+[ext_resource path="res://Screen/LoadingNFT.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -56,29 +16,7 @@ script = ExtResource( 1 )
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
 
-[node name="LoadingNFT" type="Control" parent="."]
-margin_right = 1025.0
-margin_bottom = 601.0
-rect_clip_content = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="LoadingNFT"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="LoadingNFT"]
-position = Vector2( 513, 308 )
-scale = Vector2( 0.870313, 0.922222 )
-frames = SubResource( 1 )
-frame = 19
-playing = true
+[node name="LoadingNFT" parent="." instance=ExtResource( 5 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 516, 303 )

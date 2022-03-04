@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Asset 1@4x-8.png-69f05f9746de309c43dec0397cfe00c1.stex"
+path="res://.import/3.png-8a72672c6832c8fd0990f3aa200d7af5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/NFT/Asset 1@4x-8.png"
-dest_files=[ "res://.import/Asset 1@4x-8.png-69f05f9746de309c43dec0397cfe00c1.stex" ]
+source_file="res://Assets/NFT/3.png"
+dest_files=[ "res://.import/3.png-8a72672c6832c8fd0990f3aa200d7af5.stex" ]
 
 [params]
 

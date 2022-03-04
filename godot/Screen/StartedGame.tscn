@@ -58,6 +58,7 @@ margin_top = -299.0
 margin_right = 511.0
 margin_bottom = 302.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -495,14 +496,17 @@ __meta__ = {
 }
 
 [node name="NFT" parent="MyUI" instance=ExtResource( 24 )]
-margin_left = 229.0
-margin_top = 554.0
-margin_right = 828.0
-margin_bottom = 804.0
 
 [node name="Timer" type="Timer" parent="."]
 pause_mode = 2
 wait_time = 60.0
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
