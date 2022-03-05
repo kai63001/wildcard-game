@@ -10,6 +10,8 @@ onready var CameraMain =  get_node("/root/Main/Camera2D")
 signal changeMyCountBar(value)
 signal changeEnemyCountBar(value)
 
+signal checkDrawNft()
+
 func _process(delta):
 	$Label.text = String(HP)
 	HPProgress.value = HP
@@ -28,6 +30,7 @@ func _on_StartGame_enemyCountChangeSignal(count):
 		StartGame.enemyLock = false
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
+		emit_signal("checkDrawNft")
 	elif(count == 12):
 		var calHP = 12 - StartGame.myCount
 		HPMy.HP -= calHP
@@ -39,6 +42,7 @@ func _on_StartGame_enemyCountChangeSignal(count):
 		StartGame.enemyLock = false
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
+		emit_signal("checkDrawNft")
 	elif(StartGame.lock == true && StartGame.enemyLock == true):
 		if(StartGame.enemyCount > StartGame.myCount):
 			var calHP = StartGame.enemyCount - StartGame.myCount
@@ -55,3 +59,5 @@ func _on_StartGame_enemyCountChangeSignal(count):
 		StartGame.enemyLock = false
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
+		emit_signal("checkDrawNft")
+		

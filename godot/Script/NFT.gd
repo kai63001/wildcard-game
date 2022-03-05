@@ -6,6 +6,8 @@ var played = false
 var MaxMyNftSize
 var selected = false
 onready var Main = get_node("/root/Main")
+var nowNFT = []
+var nftAdded = 0
 
 func _ready():
 	animation.play("moveNFT")
@@ -15,11 +17,25 @@ func _ready():
 	cal()
 	
 func _generateNFT():
+	nowNFT = Main.myNFT.slice(0,9)
+	print(nowNFT)
 	var CardNFT = load("res://Screen/CardNFT/CardNFT.tscn")
-	for i in Main.myNFT:
+	for i in nowNFT.slice(0,3):
 		var card = CardNFT.instance()
 		card.NFTId = i
 		get_node("Card").add_child(card)
+		nftAdded += 1
+
+func _getInstanceNFT():
+	var sizeNFT = get_node("Card").get_children().size()
+	print(sizeNFT)
+	if(sizeNFT < 4 && nowNFT.size() > nftAdded):
+		var CardNFT = load("res://Screen/CardNFT/CardNFT.tscn")
+		var card = CardNFT.instance()
+		card.NFTId = nowNFT[nftAdded]
+		get_node("Card").add_child(card)
+		nftAdded += 1
+		cal()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -55,3 +71,7 @@ func _moveNFT():
 		played = false
 		animation.play("moveNFTback")
 
+
+
+func _on_Health_checkDrawNft():
+	_getInstanceNFT()

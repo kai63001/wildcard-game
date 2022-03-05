@@ -17,5 +17,6 @@ func _on_Exit_pressed():
 func _on_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
 	myNFT = (json.result)
+	myNFT += [4,5,1,2,3,4,5]
 	loadingNFT = false
 	$LoadingNFT.queue_free()
