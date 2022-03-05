@@ -30,15 +30,17 @@ func _callNFT():
 		_checkNFT()
 
 func _on_TextureButton_button_down():
-	mouse_offset = position - get_global_mouse_position()
-	selected = true
-	NFT.selected = true
+	if(MainGame.myTurn):
+		mouse_offset = position - get_global_mouse_position()
+		selected = true
+		NFT.selected = true
 
 func _on_TextureButton_button_up():
-	selected = false
-	NFT.selected = false
-	NFT.cal()
-	_callNFT()
+	if(MainGame.myTurn):
+		selected = false
+		NFT.selected = false
+		NFT.cal()
+		_callNFT()
 
 func _on_TextureButton_mouse_exited():
 	selected = false
@@ -52,7 +54,7 @@ func _on_TextureButton_focus_exited():
 	
 func _checkNFT():
 	print(StartGame.NFTData[1].Mana)
-	if(Mana.mana > StartGame.NFTData[int(NFTId)].Mana):
+	if(Mana.mana > StartGame.NFTData[int(NFTId)].Mana && MainGame.myTurn):
 		queue_free()
 		NFT.cal()
 		Mana.mana -= StartGame.NFTData[int(NFTId)].Mana
