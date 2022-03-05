@@ -92,3 +92,6 @@ func enemyAttack(id):
 func enemyHealth(id):
 	$EnemyUI/Health.HP = clamp($EnemyUI/Health.HP + 15,0,30)
 	$EnemyUI/mana.mana -= NFTData[id].Mana
+
+func enemyWatcher(id):
+	$EnemyUI/mana.mana -= NFTData[id].Mana

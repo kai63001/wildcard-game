@@ -38,3 +38,11 @@ func _countCardNumber():
 	else:
 		$Label.show()
 		$Label.text = String(len(StartGame.cardNumber))
+		
+func _watcher():
+	var CardFlip_resource = load("res://Item/CardFlip/CardFlipOne.tscn")
+	var CardFlip = CardFlip_resource.instance()
+	CardFlip.set_position(Vector2(10,0))
+	$".".add_child(CardFlip);
+	$".".get_child($".".get_child_count()-1).cardNumber = StartGame.cardNumber[0]
+	$".".get_child($".".get_child_count()-1).watcher = true

@@ -68,6 +68,8 @@ func sendNFTData(id):
 			_attack(id)
 		2:
 			_health(id)
+		3:
+			_watcher(id)
 
 func _attack(id):
 	StartGame.get_node("EnemyUI/Health").HP -= 12
@@ -76,3 +78,9 @@ func _attack(id):
 func _health(id):
 	StartGame.get_node("MyUI/Health").HP = clamp(StartGame.get_node("MyUI/Health").HP + 15,0,30)
 	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	
+
+func _watcher(id):
+	var drawCard = get_node("/root/Main/MainGame/StartGame/MyUI/DrawCard")
+	drawCard._watcher()
+	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	
+		
