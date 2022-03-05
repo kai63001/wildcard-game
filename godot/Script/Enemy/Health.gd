@@ -11,6 +11,7 @@ signal changeMyCountBar(value)
 signal changeEnemyCountBar(value)
 
 signal checkDrawNft()
+signal endTurnMana()
 
 func _process(delta):
 	$Label.text = String(HP)
@@ -31,6 +32,7 @@ func _on_StartGame_enemyCountChangeSignal(count):
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
 		emit_signal("checkDrawNft")
+		emit_signal("endTurnMana")
 	elif(count == 12):
 		var calHP = 12 - StartGame.myCount
 		HPMy.HP -= calHP
@@ -43,6 +45,7 @@ func _on_StartGame_enemyCountChangeSignal(count):
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
 		emit_signal("checkDrawNft")
+		emit_signal("endTurnMana")
 	elif(StartGame.lock == true && StartGame.enemyLock == true):
 		if(StartGame.enemyCount > StartGame.myCount):
 			var calHP = StartGame.enemyCount - StartGame.myCount
@@ -60,4 +63,5 @@ func _on_StartGame_enemyCountChangeSignal(count):
 		emit_signal("changeMyCountBar",0)
 		emit_signal("changeEnemyCountBar",0)
 		emit_signal("checkDrawNft")
+		emit_signal("endTurnMana")
 		

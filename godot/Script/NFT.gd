@@ -71,7 +71,5 @@ func _moveNFT():
 		played = false
 		animation.play("moveNFTback")
 
-
-
 func _on_Health_checkDrawNft():
 	_getInstanceNFT()
