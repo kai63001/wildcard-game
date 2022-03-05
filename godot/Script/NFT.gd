@@ -53,11 +53,13 @@ func cal():
 		data += 130
 
 func _getMoveNFT(p):
+	#print(p)
+	#print(get_viewport_rect().size.x / 2,",",(get_viewport_rect().size.x / 2) - 300,",",(get_viewport_rect().size.x / 2) + 300)
 	if(!moveNFT):
-		if((p.x > 300 && p.x < 800) && (p.y > 555)):
+		if((p.x > (get_viewport_rect().size.x / 2) - 280 && p.x < (get_viewport_rect().size.x / 2) + 300) && (p.y > 555)):
 			moveNFT = true
 	else:
-		if((p.y < 330 || (p.x < 300) || (p.x > 800)) && !selected):
+		if((p.y < 330 || (p.x < (get_viewport_rect().size.x / 2) - 280) || (p.x > (get_viewport_rect().size.x / 2) + 300)) && !selected):
 			moveNFT = false
 
 func _moveNFT():

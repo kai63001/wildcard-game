@@ -26,7 +26,6 @@ func _ready():
 
 		moralis.start(options)
 		
-
 	
 func login():
 	# Check if user already logged in
