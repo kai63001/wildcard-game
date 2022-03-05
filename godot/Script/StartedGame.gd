@@ -7,6 +7,34 @@ var enemyCount = 0;
 onready var MainGame = get_parent().get_node(".")
 onready var ServerConnect = get_node("/root/Main/ServerConnect")
 
+var NFTData = {
+	1:{
+		"AttackID":101,
+		"Name":"Sword",
+		"Mana": 5
+	},
+	2:{
+		"AttackID":102,
+		"Name":"Health",
+		"Mana": 8
+	},
+	3:{
+		"AttackID":103,
+		"Name":"Watcher",
+		"Mana": 6
+	},
+	4:{
+		"AttackID":104,
+		"Name":"Lock",
+		"Mana": 7
+	},
+	5:{
+		"AttackID":105,
+		"Name":"Shuffle",
+		"Mana": 12
+	}
+}
+
 var lock = false;
 var enemyLock = false;
 
