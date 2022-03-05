@@ -13,7 +13,7 @@ onready var ServerConnect = get_node("/root/Main/ServerConnect")
 
 func _ready():
 	var nftText = load("res://Assets/NFT/"+String(NFTId)+".png")
-	$NFT.texture = nftText
+	$TextureButton.texture_normal = nftText
 	print(StartGame.NFTData[int(NFTId)])
 
 func _physics_process(_delta):
@@ -54,7 +54,7 @@ func _on_TextureButton_focus_exited():
 	
 func _checkNFT():
 	print(StartGame.NFTData[1].Mana)
-	if(Mana.mana > StartGame.NFTData[int(NFTId)].Mana && MainGame.myTurn):
+	if(Mana.mana >= StartGame.NFTData[int(NFTId)].Mana && MainGame.myTurn):
 		queue_free()
 		NFT.cal()
 		Mana.mana -= StartGame.NFTData[int(NFTId)].Mana

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Script/My/mana.gd" type="Script" id=22]
 [ext_resource path="res://Script/Enemy/mana.gd" type="Script" id=23]
 [ext_resource path="res://Screen/NFT.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Screen/AlertNFT.tscn" type="PackedScene" id=25]
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
@@ -501,12 +502,12 @@ __meta__ = {
 pause_mode = 2
 wait_time = 60.0
 
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AlertNFT" parent="." instance=ExtResource( 25 )]
+visible = false
+margin_left = -102.0
+margin_top = -151.0
+margin_right = 102.0
+margin_bottom = 150.0
 
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/TimerEnemy" method="_on_StartGame_enemyCountChangeSignal"]
 [connection signal="enemyCountChangeSignal" from="." to="EnemyUI/CountBar/enemyCountBar" method="_on_StartGame_enemyCountChangeSignal"]
