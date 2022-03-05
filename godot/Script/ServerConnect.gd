@@ -74,9 +74,11 @@ func _on_match_state(p_state : NakamaRTAPI.MatchData):
 			get_parent().get_node("MainGame").get_node("StartGame").enemyCountChange(int(p_state.data))
 		2: #enemy Lock
 			get_parent().get_node("MainGame").get_node("StartGame").enemyGetLocked()
-		#Zone Attack NFT CARD
-		101:
+		#Zone Enemy use NFT CARD
+		101: #Enemy use NFT Attack
 			get_parent().get_node("MainGame").get_node("StartGame").enemyAttack(int(p_state.data))
+		102: #Enemy use NFT Health
+			get_parent().get_node("MainGame").get_node("StartGame").enemyHealth(int(p_state.data))
 
 
 

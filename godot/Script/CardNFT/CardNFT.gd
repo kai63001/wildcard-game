@@ -64,7 +64,13 @@ func sendNFTData(id):
 	match id:
 		1:
 			_attack(id)
+		2:
+			_health(id)
 
 func _attack(id):
 	StartGame.get_node("EnemyUI/Health").HP -= 12
+	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	
+
+func _health(id):
+	StartGame.get_node("MyUI/Health").HP = clamp(StartGame.get_node("MyUI/Health").HP + 15,0,30)
 	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	

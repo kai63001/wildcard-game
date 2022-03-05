@@ -40,12 +40,14 @@ var lock = false;
 var enemyLock = false;
 
 signal enemyCountChangeSignal(value)
+# warning-ignore:unused_signal
 signal syncTime(value)
 
 func _ready():
 	_randomCardNumber();
 	_checkMyTurn();
 	
+# warning-ignore:unused_argument
 func _process(delta):
 	if(lock && !enemyLock):
 		MainGame.myTurn = false
@@ -81,9 +83,12 @@ func enemyGetLocked():
 	emit_signal("enemyCountChangeSignal",enemyCount)
 	changeTurn()
 
-
 #Enemy Zone NFT Attack
 func enemyAttack(id):
 	$EnemyUI/mana.mana -= NFTData[id].Mana
 	$MyUI/Health.HP -= 12
 	Cam.isShake = true
+
+func enemyHealth(id):
+	$EnemyUI/Health.HP = clamp($EnemyUI/Health.HP + 15,0,30)
+	$EnemyUI/mana.mana -= NFTData[id].Mana
