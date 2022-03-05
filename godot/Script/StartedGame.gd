@@ -88,10 +88,19 @@ func enemyAttack(id):
 	$EnemyUI/mana.mana -= NFTData[id].Mana
 	$MyUI/Health.HP -= 12
 	Cam.isShake = true
+	getAlertNFT(id)
 
 func enemyHealth(id):
 	$EnemyUI/Health.HP = clamp($EnemyUI/Health.HP + 15,0,30)
 	$EnemyUI/mana.mana -= NFTData[id].Mana
+	getAlertNFT(id)
 
 func enemyWatcher(id):
 	$EnemyUI/mana.mana -= NFTData[id].Mana
+	getAlertNFT(id)
+
+func getAlertNFT(id):
+	var AlertNFT = load("res://Screen/AlertNFT.tscn")
+	var alert = AlertNFT.instance()
+	alert.nftId = id
+	$MyUI.add_child(alert)
