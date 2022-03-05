@@ -6,6 +6,7 @@ var myCount = 0;
 var enemyCount = 0;
 onready var MainGame = get_parent().get_node(".")
 onready var ServerConnect = get_node("/root/Main/ServerConnect")
+onready var Cam = get_node("/root/Main/Camera2D")
 
 var NFTData = {
 	1:{
@@ -79,3 +80,10 @@ func enemyGetLocked():
 	enemyLock = true
 	emit_signal("enemyCountChangeSignal",enemyCount)
 	changeTurn()
+
+
+#Enemy Zone NFT Attack
+func enemyAttack(id):
+	$EnemyUI/mana.mana -= NFTData[id].Mana
+	$MyUI/Health.HP -= 12
+	Cam.isShake = true

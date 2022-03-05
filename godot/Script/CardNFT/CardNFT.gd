@@ -9,6 +9,7 @@ onready var NFT = get_parent().get_parent().get_node(".")
 onready var Mana = get_node("/root/Main/MainGame/StartGame/MyUI/mana")
 onready var MainGame = get_node("/root/Main/MainGame")
 onready var StartGame = get_node("/root/Main/MainGame/StartGame")
+onready var ServerConnect = get_node("/root/Main/ServerConnect")
 
 func _ready():
 	var nftText = load("res://Assets/NFT/"+String(NFTId)+".png")
@@ -60,4 +61,10 @@ func _checkNFT():
 		NFT.cal()
 
 func sendNFTData(id):
-	pass
+	match id:
+		1:
+			_attack(id)
+
+func _attack(id):
+	StartGame.get_node("EnemyUI/Health").HP -= 12
+	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	

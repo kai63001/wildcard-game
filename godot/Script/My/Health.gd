@@ -12,6 +12,7 @@ signal changeEnemyCountBar(value)
 
 func _process(delta):
 	$Label.text = String(HP)
+	HPProgress.value = HP
 
 func _on_DrawCard_myCountValue(count):
 	if(count > 12):
