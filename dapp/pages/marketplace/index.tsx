@@ -61,8 +61,9 @@ const Marketplace = () => {
       width: '50%',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      backgroundColor: "black",
-      borderRadius: "10px"
+      backgroundColor: "white",
+      color: "black",
+      borderRadius: "0px"
     },
   };
 

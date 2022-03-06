@@ -34,18 +34,18 @@ const SellCardComponent = (props: any) => {
   return (
     <>
     <div className="grid grid-cols-4 gap-4 h-full">
-      <div className="col-span-2 relative rounded-md overflow-hidden">
+      <div className="col-span-2 relative overflow-hidden">
         {nft.data ? (
           <Image
-            className="rounded-md h-96"
+            className=" h-96"
             src={nft.data.image}
             alt={nft.data.name}
             title={nft.data.name}
             layout="intrinsic"
             width={300}
             height={384}
-            blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            placeholder="blur"
+            quality={100}
+            placeholder="empty"
           />
         ) : (
           <div className="bg-gray-900 h-96 animate-pulse rounded-md"></div>
