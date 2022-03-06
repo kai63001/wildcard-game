@@ -51,7 +51,7 @@ font_data = ExtResource( 1 )
 [sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect2:rect_position")
+tracks/0/path = NodePath("shuffleCard:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -67,7 +67,7 @@ tracks/0/keys = {
 resource_name = "shuffle"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect2:rect_position")
+tracks/0/path = NodePath("shuffleCard:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -432,7 +432,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="MyUI/DrawCard"]
+[node name="shuffleCard" type="TextureRect" parent="MyUI/DrawCard"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -0.000442505

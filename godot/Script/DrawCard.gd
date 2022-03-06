@@ -10,6 +10,9 @@ onready var CardBack = load("res://Assets/CardDeck2.png")
 onready var CardBackBorder = load("res://Assets/CardDeckBorder.png")
 onready var CardBackLock = load("res://Assets/CardDeckLock.png")
 
+func _ready():
+	$shuffleCard.hide()
+
 func _on_DrawCard_pressed():
 	if(MainGame.myTurn):
 		var CardFlip_resource = load("res://Item/CardFlip/CardFlipOne.tscn")
@@ -28,6 +31,7 @@ func _process(delta):
 	if(StartGame.lock):
 		texture_normal = CardBackLock
 	elif(MainGame.myTurn):
+		print("myTurn")
 		texture_normal = CardBackBorder
 	else:
 		texture_normal = CardBack
@@ -48,9 +52,11 @@ func _watcher():
 	$".".get_child($".".get_child_count()-1).watcher = true
 	
 func shuffle():
+	$shuffleCard.show()
 	$AnimationPlayer.play("shuffle")
 	yield(get_tree().create_timer(0.5), "timeout")
 	$AnimationPlayer.play("shuffle")
-	yield(get_tree().create_timer(0.5), "timeout")	
+	yield(get_tree().create_timer(0.5), "timeout")
+	$shuffleCard.hide()
 	randomize()
 	StartGame.cardNumber.shuffle()
