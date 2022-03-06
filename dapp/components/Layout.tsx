@@ -21,7 +21,7 @@ const Layout = (props: any) => {
         image={props.image}
       />
       <header>
-        <Navbar />
+        {props.noNavbar ? null : <Navbar />}
       </header>
       <main className={`${!props.noFull && 'max-w-screen-xl mx-auto mt-3 px-2 xs:px-0'}`}>
         {props.children}
