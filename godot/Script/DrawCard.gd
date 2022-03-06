@@ -31,7 +31,6 @@ func _process(delta):
 	if(StartGame.lock):
 		texture_normal = CardBackLock
 	elif(MainGame.myTurn):
-		print("myTurn")
 		texture_normal = CardBackBorder
 	else:
 		texture_normal = CardBack
