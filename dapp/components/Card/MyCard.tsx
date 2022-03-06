@@ -6,7 +6,7 @@ const Card = (props: any) => {
     <Link href={`/marketplace/my?tokenId=${props.item.tokenId}`} as={`/marketplace/my/${props.item.tokenId}`}>
       <a>
         <div className="bg-white overflow-hidden rounded-md text-gray-900">
-          <div className="bg-gray-300 h-60 overflow-hidden relative">
+          <div className="bg-gray-300 h-72 overflow-hidden relative">
             <Image
               className="rounded-tr-md rounded-tl-md max-h-56"
               src={props.item.image}
