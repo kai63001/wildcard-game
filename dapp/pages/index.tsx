@@ -19,8 +19,8 @@ const Home = () => {
               {Nav.map((item,index)=>{
                 return (
                   <div className="text-1xl mt-2">
-                    <Link href={`/${item.toLowerCase()}`}>
-                      <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">
+                    <Link href={`/`}>
+                      <a className="hover:bg-purple-900 hover:text-white px-4 py-2 duration-300 rounded-md">
                         {item}
                       </a>
                     </Link>
@@ -29,8 +29,37 @@ const Home = () => {
               })}
             </div>
             <div className="mt-2">
-              asdasdas
+            <Link href="/marketplace">
+              <a className="relative w-full">
+                <img src="/images/button.png" width={100} alt="" />
+                <p className="absolute top-1.5 w-full ml-6 text-white whitespace-nowrap">LOG IN</p>
+              </a>
+            </Link>
             </div>
+          </div>
+        </div>
+        <div className="absolute top-20 left-0 w-full">
+          <div className="max-w-screen-xl mx-auto mt-3 px-2 xs:px-0">
+            <h1 className="text-7xl">
+              Game Card NFT
+              <br />
+              Multiplayer
+            </h1>
+            <div className="mt-2 text-2xl">
+              <p>It is a card game based on blackjack.
+                <br /> You can battle other players with  Card NFTs with different abilities.</p>
+            </div>
+            <div className="relative mt-2">
+              <Link href="/asdasdas">
+                <a>
+                  <div className="absolute top-4 ml-10 text-white text-4xl">
+                    START
+                  </div>
+                  <img width={200} src="/images/button2.png" />
+                </a>
+              </Link>
+            </div>
+            
           </div>
         </div>
         <img
