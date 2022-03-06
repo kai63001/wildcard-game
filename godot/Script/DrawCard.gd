@@ -46,3 +46,11 @@ func _watcher():
 	$".".add_child(CardFlip);
 	$".".get_child($".".get_child_count()-1).cardNumber = StartGame.cardNumber[0]
 	$".".get_child($".".get_child_count()-1).watcher = true
+	
+func shuffle():
+	$AnimationPlayer.play("shuffle")
+	yield(get_tree().create_timer(0.5), "timeout")
+	$AnimationPlayer.play("shuffle")
+	yield(get_tree().create_timer(0.5), "timeout")	
+	randomize()
+	StartGame.cardNumber.shuffle()

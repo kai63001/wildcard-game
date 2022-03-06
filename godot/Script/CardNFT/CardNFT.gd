@@ -53,7 +53,6 @@ func _on_TextureButton_focus_exited():
 	NFT.cal()
 	
 func _checkNFT():
-	print(StartGame.NFTData[1].Mana)
 	if(Mana.mana >= StartGame.NFTData[int(NFTId)].Mana && MainGame.myTurn):
 		queue_free()
 		NFT.cal()
@@ -72,6 +71,8 @@ func sendNFTData(id):
 			_watcher(id)
 		4:
 			_forceLock(id)
+		5:
+			_shuffle(id)
 
 func _attack(id):
 	StartGame.get_node("EnemyUI/Health").HP -= 12
@@ -89,3 +90,7 @@ func _watcher(id):
 func _forceLock(id):
 	StartGame.enemyLock = true
 	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	
+
+func _shuffle(id):
+	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))
+	StartGame.get_node("MyUI/DrawCard").shuffle()

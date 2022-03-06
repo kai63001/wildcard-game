@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Assets/Stacked pixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Count/borderCountPoint.png" type="Texture" id=2]
@@ -47,6 +47,37 @@ font_data = ExtResource( 1 )
 size = 39
 outline_size = 3
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect2:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "shuffle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect2:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 205 ), Vector2( 0, 0 ) ]
+}
 
 [node name="StartGame" type="Node2D"]
 position = Vector2( 514, 305 )
@@ -401,6 +432,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureRect2" type="TextureRect" parent="MyUI/DrawCard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -0.000442505
+texture = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="MyUI/DrawCard"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -417,6 +458,10 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MyUI/DrawCard"]
+anims/RESET = SubResource( 5 )
+anims/shuffle = SubResource( 6 )
 
 [node name="Lock" type="Control" parent="MyUI"]
 anchor_left = 1.0

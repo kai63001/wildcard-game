@@ -27,12 +27,12 @@ var NFTData = {
 	4:{
 		"AttackID":104,
 		"Name":"Lock",
-		"Mana": 7
+		"Mana": 6
 	},
 	5:{
 		"AttackID":105,
 		"Name":"Shuffle",
-		"Mana": 12
+		"Mana": 2
 	}
 }
 
@@ -102,6 +102,10 @@ func enemyWatcher(id):
 func enemyForceLock(id):
 	getAlertNFT(id)
 	lock = true
+	$EnemyUI/mana.mana -= NFTData[id].Mana
+
+func enemyShuffle(id):
+	getAlertNFT(id)
 	$EnemyUI/mana.mana -= NFTData[id].Mana
 
 #Alert
