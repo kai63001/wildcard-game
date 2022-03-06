@@ -168,7 +168,9 @@ const Marketplace = () => {
         <div className="col-span-3">
           <h2 className="text-2xl mb-3">Cards</h2>
           <div className="grid grid-cols-4 gap-4">
-            {loading ? <Loading /> : nftData.map((item: any,i:any) => (<SellCard key={i} item={item}/>))}
+            {loading ?[...Array(12)].map((item:any,i:any)=>(
+               <Loading />
+            )) : nftData.map((item: any,i:any) => (<SellCard key={i} item={item}/>))}
           </div>
         </div>
         <Modal ariaHideApp={false} onRequestClose={()=>router.push('/marketplace')} style={customStyles} isOpen={!!router.query.tokenId}>

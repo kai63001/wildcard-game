@@ -38,14 +38,14 @@ const Navbar = () => {
           </div>
           <div className="text-1xl mt-2">
             <Link href="/">
-              <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">
+              <a className="hover:bg-purple-900 hover:text-white px-4 py-2 duration-300 rounded-md">
                 PLAY GAME
               </a>
             </Link>
           </div>
           <div className="text-1xl mt-2">
             <Link href="/marketplace">
-              <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">
+              <a className="hover:bg-purple-900 hover:text-white px-4 py-2 duration-300 rounded-md">
                 MARKETPLACE
               </a>
             </Link>
@@ -53,7 +53,7 @@ const Navbar = () => {
           {auth.toUpperCase() == "0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723".toUpperCase() && (
             <div className="text-1xl mt-2">
               <Link href="/upload">
-                <a className="hover:bg-gray-600 px-4 py-2 duration-300 rounded-md">
+                <a className="hover:bg-purple-900 hover:text-white px-4 py-2 duration-300 rounded-md">
                   MINT NFT
                 </a>
               </Link>
