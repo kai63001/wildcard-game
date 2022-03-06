@@ -81,7 +81,8 @@ func _on_match_state(p_state : NakamaRTAPI.MatchData):
 			get_parent().get_node("MainGame").get_node("StartGame").enemyHealth(int(p_state.data))
 		103: #Enemy use NFT Watcher
 			get_parent().get_node("MainGame").get_node("StartGame").enemyWatcher(int(p_state.data))
-
+		104: #Enemy use NFT Force Lock
+			get_parent().get_node("MainGame").get_node("StartGame").enemyForceLock(int(p_state.data))
 
 
 func _sendStateData(code,data):

@@ -70,6 +70,8 @@ func sendNFTData(id):
 			_health(id)
 		3:
 			_watcher(id)
+		4:
+			_forceLock(id)
 
 func _attack(id):
 	StartGame.get_node("EnemyUI/Health").HP -= 12
@@ -84,3 +86,6 @@ func _watcher(id):
 	drawCard._watcher()
 	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	
 		
+func _forceLock(id):
+	StartGame.enemyLock = true
+	ServerConnect._sendStateData(StartGame.NFTData[int(NFTId)].AttackID,String(id))	

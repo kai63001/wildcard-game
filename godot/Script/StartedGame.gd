@@ -99,6 +99,12 @@ func enemyWatcher(id):
 	$EnemyUI/mana.mana -= NFTData[id].Mana
 	getAlertNFT(id)
 
+func enemyForceLock(id):
+	getAlertNFT(id)
+	lock = true
+	$EnemyUI/mana.mana -= NFTData[id].Mana
+
+#Alert
 func getAlertNFT(id):
 	var AlertNFT = load("res://Screen/AlertNFT.tscn")
 	var alert = AlertNFT.instance()
