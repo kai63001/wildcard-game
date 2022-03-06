@@ -5,17 +5,14 @@ const Home = () => {
     <Layout noFull>
       <div className="text-center w-full flex overflow-y-hidden relative">
         <img
+        width={"100%"}
           className="m-auto h-screen w-full object-cover overflow-y-hidden"
-          src="/images/bg.jpg"
+          src="https://www.teahub.io/photos/full/361-3611215_pixel-art.jpg"
           alt=""
         />
-        <img
-          src="https://cdn.discordapp.com/attachments/503940441113362435/942360880862097458/unknown.png"
-          alt=""
-          width="800px"
-          className="absolute right-0 bottom-9"
-        />
+        <br />
       </div>
+      asdasdasd
     </Layout>
   );
 };
