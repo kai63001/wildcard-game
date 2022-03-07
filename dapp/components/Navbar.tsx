@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="flex space-x-5">
           <div className="text-2xl mt-1">
             <Link href="/">
-              <a>WILE GAME</a>
+              <a>WILD GAME</a>
             </Link>
           </div>
           <div className="text-1xl mt-2">

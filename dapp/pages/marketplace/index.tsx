@@ -169,7 +169,7 @@ const Marketplace = () => {
           <h2 className="text-2xl mb-3">Cards</h2>
           <div className="grid grid-cols-4 gap-4">
             {loading ?[...Array(12)].map((item:any,i:any)=>(
-               <Loading />
+               <Loading key={i}/>
             )) : nftData.map((item: any,i:any) => (<SellCard key={i} item={item}/>))}
           </div>
         </div>

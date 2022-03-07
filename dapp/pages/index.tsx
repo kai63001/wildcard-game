@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import Link from "next/Link"
+import Link from "next/link"
 
 const Home = () => {
   const Nav = ["Home","About","Marketplace","Contact"];
@@ -11,14 +11,14 @@ const Home = () => {
           <div className="max-w-screen-xl mx-auto mt-3 px-2 xs:px-0 flex justify-between">
             <div className="text-2xl mt-1 ">
             <Link href="/">
-              <a className="">WILE GAME</a>
+              <a className="">WILD GAME</a>
             </Link>
           </div>
             <div className="flex justify-between w-1/3">
               {/* loop Nav */}
               {Nav.map((item,index)=>{
                 return (
-                  <div className="text-1xl mt-2">
+                  <div key={index} className="text-1xl mt-2">
                     <Link href={`/`}>
                       <a className="hover:bg-purple-900 hover:text-white px-4 py-2 duration-300 rounded-md">
                         {item}

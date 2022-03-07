@@ -6,38 +6,38 @@ const Header = (props:any) => {
     <NextSeo
       title={
         props.title
-          ? `${props.title} | Wile Game`
-          : "Wile Game"
+          ? `${props.title} | Wild Game`
+          : "Wild Game"
       }
       description={
         props.des
           ? props.des
-          : "Wile Game"
+          : "Wild Game"
       }
       canonical={`https://wilegame.com${router.asPath}`}
       openGraph={{
         type: "website",
         locale: "en_EN",
         title: props.title
-          ? `${props.title} | Wile Game`
-          : "Wile Game",
+          ? `${props.title} | Wilr Game`
+          : "Wild Game",
         description: props.des
           ? props.des
-          : "Wile Game",
+          : "Wild Game",
         images: [
           {
             url:
               props.image == undefined || props.image.length == 0
-                ? "https://wilegame.com/main.jpg"
+                ? "https://wildgame.com/main.jpg"
                 : props.image,
           },
         ],
-        url: `https://wilegame.com${router.asPath}`,
+        url: `https://wildgame.com${router.asPath}`,
         site_name: "wallss",
       }}
       twitter={{
-        handle: "@wilegame",
-        site: "@wilegame",
+        handle: "@wildgame",
+        site: "@wildgame",
         cardType: "summary_large_image",
       }}
     />
