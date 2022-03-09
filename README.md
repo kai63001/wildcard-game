@@ -29,3 +29,9 @@ My friend will tell me again.
 ![dapp5](./screenshort/5.png)
 ## Mint
 ![dapp6](./screenshort/6.png)
+
+# Smart Contract
+My smart contract on Binance smart chain testnet use hardhat to deploy
+
+Example transaction
+https://testnet.bscscan.com/token/0xe97bd2b6b71647f0c3517613f19f8c561b98a7e8
