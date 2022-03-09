@@ -71,7 +71,6 @@ const Home = () => {
         
         <br />
       </div>
-      asdasdasd
     </Layout>
   );
 };
