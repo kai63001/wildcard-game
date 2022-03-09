@@ -17,3 +17,15 @@ You can battle other players with Card NFTs with different abilities.
 ![main4](./screenshort/main4.png)
 
 # How my multiplayer work
+Imagine me and my friend playing chess in different rooms. When I moved my checkers from d2 to d3, I told my friend to move the checkers from d2 to d3, and if my friend moved d7 to d6.
+My friend will tell me again.
+
+# DApp
+![dapp](./screenshort/1.png)
+## Marketplace
+![dapp2](./screenshort/2.png)
+![dapp3](./screenshort/3.png)
+![dapp4](./screenshort/4.png)
+![dapp5](./screenshort/5.png)
+## Mint
+![dapp6](./screenshort/6.png)

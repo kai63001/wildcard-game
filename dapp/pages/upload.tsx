@@ -60,7 +60,7 @@ const UploadPage = () => {
         <div></div>
         <div className="">
           <div className="border-2 border-gray-800 col-span-1">
-            <div className="p-4 bg-gray-800">
+            <div className="p-4 bg-gray-800 text-white">
               <h1>MINT NFT</h1>
             </div>
             <div className="p-4">
@@ -97,7 +97,7 @@ const UploadPage = () => {
                   </option>
                 </select>
                 <Input placeholder="image" type="file" name="image" required />
-                <button type="submit" disabled={mining} className="bg-gray-900 py-2 w-full">
+                <button type="submit" disabled={mining} className="bg-gray-900 text-white py-2 w-full">
                   {mining && <Spining />}
                   MINT
                 </button>
