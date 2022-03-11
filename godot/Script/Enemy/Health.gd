@@ -6,16 +6,21 @@ onready var StartGame = get_parent().get_parent().get_node(".")
 onready var HPMy = get_parent().get_parent().get_node("MyUI/Health")
 onready var HPMyProgress = get_parent().get_parent().get_node("MyUI/Health/HealthProgress")
 onready var CameraMain =  get_node("/root/Main/Camera2D")
+onready var MainGame =  get_node("/root/Main/MainGame")
 
 signal changeMyCountBar(value)
 signal changeEnemyCountBar(value)
 
 signal checkDrawNft()
 signal endTurnMana()
+var EndGame = false
 
 func _process(delta):
 	$Label.text = String(HP)
 	HPProgress.value = HP
+	if(HP <= 0 && EndGame == false):
+		EndGame == true
+		MainGame.endGame("YOU WIN")
 
 
 func _on_StartGame_enemyCountChangeSignal(count):

@@ -89,3 +89,6 @@ func _on_match_state(p_state : NakamaRTAPI.MatchData):
 
 func _sendStateData(code,data):
 	socket.send_match_state_async(match_id, code, data)
+	
+func _leaveMath():
+	socket.LeaveMatchAsync(match_id);

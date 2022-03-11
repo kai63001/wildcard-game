@@ -20,3 +20,8 @@ func _on_request_completed(result, response_code, headers, body):
 	myNFT += [4,5,1,2,3,4,5]
 	loadingNFT = false
 	$LoadingNFT.queue_free()
+
+func showUI():
+	var ui_res = load("res://Screen/UI.tscn")
+	var ui_in = ui_res.instance()
+	add_child(ui_in)
