@@ -91,4 +91,5 @@ func _sendStateData(code,data):
 	socket.send_match_state_async(match_id, code, data)
 	
 func _leaveMath():
-	socket.LeaveMatchAsync(match_id);
+	yield(socket.leave_match_async(match_id), "completed")
+	match_id = "";
