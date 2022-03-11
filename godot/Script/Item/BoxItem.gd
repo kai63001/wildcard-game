@@ -21,5 +21,6 @@ func _on_TextureButton_pressed():
 		node._clearRandomBox();
 		node.myPoint = num;
 		var server = get_node("/root/Main/ServerConnect")
+		print("num :",num)
 		server._sendStateData(0,String(num))
 

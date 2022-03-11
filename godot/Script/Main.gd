@@ -22,6 +22,4 @@ func _on_request_completed(result, response_code, headers, body):
 	$LoadingNFT.queue_free()
 
 func showUI():
-	var ui_res = load("res://Screen/UI.tscn")
-	var ui_in = ui_res.instance()
-	add_child(ui_in)
+	get_tree(). reload_current_scene()

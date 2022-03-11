@@ -56,6 +56,7 @@ func _on_matchmaker_matched(p_matched : NakamaRTAPI.MatchmakerMatched):
 		return
 	print("Joined match: %s" % [joined_match])
 	match_id = joined_match.match_id
+	print(match_id)
 	# Remove the UI
 	var UI = get_parent().get_node("UI")
 	UI.queue_free()
@@ -93,3 +94,4 @@ func _sendStateData(code,data):
 func _leaveMath():
 	yield(socket.leave_match_async(match_id), "completed")
 	match_id = "";
+	matchmaker_ticket = null;
