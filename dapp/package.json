@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "production": "next build && next start"
   },
   "dependencies": {
     "@web3-react/core": "^6.1.9",

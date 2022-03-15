@@ -64,5 +64,20 @@ services:
       EOF'
     ports:
       - '9090:9090'
+  dapp:
+    ports:
+      - "3000:3000"
+    build: ./dapp/.
+    volumes:
+      - type: bind
+        source: ./deploy.json
+        target: /deploy.json
+      - type: bind
+        source: ./artifacts
+        target: /artifacts
+  game:
+    ports:
+      - "8000:8000"
+    build: ./godot/.
 volumes:
   data:
