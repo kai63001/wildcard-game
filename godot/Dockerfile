@@ -1,6 +1,6 @@
 FROM python
 
-WORKDIR /app
-COPY Demo/. .
+WORKDIR /game
+COPY Demo/. ./game
 
 CMD ["python", "-m", "http.server","8000"]
