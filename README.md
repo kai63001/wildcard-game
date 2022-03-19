@@ -45,7 +45,7 @@ You should get Moralis API server from moralis.io with binance testnet then open
 if you want to deploy and get you own smart contract you can do this
 1. change the key at secret.json (key is Metamask private key you will get 92b99... then you just add 0x before your private key)
 2. npm i
-3. npm run deploy:deploy:binance
+3. npm run deploy:binance
 
 How to run
 (you should have docker first)
