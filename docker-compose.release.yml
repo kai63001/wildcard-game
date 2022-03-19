@@ -78,7 +78,9 @@ services:
   gameer:
     ports:
       - "8000:8000"
-    build: ./godot/Dockerfile.release
+    build:
+      context: ./godot
+      dockerfile: Dockerfile.release
   nginx:
     image: nginx:latest
     ports:
