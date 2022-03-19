@@ -38,7 +38,7 @@ services:
       - "7350:7350"
       - "7351:7351"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7350/"]
+      test: ["CMD", "curl", "-f", "http://178.128.126.146:7350/"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -54,7 +54,7 @@ services:
       scrape_configs:
         - job_name: prometheus
           static_configs:
-          - targets: ['localhost:9090']
+          - targets: ['178.128.126.146:9090']
         - job_name: nakama
           metrics_path: /
           static_configs:
