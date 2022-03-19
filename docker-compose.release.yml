@@ -67,7 +67,9 @@ services:
   dapp:
     ports:
       - "3000:3000"
-    build: ./dapp/.
+    build:
+      context: ./dapp
+      dockerfile: Dockerfile.release
     volumes:
       - type: bind
         source: ./deploy.json
@@ -75,6 +77,9 @@ services:
       - type: bind
         source: ./artifacts
         target: /artifacts
+      - ./:/app
+      - /app/node_modules
+      - /app/.next
   gameer:
     ports:
       - "8000:8000"
