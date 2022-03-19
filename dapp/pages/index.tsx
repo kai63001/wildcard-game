@@ -50,8 +50,8 @@ const Home = () => {
                 <br /> You can battle other players with  Card NFTs with different abilities.</p>
             </div>
             <div className="relative mt-2">
-              <Link href="/">
-                <a className="inline-block">
+              <Link href="/game">
+                <a target="_blank" className="inline-block">
                   <div className="absolute top-4 ml-10 text-white text-4xl">
                     START
                   </div>
