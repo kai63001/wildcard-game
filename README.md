@@ -51,6 +51,5 @@ How to run
 (you should have docker first)
 1. docker-compose up
 
-Dapp: localhost:3000
-Game: localhost:8000
+App: http://localhost
 ```
