@@ -4,10 +4,10 @@ import { create } from "ipfs-http-client";
 import { mint, getUserToken } from "@/lib/Web3Client";
 import { useState } from "react";
 import Spining from "@/components/Animation/spining";
+import Image from "next/image";
 
 const UploadPage = () => {
-
-  const [mining,setMining] = useState(false);
+  const [mining, setMining] = useState(false);
 
   const ipfs = create({
     host: "ipfs.infura.io",
@@ -35,7 +35,7 @@ const UploadPage = () => {
       content: Buffer.from(JSON.stringify(data)),
     });
     console.log(`https://ipfs.infura.io/ipfs/${res}`);
-    await mint(`https://ipfs.infura.io/ipfs/${res}`).then((_data)=>{
+    await mint(`https://ipfs.infura.io/ipfs/${res}`).then((_data) => {
       setMining(false);
       //clear form
       e.target.reset();
@@ -57,7 +57,6 @@ const UploadPage = () => {
   return (
     <Layout>
       <div className="grid grid-cols-3 gap-4 mt-10">
-        <div></div>
         <div className="">
           <div className="border-2 border-gray-800 col-span-1">
             <div className="p-4 bg-gray-800 text-white">
@@ -69,35 +68,27 @@ const UploadPage = () => {
                 <Input placeholder="id" type="number" name="id" required />
                 <select
                   name="rarity"
-                  className="w-full text-gray-700 bg-white mb-2 px-2 py-2"
+                  className="w-full text-gray-700 bg-white mb-2 px-2 py-2 border-2"
                   id="rarity"
-                  defaultValue={'F'}
+                  defaultValue={"F"}
                   required
                 >
                   <option value="F" disabled>
                     Rarity
                   </option>
-                  <option value="B">
-                    B
-                  </option>
-                  <option value="A">
-                    A
-                  </option>
-                  <option value="S">
-                    S
-                  </option>
-                  <option value="R">
-                    R
-                  </option>
-                  <option value="SR">
-                    SR
-                  </option>
-                  <option value="SSR">
-                    SSR
-                  </option>
+                  <option value="B">B</option>
+                  <option value="A">A</option>
+                  <option value="S">S</option>
+                  <option value="R">R</option>
+                  <option value="SR">SR</option>
+                  <option value="SSR">SSR</option>
                 </select>
                 <Input placeholder="image" type="file" name="image" required />
-                <button type="submit" disabled={mining} className="bg-gray-900 text-white py-2 w-full">
+                <button
+                  type="submit"
+                  disabled={mining}
+                  className="bg-gray-900 text-white py-2 w-full"
+                >
                   {mining && <Spining />}
                   MINT
                 </button>
@@ -105,7 +96,32 @@ const UploadPage = () => {
             </div>
           </div>
         </div>
-        
+        <div className="border-2 border-gray-800 col-span-2">
+          <div className="p-4 bg-gray-800 text-white">
+            <h1>MINT NFT IN GAME CARD</h1>
+          </div>
+          <div className="p-4">
+            <div className="grid grid-cols-3 gap-4 h-full">
+              <div className="">
+                <div className="relative w-full h-80">
+                  <Image
+                    className="max-h-56"
+                    src={
+                      "https://ipfs.infura.io/ipfs/QmXh3DC6BxTiY7NiUmrQNjiyZz5265VkFM8RF7bKFuGbNe"
+                    }
+                    alt={""}
+                    title={""}
+                    layout="fill"
+                    quality={100}
+                    blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    placeholder="blur"
+                  />
+                </div>
+                <input type="number" className="mt-3 border-2 text-center w-full" min={0} required />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );
