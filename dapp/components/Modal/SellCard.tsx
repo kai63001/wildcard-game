@@ -27,6 +27,9 @@ const SellCardComponent = (props: any) => {
       buyNFT(props.tokenId,nft.price).then((data: any) => {
         setOnBuying(false);
         router.push('/marketplace/my')
+      }).catch((err) => {
+        setOnBuying(false);
+        alert("Not enough money")
       });
     });
   }

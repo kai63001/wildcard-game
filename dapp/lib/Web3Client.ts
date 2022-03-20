@@ -286,6 +286,8 @@ export const buyNFT = (itemId: any, price: any) => {
           await sleep(1000);
         }
         res(transaction);
+      }).catch((error:any)=>{
+        rej("error")
       });
   });
 };
