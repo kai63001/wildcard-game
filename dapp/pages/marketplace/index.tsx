@@ -26,6 +26,10 @@ const Marketplace = () => {
 
   useEffect(() => {
     getUnSoleList();
+    //@ts-ignore
+    window.ethereum.on("accountsChanged", function (accounts) {
+      getUnSoleList();
+    });
   }, []);
 
   const getUnSoleList = () => {
