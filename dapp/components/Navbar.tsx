@@ -1,12 +1,11 @@
 import { init, isAuth } from "@/lib/Web3Client";
 import { useEffect, useMemo, useState } from "react";
-// import { isAuth } from "@/lib/JWT";
-// import { Cookies } from "react-cookie";
-// const cookies = new Cookies();
 import Link from "next/link";
+import addressData from "../../deploy.json";
 
 const Navbar = () => {
   const [auth, setAuth] = useState("");
+  const ownerAddress = addressData.owner; // * nft contractaddress
   useEffect(() => {
     getAuth();
     //@ts-ignore
@@ -50,7 +49,7 @@ const Navbar = () => {
               </a>
             </Link>
           </div>
-          {auth.toUpperCase() == "0xF58F1e730fd6bDd0c239E1D83eaB9d87132eF723".toUpperCase() && (
+          {auth && auth.toUpperCase() == ownerAddress.toUpperCase() && (
             <div className="text-1xl mt-2">
               <Link href="/upload">
                 <a className="hover:bg-purple-900 hover:text-white px-4 py-2 duration-300 rounded-md">
