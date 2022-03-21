@@ -9,6 +9,39 @@ import Image from "next/image";
 const UploadPage = () => {
   const [mining, setMining] = useState(false);
 
+  const NFTData = [
+    {
+      image:
+        "https://ipfs.infura.io/ipfs/QmWAJZnCdWxN17GW4Wi1HA2NFhGx8TATzMxL1XNUZUGitr",
+      data: "https://ipfs.infura.io/ipfs/QmPfaA5bQn6uUwU5pDtBS44pFxZb5ECcRehG858hnRo1i8",
+      id: 1,
+    },
+    {
+      image:
+        "https://ipfs.infura.io/ipfs/QmYocvY7GvF84Ph2HYK6U26LCdzjmcCZ849EzFbYJdNR7E",
+      data: "https://ipfs.infura.io/ipfs/QmNushQVe6o6vBLscoFnfrRd5ek4vt8XvyZJKmumZ5MsVc",
+      id: 2,
+    },
+    {
+      image:
+        "https://ipfs.infura.io/ipfs/QmdiKyNCL2rkoTqpepzJK6n94iiF8j4NwUu9Uefsn2mwtf",
+      data: "https://ipfs.infura.io/ipfs/QmQs2o1wtbG35i1z2sCdV1QPAmBk34PwEKccJXSoS5QNpy",
+      id: 3,
+    },
+    {
+      image:
+        "https://ipfs.infura.io/ipfs/QmQNnYJzxUEAxbRwKHsN16nT6PjhjTSTxag9PT8Pde9nHo",
+      data: "https://ipfs.infura.io/ipfs/QmQEKbmAu9JB5LMjs7MdfyrmVH7bwCcZDDdVWmoNGY7RhX",
+      id: 4,
+    },
+    {
+      image:
+        "https://ipfs.infura.io/ipfs/QmXh3DC6BxTiY7NiUmrQNjiyZz5265VkFM8RF7bKFuGbNe",
+      data: "https://ipfs.infura.io/ipfs/QmTkcz4AAWCNQYvwm7qgtAr5BBgiykE9fmyCRL7ErGcHv3",
+      id: 5,
+    },
+  ];
+
   const ipfs = create({
     host: "ipfs.infura.io",
     port: 5001,
@@ -35,7 +68,7 @@ const UploadPage = () => {
       content: Buffer.from(JSON.stringify(data)),
     });
     console.log(`https://ipfs.infura.io/ipfs/${res}`);
-    await mint(`https://ipfs.infura.io/ipfs/${res}`).then((_data) => {
+    await mint([`https://ipfs.infura.io/ipfs/${res}`]).then((_data) => {
       setMining(false);
       //clear form
       e.target.reset();
@@ -54,11 +87,28 @@ const UploadPage = () => {
     });
   };
 
+  const mintAll = async (e: any) => {
+    e.preventDefault();
+    setMining(true);
+    const listNft = [];
+
+    for (let i = 0; i < e.target.length - 1; i++) {
+      for (let j = 0; j < e.target[i].value; j++) {
+        listNft.push(NFTData[i].data);
+      }
+    }
+    await mint(listNft).then((_data) => {
+      setMining(false);
+      //clear form
+      e.target.reset();
+    });
+  };
+
   return (
     <Layout>
-      <div className="grid grid-cols-3 gap-4 mt-10">
-        <div className="">
-          <div className="border-2 border-gray-800 col-span-1">
+      <div className="grid grid-cols-4 gap-4 mt-10">
+        <div className="col-span-1">
+          <div className="border-2 border-gray-800">
             <div className="p-4 bg-gray-800 text-white">
               <h1>MINT NFT</h1>
             </div>
@@ -96,30 +146,48 @@ const UploadPage = () => {
             </div>
           </div>
         </div>
-        <div className="border-2 border-gray-800 col-span-2">
+        <div className="border-2 border-gray-800 col-span-3">
           <div className="p-4 bg-gray-800 text-white">
             <h1>MINT NFT IN GAME CARD</h1>
           </div>
           <div className="p-4">
-            <div className="grid grid-cols-3 gap-4 h-full">
-              <div className="">
-                <div className="relative w-full h-80">
-                  <Image
-                    className="max-h-56"
-                    src={
-                      "https://ipfs.infura.io/ipfs/QmXh3DC6BxTiY7NiUmrQNjiyZz5265VkFM8RF7bKFuGbNe"
-                    }
-                    alt={""}
-                    title={""}
-                    layout="fill"
-                    quality={100}
-                    blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    placeholder="blur"
-                  />
-                </div>
-                <input type="number" className="mt-3 border-2 text-center w-full" min={0} required />
+            <form onSubmit={mintAll}>
+              <div className="grid grid-cols-4 gap-4 h-full">
+                {NFTData.map((data: any, i: any) => {
+                  return (
+                    <div className="" key={i}>
+                      <div className="relative w-full h-80">
+                        <Image
+                          className="max-h-56"
+                          src={data.image}
+                          alt={""}
+                          title={""}
+                          layout="fill"
+                          quality={100}
+                          blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                          placeholder="blur"
+                        />
+                      </div>
+                      <input
+                        type="number"
+                        id={`nft_${data.id}`}
+                        name={`nft_${data.id}`}
+                        className="mt-3 border-2 text-center w-full"
+                        min={0}
+                        required
+                      />
+                    </div>
+                  );
+                })}
               </div>
-            </div>
+              <button
+                disabled={mining}
+                className="mt-4 text-center w-full bg-gray-800 py-3 text-white"
+              >
+                {" "}
+                {mining && <Spining />} Mint
+              </button>
+            </form>
           </div>
         </div>
       </div>

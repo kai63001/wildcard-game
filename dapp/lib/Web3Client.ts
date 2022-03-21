@@ -50,9 +50,9 @@ export const init = async () => {
   return true;
 };
 
-export const mint = async (data: string) => {
+export const mint = async (data: any) => {
   return new Promise(function (res, rej) {
-    contract.mintNFT([data]).then(async function (transaction: any) {
+    contract.mintNFT(data).then(async function (transaction: any) {
       console.log("transaction");
       console.log(transaction);
       let transactionReceipt = null;
