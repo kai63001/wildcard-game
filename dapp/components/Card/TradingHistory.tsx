@@ -93,7 +93,7 @@ const TradingHistory = (props: any) => {
   return (
     <div className="mt-2">
       <h2 className="text-xl">Trading History</h2>
-      <div className="grid grid-cols-5 gap-4 mt-2 p-3 bg-gray-900 text-white rounded-md">
+      <div className="grid grid-cols-5 gap-4 mt-2 p-3 bg-gray-900 text-white rounded-md max-h-52 overflow-y-auto">
         <div className="">Event</div>
         <div className="">Price</div>
         <div className="">From</div>
