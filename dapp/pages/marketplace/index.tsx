@@ -55,7 +55,7 @@ const Marketplace = () => {
         }
         setNFTData(rawData.reverse());
         setLoading(false);
-        setNFTDataFilter(rawData.reverse());
+        setNFTDataFilter(rawData);
       });
     });
   };
