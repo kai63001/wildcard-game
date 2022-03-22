@@ -83,6 +83,7 @@ const Marketplace = () => {
       list = [...getRarityChose, data]
     }else{
       setRarityChose(getRarityChose.filter((item:any)=>item != data))
+      list = getRarityChose.filter((item:any)=>item != data)
     }
     console.log(list)
     setNFTDataFilter(nftData);
