@@ -18,7 +18,7 @@ const Marketplace = () => {
   const [randoming, setRandoming] = useState(false);
 
   const listRarity = ["SSR", "SR", "S", "R", "A"];
-  const [getRarityChose, setRarityChose]:any = useState([]);
+  const [getRarityChose, setRarityChose]: any = useState([]);
   const getRandom = () => {
     setRandoming(true);
     randomNFT().then((data: any) => {
@@ -75,24 +75,25 @@ const Marketplace = () => {
     },
   };
 
-  const filter = async (data:any) =>{
+  const filter = async (data: any) => {
     // console.log(getRarityChose.indexOf(data))
-    let list:any = []
-    if(getRarityChose.indexOf(data) == -1){
+    let list: any = [];
+    if (getRarityChose.indexOf(data) == -1) {
       setRarityChose([...getRarityChose, data]);
-      list = [...getRarityChose, data]
-    }else{
-      setRarityChose(getRarityChose.filter((item:any)=>item != data))
-      list = getRarityChose.filter((item:any)=>item != data)
+      list = [...getRarityChose, data];
+    } else {
+      setRarityChose(getRarityChose.filter((item: any) => item != data));
+      list = getRarityChose.filter((item: any) => item != data);
     }
-    console.log(list)
+    console.log(list);
     setNFTDataFilter(nftData);
-    setNFTDataFilter(nftData.filter((item:any)=>list.indexOf(item.data.rarity) != -1))
-    if(list.length == 0){
+    setNFTDataFilter(
+      nftData.filter((item: any) => list.indexOf(item.data.rarity) != -1)
+    );
+    if (list.length == 0) {
       setNFTDataFilter(nftData);
     }
-    
-  }
+  };
 
   return (
     <Layout>
@@ -119,7 +120,7 @@ const Marketplace = () => {
                 <input
                   className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  onClick={()=>filter(item)}
+                  onClick={() => filter(item)}
                   id={`rarity${item}`}
                   value="option1"
                 />
@@ -127,7 +128,32 @@ const Marketplace = () => {
                   className="form-check-label inline-block "
                   htmlFor={`rarity${item}`}
                 >
-                  {item}
+                  <div className="flex items-center mb-5">
+                    {[...Array(listRarity.length - index)].map((_, index) => {
+                      return (
+                        <svg
+                          className="w-5 h-5 text-yellow-400"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      );
+                    })}
+                    {[...Array(index)].map((_, index) => {
+                      return (
+                        <svg
+                          className="w-5 h-5 text-gray-300 dark:text-gray-500"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      );
+                    })}
+                  </div>
                 </label>
               </div>
             );
