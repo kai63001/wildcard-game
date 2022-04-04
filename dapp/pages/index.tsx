@@ -8,6 +8,10 @@ const Home = () => {
       href: "/",
     },
     {
+      name: "HowToPlay",
+      href: "/how"
+    },
+    {
       name: "Marketplace",
       href: "/marketplace"
     },
