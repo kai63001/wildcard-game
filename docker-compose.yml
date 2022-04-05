@@ -15,7 +15,6 @@ services:
   nakama:
     image: heroiclabs/nakama:3.10.0,
     restart: always
-
     entrypoint:
       - "/bin/sh"
       - "-ecx"
