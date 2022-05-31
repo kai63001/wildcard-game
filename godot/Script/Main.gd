@@ -9,7 +9,7 @@ var loadingNFT = true
 func _ready():
 	$UI/Address/Label.text = moralis.User.current().get("ethAddress").substr(0,6)+".."
 	$HTTPRequest.connect("request_completed", self, "_on_request_completed")
-	$HTTPRequest.request("http://178.128.126.146/api/myNFTonlyId?address="+moralis.User.current().get("ethAddress"))
+	$HTTPRequest.request("http://localhost/api/myNFTonlyId?address="+moralis.User.current().get("ethAddress"))
 
 func _on_Exit_pressed():
 	get_tree().change_scene("res://Screen/Login.tscn")
