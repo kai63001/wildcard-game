@@ -1,6 +1,6 @@
 extends Node2D
 const KEY := "defaultkey"
-onready var client := Nakama.create_client(KEY, "178.128.126.146", 7350, "http")
+onready var client := Nakama.create_client(KEY, "127.0.0.1", 7350, "http")
 var session : NakamaSession
 onready var socket := Nakama.create_socket_from(client)
 var match_id
